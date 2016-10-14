@@ -10,7 +10,7 @@ Elysium Extra is a library that implements Metro style for Windows Presentation 
 
 # This Project is No Longer Mantained.
 
-I just don't have the time to udpate it and am no longer interested in WPF. I'd like to port many of the controls to Windows 10 UWP but again don't have time.
+This project has been moved from [Codeplex](https://elysiumextra.codeplex.com). I just don't have the time to udpate it and am no longer interested in WPF. I'd like to port many of the controls to Windows 10 UWP but again don't have time.
 
 # Release Notes
 
