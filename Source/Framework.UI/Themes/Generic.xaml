@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:local="clr-namespace:Framework.UI"
+                    xmlns:metro="http://schemas.codeplex.com/elysium"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params"
+                    xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+
+        <!-- WPF Base -->
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Color.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Border.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/DrawingImage.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Geometry.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/GroupStyle.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Validation.xaml"/>
+
+        <!-- WPF Controls -->
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Button.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Calendar.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/CheckBox.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ComboBoxItem.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ComboBox.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ContentControl.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ContextMenu.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/DatePicker.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Expander.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/GridSplitter.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/HeaderedContentControl.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Hyperlink.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ItemsControl.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Label.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ListBoxItem.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ListBox.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/MenuItem.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Menu.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/PasswordBox.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/RadioButton.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/RepeatButton.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/RichTextBox.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ScrollBar.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ScrollViewer.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Separator.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Slider.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TabItem.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TabControl.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TextBlock.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TextBox.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ToggleButton.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ToolTip.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TreeViewItem.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TreeView.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Window.xaml"/>
+
+        <!-- Elysium Controls -->
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/ApplicationBar.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/CommandButton.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/DropDownCommandButton.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/ProgressBar.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/ProgressRing.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/Submenu.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/ToggleCommandButton.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/ToggleSwitch.xaml"/>
+
+        <!-- Elysium Extra Controls -->
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/BorderFix.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Icon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/GeometryIcon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Accordion.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/ButtonTextBox.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/CalloutContentControl.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/ComboDataGrid.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/ElasticPicker.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/ExpanderMenu.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/FlipControl.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/LoadingContent.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/MessageDialog.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/NotesListBox.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/NumericUpDown.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/PagingItemsControl.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/RichTextBoxExtended.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/TextBoxExtended.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Wizard.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

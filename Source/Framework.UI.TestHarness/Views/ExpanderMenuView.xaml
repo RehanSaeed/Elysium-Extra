@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.ExpanderMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Column="1" 
+               Content="Expanded"
+               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+               Target="{Binding ElementName=ExpandedCheckBox}"/>
+        <CheckBox x:Name="ExpandedCheckBox" 
+                  Grid.Column="2"
+                  IsChecked="True"
+                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                  VerticalAlignment="Center"/>
+
+        <Label Grid.Column="1" 
+               Grid.Row="1" 
+               Content="Expand Direction"
+               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+               Target="{Binding ElementName=ExpandDirectionComboBox}"/>
+        <ComboBox x:Name="ExpandDirectionComboBox" 
+                  Grid.Column="2"
+                  Grid.Row="1"
+                  HorizontalAlignment="Left"
+                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                  SelectedIndex="2"
+                  Width="150">
+            <ExpandDirection>Down</ExpandDirection>
+            <ExpandDirection>Left</ExpandDirection>
+            <ExpandDirection>Right</ExpandDirection>
+            <ExpandDirection>Up</ExpandDirection>
+        </ComboBox>
+
+        <Label Grid.Column="1" 
+               Grid.Row="2" 
+               Content="Colours Inverted"
+               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+               Target="{Binding ElementName=ColoursInvertedCheckBox}"/>
+        <CheckBox x:Name="ColoursInvertedCheckBox" 
+                  Grid.Column="2"
+                  Grid.Row="2" 
+                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                  VerticalAlignment="Center"/>
+
+        <extra:ExpanderMenu Grid.Column="2"
+                          Grid.Row="3"
+                          ExpandDirection="{Binding ElementName=ExpandDirectionComboBox, Path=SelectedItem}"
+                          IsExpanded="{Binding ElementName=ExpandedCheckBox, Path=IsChecked}"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+            <extra:ExpanderMenuItem IsColoursInverted="{Binding ElementName=ColoursInvertedCheckBox, Path=IsChecked}"
+                                  Style="{StaticResource EditExpanderMenuItemStyle}"/>
+            <extra:ExpanderMenuItem IsColoursInverted="{Binding ElementName=ColoursInvertedCheckBox, Path=IsChecked}"
+                                  Style="{StaticResource DeleteExpanderMenuItemStyle}"/>
+            <extra:ExpanderMenuItem IsColoursInverted="{Binding ElementName=ColoursInvertedCheckBox, Path=IsChecked}"
+                                  Style="{StaticResource UpExpanderMenuItemStyle}"/>
+            <extra:ExpanderMenuItem IsColoursInverted="{Binding ElementName=ColoursInvertedCheckBox, Path=IsChecked}"
+                                  Style="{StaticResource DownExpanderMenuItemStyle}"/>
+        </extra:ExpanderMenu>
+
+        <TextBlock Grid.ColumnSpan="4" 
+                   Grid.Row="4"
+                   Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource HeaderTextStyle}"
+                   Text="Example Usage"/>
+        
+        <DataGrid Grid.ColumnSpan="4" 
+                  Grid.Row="5"
+                  ItemsSource="{Binding Funds}" 
+                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="ExpanderMenu Column"
+                                        Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <extra:ExpanderMenu Grid.Column="0"
+                                                  IsExpanded="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}">
+                                    <extra:ExpanderMenuItem Style="{StaticResource EditExpanderMenuItemStyle}"/>
+                                    <extra:ExpanderMenuItem Style="{StaticResource DeleteExpanderMenuItemStyle}"/>
+                                    <extra:ExpanderMenuItem Style="{StaticResource UpExpanderMenuItemStyle}"/>
+                                    <extra:ExpanderMenuItem Style="{StaticResource DownExpanderMenuItemStyle}"/>
+                                </extra:ExpanderMenu>
+
+                                <TextBlock Grid.Column="1" 
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                           Text="{Binding Name}"
+                                           VerticalAlignment="Center"/>
+                                
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <extra:DataGridTextColumn Binding="{Binding Name}" 
+                                        Header="Text Column"
+                                        Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</UserControl>

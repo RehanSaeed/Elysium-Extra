@@ -1,0 +1,108 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:local="clr-namespace:Framework.UI"
+                    xmlns:metro="http://schemas.codeplex.com/elysium"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params"
+                    xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+
+        <!-- Elysium -->
+        <ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>
+
+        <!-- WPF Base -->
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Color.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Border.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/DrawingImage.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Geometry.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/GroupStyle.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Validation.xaml"/>
+
+        <!-- WPF Controls -->
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Button.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Calendar.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/CheckBox.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ComboBoxItem.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ComboBox.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ContentControl.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/DatePicker.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Expander.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/GridSplitter.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/HeaderedContentControl.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Hyperlink.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ItemsControl.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Label.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ListBoxItem.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ListBox.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/MenuItem.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/RadioButton.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/RepeatButton.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ScrollBar.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ScrollViewer.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Separator.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Slider.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TabItem.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TabControl.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TextBlock.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TextBox.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/ToggleButton.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TreeViewItem.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TreeView.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Window.xaml"/>
+
+        <!-- Elysium Controls -->
+        <ResourceDictionary Source="/Framework.UI;component/Themes/Elysium/CommandButton.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/Elysium/DropDownCommandButton.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/Elysium/ToggleCommandButton.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/Elysium/ToggleSwitch.xaml"/>
+
+        <!-- Elysium Extra Controls -->
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Icon.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/GeometryIcon.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Accordion.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/ButtonTextBox.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/CalloutContentControl.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/ComboDataGrid.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/ElasticPicker.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/ExpanderMenu.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/FlipControl.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/LoadingContent.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/MessageDialog.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/NotesListBox.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/NumericUpDown.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/PagingItemsControl.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/RichTextBoxExtended.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/TextBoxExtended.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Wizard.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Overridden Elysium Styles - To get around a WPF bug, all overrides begin with the word Default and then are used here in the BasedOn -->
+    <Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="{x:Type TextBox}"/>
+    <Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="{x:Type ComboBox}"/>
+    <Style BasedOn="{StaticResource DefaultComboBoxItemStyle}" TargetType="{x:Type ComboBoxItem}"/>
+    <Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="{x:Type CheckBox}"/>
+    <Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="{x:Type RadioButton}"/>
+    <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="{x:Type Button}"/>
+    <Style BasedOn="{StaticResource DefaultRepeatButtonStyle}" TargetType="{x:Type RepeatButton}"/>
+    <Style BasedOn="{StaticResource DefaultToggleButtonStyle}" TargetType="{x:Type ToggleButton}"/>
+    <Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="{x:Type MenuItem}"/>
+    <Style BasedOn="{StaticResource DefaultListBoxItemStyle}" TargetType="{x:Type ListBoxItem}"/>
+    <Style BasedOn="{StaticResource DefaultListBoxStyle}" TargetType="{x:Type ListBox}"/>
+    <Style BasedOn="{StaticResource DefaultTabControlStyle}" TargetType="{x:Type TabControl}"/>
+    <Style BasedOn="{StaticResource DefaultCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}"/>
+    <Style BasedOn="{StaticResource DefaultToggleCommandButtonStyle}" TargetType="{x:Type metro:ToggleCommandButton}"/>
+    <Style BasedOn="{StaticResource DefaultDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}"/>
+    <Style BasedOn="{StaticResource DefaultToggleSwitchStyle}" TargetType="{x:Type metro:ToggleSwitch}"/>
+    <Style BasedOn="{StaticResource DefaultScrollBarStyle}" TargetType="{x:Type ScrollBar}"/>
+    <Style BasedOn="{StaticResource DefaultScrollViewerStyle}" TargetType="{x:Type ScrollViewer}"/>
+    <Style BasedOn="{StaticResource DefaultSliderStyle}" TargetType="{x:Type Slider}"/>
+    <Style BasedOn="{StaticResource DefaultItemsControlStyle}" TargetType="{x:Type ItemsControl}"/>
+
+</ResourceDictionary>

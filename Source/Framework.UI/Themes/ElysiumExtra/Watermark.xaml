@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/><controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <DataTemplate x:Key="DefaultWatermarkTemplate">
+        <ContentControl Content="{Binding}" 
+                        Focusable="False"
+                        Foreground="{StaticResource MiddleLightBrush}"/>
+    </DataTemplate>
+
+</ResourceDictionary>

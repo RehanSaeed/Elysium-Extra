@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Framework.UI.Converters"
+                    xmlns:elysiumConverters="clr-namespace:Elysium.Converters;assembly=Elysium">
+
+    <!-- Elysium Converters -->
+    <elysiumConverters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter" />
+    <elysiumConverters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+    <elysiumConverters:GridLengthToDoubleConverter x:Key="GridLengthToDoubleConverter" />
+    <elysiumConverters:ThicknessToDoubleConverter x:Key="ThicknessToDoubleConverter" />
+    <elysiumConverters:PercentToAngleConverter x:Key="PercentToAngleConverter" />
+    <elysiumConverters:AngleToCoordinateConverter x:Key="AngleToCoordinateConverter" />
+    <elysiumConverters:NumberPositiveToNegativeConverter x:Key="NumberPositiveToNegativeConverter" />
+    <elysiumConverters:ThicknessPositiveToNegativeConverter x:Key="ThicknessPositiveToNegativeConverter" />
+    <elysiumConverters:ThicknessConverter x:Key="ThicknessConverter" />
+    <elysiumConverters:IsGreaterThanConverter x:Key="IsGreaterThanConverter" />
+
+    <!-- Converters -->
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+    <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
+    <converters:InverseNullToVisibilityConverter x:Key="InverseNullToVisibilityConverter"/>
+    <converters:LessThanToBoolConverter x:Key="LessThanToBoolConverter"/>
+    <converters:LessThanEqualToBoolConverter x:Key="LessThanEqualToBoolConverter"/>
+    <converters:LessThanEqualToVisibilityConverter x:Key="LessThanEqualToVisibilityConverter"/>
+    <converters:MoreThanToBoolConverter x:Key="MoreThanToBoolConverter"/>
+    <converters:MoreThanEqualToBoolConverter x:Key="MoreThanEqualToBoolConverter"/>
+    <converters:MoreThanEqualToVisibilityConverter x:Key="MoreThanEqualToVisibilityConverter"/>
+    <converters:NullToBoolConverter x:Key="NullToBoolConverter"/>
+    <converters:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter"/>
+    <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+    <converters:StringFormatConverter x:Key="StringFormatConverter"/>
+    <converters:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter"/>
+
+</ResourceDictionary>

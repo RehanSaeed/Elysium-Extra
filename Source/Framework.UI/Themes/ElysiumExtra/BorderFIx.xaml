@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Why do we need this:
+         See http://stackoverflow.com/questions/17789648/dynamicresource-color-doesnt-work-for-borderbrush-on-a-border-bug/26738125#26738125 -->
+    <Style TargetType="{x:Type controls:BorderFix}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:BorderFix}">
+                    <DockPanel x:Name="PART_Container"
+                               Background="{TemplateBinding Background}"
+                               LastChildFill="True"
+                               UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                        <Rectangle x:Name="PART_LeftBorder"
+                                   DockPanel.Dock="Left"
+                                   Fill="{TemplateBinding BorderBrush}"
+                                   Width="{Binding Path=BorderThickness.Left, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <Rectangle x:Name="PART_TopBorder"
+                                   DockPanel.Dock="Top"
+                                   Fill="{TemplateBinding BorderBrush}"
+                                   Height="{Binding Path=BorderThickness.Top, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <Rectangle x:Name="PART_RightBorder"
+                                   DockPanel.Dock="Right"
+                                   Fill="{TemplateBinding BorderBrush}"
+                                   Width="{Binding Path=BorderThickness.Right, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <Rectangle x:Name="PART_BottomBorder"
+                                   DockPanel.Dock="Bottom"
+                                   Fill="{TemplateBinding BorderBrush}"
+                                   Height="{Binding Path=BorderThickness.Bottom, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <ContentPresenter x:Name="PART_Content"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

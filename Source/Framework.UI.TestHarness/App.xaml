@@ -1,0 +1,6 @@
+﻿<extra:ElysiumApplication x:Class="Framework.UI.TestHarness.App"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:extra="http://schemas.extra.com/ui"
+                          Theme="Light"
+                          StartupUri="MainView.xaml"/>

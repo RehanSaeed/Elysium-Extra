@@ -1,0 +1,163 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:metro="http://schemas.codeplex.com/elysium"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/BorderFix.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ToggleSwitchSwitchStyle" TargetType="{x:Type Button}" >
+        <Setter Property="Background" Value="{StaticResource HighlightBrush}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Rectangle Fill="{TemplateBinding Background}" StrokeThickness="0" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ToggleSwitchThumbStyle" TargetType="{x:Type Thumb}" >
+        <Setter Property="Background" Value="{StaticResource MiddleLightBrush}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <controls:BorderFix Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource LowlightBrush}" />
+            </Trigger>
+            <Trigger Property="Thumb.IsDragging" Value="True">
+                <Setter Property="Background" Value="{StaticResource LowlightBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource DisabledBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="{x:Type metro:ToggleSwitch}" TargetType="{x:Type metro:ToggleSwitch}" >
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource MiddleLightBrush}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.DefaultThickness),Mode=OneWay}" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.ContentFontSize),Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="Medium" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="MinHeight" Value="12" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="MaxHeight" Value="20" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type metro:ToggleSwitch}">
+                    <Grid TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontFamily="{TemplateBinding Control.FontFamily}" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.FontStretch="{TemplateBinding FontStretch}" TextBlock.FontStyle="{TemplateBinding FontStyle}" TextBlock.FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Panel.Background="{x:Null}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:ToggleSwitch.TrackSize),Mode=OneWay,Converter={StaticResource DoubleToGridLengthConverter}}" />
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter x:Name="OnHeaderHost" Grid.Column="0" ContentPresenter.Content="{TemplateBinding metro:ToggleSwitch.OnHeader}" ContentPresenter.ContentStringFormat="{TemplateBinding metro:ToggleSwitch.OnHeaderStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding metro:ToggleSwitch.OnHeaderTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding metro:ToggleSwitch.OnHeaderTemplateSelector}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed" />
+                        <ContentPresenter x:Name="OffHeaderHost" Grid.Column="0" ContentPresenter.Content="{TemplateBinding metro:ToggleSwitch.OffHeader}" ContentPresenter.ContentStringFormat="{TemplateBinding metro:ToggleSwitch.OffHeaderStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding metro:ToggleSwitch.OffHeaderTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding metro:ToggleSwitch.OffHeaderTemplateSelector}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed" />
+                        <controls:BorderFix x:Name="PART_Track" 
+                                Grid.Column="2" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <DockPanel>
+                                <Rectangle x:Name="PART_Fill" DockPanel.Dock="Left" Fill="{StaticResource AccentBrush}" Width="0" Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.DefaultThicknessValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter='Left, Top, Bottom'}" />
+                                <Thumb x:Name="PART_Thumb" DockPanel.Dock="Left" 
+                                           BorderBrush="{TemplateBinding Background}" 
+                                           IsEnabled="{TemplateBinding IsEnabled}" 
+                                           Width="{TemplateBinding params:ToggleSwitch.ThumbThickness}" 
+                                           FrameworkElement.Style="{StaticResource ToggleSwitchThumbStyle}" 
+                                           BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.DefaultThicknessValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter=Right}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=BorderThickness,Mode=OneWay,Converter={StaticResource ThicknessPositiveToNegativeConverter}}" />
+                                <Button x:Name="PART_Switch" FrameworkElement.Style="{StaticResource ToggleSwitchSwitchStyle}" Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.DefaultThicknessValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter='Right, Top, Bottom'}" />
+                            </DockPanel>
+                        </controls:BorderFix>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="metro:ToggleSwitch.IsChecked" Value="False">
+                            <Setter TargetName="OffHeaderHost" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="metro:ToggleSwitch.IsChecked" Value="True">
+                            <Setter TargetName="OnHeaderHost" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_Fill" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="PART_Fill" Value="{StaticResource HighlightBrush}" Property="Fill" />
+                            <Setter TargetName="PART_Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.DefaultThicknessValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter='Right, Top, Bottom'}" Property="Margin" />
+                            <Setter TargetName="PART_Thumb" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="PART_Thumb" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.DefaultThicknessValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter=Left}" Property="BorderThickness" />
+                            <Setter TargetName="PART_Thumb" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=BorderThickness,Mode=OneWay,Converter={StaticResource ThicknessPositiveToNegativeConverter}}" Property="Margin" />
+                            <Setter TargetName="PART_Switch" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.DefaultThicknessValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter='Left, Top, Bottom'}" Property="Margin" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="metro:ToggleSwitch.IsChecked" Value="True" />
+                                <Condition Property="IsEnabled" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_Switch" Value="{StaticResource AccentBrush}" Property="Background" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="metro:ToggleSwitch.IsSwitching" Value="True" />
+                                <Condition Property="metro:ToggleSwitch.IsChecked" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_Thumb" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.DefaultThicknessValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter=Left}" Property="BorderThickness" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="metro:ToggleSwitch.IsSwitching" Value="True" />
+                                <Condition Property="metro:ToggleSwitch.IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_Thumb" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.DefaultThicknessValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter=Right}" Property="BorderThickness" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger DataTrigger.Binding="{Binding RelativeSource={RelativeSource Self},Path=FontSize,Mode=OneWay,Converter={StaticResource IsGreaterThanConverter},ConverterParameter=18}">
+                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource DisabledBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource DisabledBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+</ResourceDictionary>

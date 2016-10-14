@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.AnimationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource HeaderTextStyle}" 
+                   Text="ItemsControl Animations"/>
+        <TextBlock Grid.Row="1"
+                   Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                   Style="{StaticResource NormalTextStyle}" 
+                   Text="AnimatingItemsControlBehavior can be used on any control inheriting from ItemsControl."/>
+        <ItemsControl Grid.Row="2" 
+                      Focusable="False"
+                      ItemsSource="{Binding Colours}"
+                      Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}">
+            <interactivity:Interaction.Behaviors>
+                <extra:AnimatingItemsControlBehavior x:Name="Behavior"/>
+            </interactivity:Interaction.Behaviors>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="{Binding}"
+                            Height="100"
+                            Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                            Width="100"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <WrapPanel Grid.Row="3">
+            <Button Click="OnAnimateIn" 
+                    Content="Animate In"
+                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+            <Button Click="OnAnimateOut" 
+                    Content="Animate Out"
+                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+            <CheckBox Content="IsAnimatingOnIsVisibleChanged" 
+                      IsChecked="{Binding ElementName=Behavior, Path=IsAnimatingOnIsVisibleChanged}"
+                      Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                      VerticalAlignment="Center"/>
+            <CheckBox Content="IsAnimatingOnLoaded" 
+                      IsChecked="{Binding ElementName=Behavior, Path=IsAnimatingOnLoaded}"
+                      Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                      VerticalAlignment="Center"/>
+            <CheckBox Content="IsRandom" 
+                      IsChecked="{Binding ElementName=Behavior, Path=IsRandom}"
+                      Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                      VerticalAlignment="Center"/>
+            <Slider x:Name="Slider" 
+                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                    Maximum="100" 
+                    Minimum="-100"
+                    TickPlacement="BottomRight"
+                    VerticalAlignment="Center"
+                    Value="{Binding ElementName=Behavior, Mode=TwoWay, Path=Offset}"
+                    Width="100"/>
+            <TextBlock Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}"
+                       Text="{Binding ElementName=Slider, Path=Value}"
+                       VerticalAlignment="Center"/>
+        </WrapPanel>
+
+
+        <TextBlock Grid.Row="4" 
+                   Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource HeaderTextStyle}" 
+                   Text="Control Animations"/>
+        <TextBlock Grid.Row="5"
+                   Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                   Style="{StaticResource NormalTextStyle}" 
+                   Text="FadeBehavior and SlideBehavior can be used on any control inheriting from Control."/>
+        <Border x:Name="AnimatingItem" 
+                Grid.Row="6"
+                Background="LightBlue"
+                Height="100"
+                Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                Width="100">
+            <interactivity:Interaction.Behaviors>
+                <extra:FadeBehavior x:Name="FadeBehavior" FadeOutCompleted="OnFadeOutCompleted"/>
+                <extra:SlideBehavior x:Name="SlideBehavior"/>
+            </interactivity:Interaction.Behaviors>
+        </Border>
+        <WrapPanel Grid.Row="7">
+            <Button Click="OnShow" 
+                    Content="Animate In"
+                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+            <Button Click="OnCollapse" 
+                    Content="Animate Out"
+                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+        </WrapPanel>
+
+    </Grid>
+</UserControl>

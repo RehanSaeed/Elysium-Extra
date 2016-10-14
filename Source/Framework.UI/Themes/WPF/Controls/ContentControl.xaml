@@ -1,0 +1,94 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Validation.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Icon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/GeometryIcon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/BorderFix.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type ContentControl}">
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationErrorControlTemplate}"/>
+    </Style>
+
+    <!-- ValidationContentControl -->
+    <Style x:Key="ValidationContentControl" TargetType="{x:Type ContentControl}">
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Padding" Value="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <controls:BorderFix Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ContentPresenter x:Name="PART_Content"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                            <Grid Grid.Column="1" 
+                                  Margin="{TemplateBinding Padding}">
+                                <controls:Icon x:Name="PART_Tick" 
+                                               Size="Medium"
+                                               Style="{StaticResource OkIconStyle}">
+                                    <interactivity:Interaction.Behaviors>
+                                        <controls:SlideBehavior/>
+                                        <controls:FadeBehavior/>
+                                    </interactivity:Interaction.Behaviors>
+                                </controls:Icon>
+                                <controls:Icon x:Name="PART_Warning" 
+                                               Size="Medium"
+                                               Style="{StaticResource WarningMessageIconStyle}">
+                                    <interactivity:Interaction.Behaviors>
+                                        <controls:SlideBehavior/>
+                                        <controls:FadeBehavior/>
+                                    </interactivity:Interaction.Behaviors>
+                                    <controls:Icon.ToolTip>
+                                        <ItemsControl ItemsSource="{Binding Path=Content.(Validation.Errors), RelativeSource={RelativeSource TemplatedParent}}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding ErrorContent}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </controls:Icon.ToolTip>
+                                </controls:Icon>
+                            </Grid>
+
+                        </Grid>
+                    </controls:BorderFix>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Content.IsEnabled, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Foreground" TargetName="PART_Tick" Value="{StaticResource DisabledBrush}"/>
+                            <Setter Property="Foreground" TargetName="PART_Warning" Value="{StaticResource DisabledBrush}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Content.(Validation.HasError), RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Visibility" TargetName="PART_Tick" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Content.(Validation.HasError), RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Visibility" TargetName="PART_Warning" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Content.Visibility, RelativeSource={RelativeSource Self}}" Value="Collapsed">
+                            <Setter Property="Visibility" TargetName="PART_Tick" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="PART_Warning" Value="Collapsed"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

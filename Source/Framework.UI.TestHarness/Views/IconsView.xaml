@@ -1,0 +1,238 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.IconsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <TabControl TabStripPlacement="Bottom">
+        <TabItem Header="Geometry">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Style="{StaticResource NormalTextStyle}"  
+                           Text="Icons based on Geometry's. A few thousand have been provided out of the box!"/>
+
+                <ListBox Grid.Row="1"  
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"  
+                         ItemsSource="{Binding StylesView}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <extra:VirtualizingWrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <extra:Icon Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                            OverlayStyle="{Binding Path=DataContext.OverlayStyle, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                            Size="{Binding ElementName=GeometrySizeComboBox, Path=SelectedItem}"
+                                            Style="{Binding Style}"
+                                            ToolTip="{Binding Key}"/>
+                                <TextBlock Grid.Row="1" 
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                           Style="{StaticResource BoldTextStyle}"  
+                                           Text="{Binding Name}"
+                                           TextAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Filter"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Target="{Binding ElementName=FilterTextTextBox}"/>
+                    <extra:TextBoxExtended x:Name="FilterTextTextBox"
+                                           Grid.Column="1"
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                           Style="{StaticResource FilterTextBoxExtendedStyle}"
+                                           Text="{Binding Delay=300, Path=FilterText, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Label Grid.Column="2"  
+                           Content="Size"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Target="{Binding ElementName=GeometrySizeComboBox}"/>
+                    <ComboBox x:Name="GeometrySizeComboBox"
+                              Grid.Column="3"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              SelectedIndex="3">
+                        <extra:IconSize>Small</extra:IconSize>
+                        <extra:IconSize>Medium</extra:IconSize>
+                        <extra:IconSize>Large</extra:IconSize>
+                        <extra:IconSize>VeryLarge</extra:IconSize>
+                    </ComboBox>
+
+                    <Label Grid.Row="1" 
+                           Content="OverlayStyle"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Target="{Binding ElementName=GeometryOverlayStyleNameTextBox}"/>
+                    <extra:TextBoxExtended x:Name="GeometryOverlayStyleNameTextBox"
+                                           Grid.Column="1"
+                                           Grid.Row="1" 
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                           Text="{Binding Delay=300, Path=OverlayStyleName, UpdateSourceTrigger=PropertyChanged}"
+                                           Watermark="Add1IconStyle"/>
+
+                </Grid>
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="Text">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Style="{StaticResource NormalTextStyle}"  
+                           Text="Text based icons turn a character into an icon. See the Segoe UI Symbol font for lots of icon like characters."/>
+
+                <extra:Icon Grid.Row="1"  
+                            Content="{Binding ElementName=TextTextBox, Path=Text}"  
+                            OverlayStyle="{Binding OverlayStyle}"
+                            Size="{Binding ElementName=TextSizeComboBox, Path=SelectedItem}"  
+                            Style="{StaticResource TextBaseIconStyle}"/>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Text"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Target="{Binding ElementName=TextTextBox}"/>
+                    <TextBox x:Name="TextTextBox"
+                             Grid.Column="1"
+                             Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                             MaxLength="3"
+                             Text="©"/>
+
+                    <Label Grid.Column="2"  
+                           Content="Size"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Target="{Binding ElementName=TextSizeComboBox}"/>
+                    <ComboBox x:Name="TextSizeComboBox"
+                              Grid.Column="3"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              SelectedIndex="3">
+                        <extra:IconSize>Small</extra:IconSize>
+                        <extra:IconSize>Medium</extra:IconSize>
+                        <extra:IconSize>Large</extra:IconSize>
+                        <extra:IconSize>VeryLarge</extra:IconSize>
+                    </ComboBox>
+
+                    <Label Grid.Row="1" 
+                           Content="OverlayStyle"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Target="{Binding ElementName=TextOverlayStyleNameTextBox}"/>
+                    <extra:TextBoxExtended x:Name="TextOverlayStyleNameTextBox"
+                                           Grid.Column="1"
+                                           Grid.Row="1" 
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                           Text="{Binding Delay=300, Path=OverlayStyleName, UpdateSourceTrigger=PropertyChanged}"
+                                           Watermark="Add1IconStyle"/>
+
+                </Grid>
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="Image">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Style="{StaticResource NormalTextStyle}" 
+                           Text="These are icons based on PNG images. The left side shows the original image and the right hand side shows it as an icon. Notice that the icon uses the theme colour. Avoid use of these as they resize badly. They are however provided for backwards compatability."/>
+                
+                <Image Grid.Row="1"  
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Source="\Framework.UI.TestHarness;component\Assets\Icon.png"
+                       Stretch="None"/>
+                
+                <extra:Icon Grid.Column="1"  
+                            Grid.Row="1"  
+                            Content="\Framework.UI.TestHarness;component\Assets\Icon.png"  
+                            Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                            OverlayStyle="{Binding OverlayStyle}"
+                            Size="{Binding ElementName=ImageSizeComboBox, Path=SelectedItem}"  
+                            Style="{StaticResource ImageBaseIconStyle}"/>
+
+                <Grid Grid.ColumnSpan="2"  
+                      Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Size"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Target="{Binding ElementName=ImageSizeComboBox}"/>
+                    <ComboBox x:Name="ImageSizeComboBox"
+                              Grid.Column="1"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              SelectedIndex="3">
+                        <extra:IconSize>Small</extra:IconSize>
+                        <extra:IconSize>Medium</extra:IconSize>
+                        <extra:IconSize>Large</extra:IconSize>
+                        <extra:IconSize>VeryLarge</extra:IconSize>
+                    </ComboBox>
+
+                    <Label Grid.Column="2" 
+                           Content="OverlayStyle"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                           Target="{Binding ElementName=ImageOverlayStyleNameTextBox}"/>
+                    <extra:TextBoxExtended x:Name="ImageOverlayStyleNameTextBox"
+                                           Grid.Column="3"
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                           Text="{Binding Delay=300, Path=OverlayStyleName, UpdateSourceTrigger=PropertyChanged}"
+                                           Watermark="Add1IconStyle"/>
+
+                </Grid>
+
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

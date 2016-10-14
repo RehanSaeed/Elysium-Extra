@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{925D4016-8D41-4E81-9287-695C5A1E1E85}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Framework.UI</RootNamespace>
+    <AssemblyName>Framework.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elysium">
+      <HintPath>..\..\packages\Elysium.Theme.2.0.4\lib\net45\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading">
+      <HintPath>..\..\packages\Rx-Xaml.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.XML" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BindingBaseExtensions.cs" />
+    <Compile Include="Controls\BorderFix.cs" />
+    <Compile Include="Controls\ComboBoxAttached.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridProgressBarColumn.cs" />
+    <Compile Include="Controls\DataGrid\DataGridColumnAttached.cs" />
+    <Compile Include="Controls\DataGrid\DataGridColumnInfo.cs" />
+    <Compile Include="Controls\DatePickerAttached.cs" />
+    <Compile Include="Controls\Icon\Icon.cs" />
+    <Compile Include="Controls\Icon\IconSize.cs" />
+    <Compile Include="Controls\ListBoxItemAttached.cs" />
+    <Compile Include="Controls\MenuItemAttached.cs" />
+    <Compile Include="Controls\Panels\VirtualizingWrapPanel.cs" />
+    <Compile Include="Controls\ResourceDictionaryExtensions.cs" />
+    <Compile Include="Controls\Screen.cs" />
+    <Compile Include="Controls\ListBoxAttached.cs" />
+    <Compile Include="Controls\SharedResourceDictionary.cs" />
+    <Compile Include="Controls\Window\WindowBase.cs" />
+    <Compile Include="Controls\XmlSerializer.cs" />
+    <Compile Include="ElysiumApplication.cs" />
+    <Compile Include="ElysiumParameterOverrides.cs" />
+    <Compile Include="Input\AsyncCommand.cs" />
+    <Compile Include="Input\Command.cs" />
+    <Compile Include="Input\CommandBase.cs" />
+    <Compile Include="Input\AsyncCommandT.cs" />
+    <Compile Include="Input\CommandT.cs" />
+    <Compile Include="Input\AsyncDelegateCommand.cs" />
+    <Compile Include="Input\DelegateCommand.cs" />
+    <Compile Include="Input\AsyncDelegateCommandT.cs" />
+    <Compile Include="Input\DelegateCommandT.cs" />
+    <Compile Include="Controls\ComboDataGrid.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridTemplateColumn.cs" />
+    <Compile Include="Controls\DataGrid\DataGridRowAttached.cs" />
+    <Compile Include="Controls\ElasticPicker\ElasticPickerGrid.cs" />
+    <Compile Include="Controls\ExpanderMenu\ExpanderMenu.cs" />
+    <Compile Include="Controls\ExpanderMenu\ExpanderMenuItem.cs" />
+    <Compile Include="Controls\MessageDialog\MessageDialog.cs" />
+    <Compile Include="Controls\MessageDialog\MessageDialogButton.cs" />
+    <Compile Include="Controls\MessageDialog\MessageDialogType.cs" />
+    <Compile Include="Controls\Notes\ListIndexConverter.cs" />
+    <Compile Include="Controls\Notes\NotesListBox.cs" />
+    <Compile Include="Controls\Notes\NotesListBoxItem.cs" />
+    <Compile Include="Controls\Notes\StackCanvas.cs" />
+    <Compile Include="Controls\Window\OverlayWindow.cs" />
+    <Compile Include="Controls\UIElementAttached.cs" />
+    <Compile Include="Controls\WebBrowserAttached.cs" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <Compile Include="Controls\Accordion\Accordion.cs" />
+    <Compile Include="Controls\Accordion\AccordionAction.cs" />
+    <Compile Include="Controls\Accordion\InteractionHelper.cs" />
+    <Compile Include="Controls\Accordion\ItemsControlHelper.cs" />
+    <Compile Include="Controls\Accordion\Primitives\AccordionButton.cs" />
+    <Compile Include="Controls\Accordion\AccordionItem.cs" />
+    <Compile Include="Controls\Accordion\AccordionSelectionMode.cs" />
+    <Compile Include="Controls\Accordion\Automation\Peers\AccordionAutomationPeer.cs" />
+    <Compile Include="Controls\Accordion\Automation\Peers\AccordionItemAutomationPeer.cs" />
+    <Compile Include="Controls\Accordion\Automation\Peers\AccordionItemWrapperAutomationPeer.cs" />
+    <Compile Include="Controls\Accordion\Primitives\ExpandableContentControl.cs" />
+    <Compile Include="Controls\Accordion\IUpdateVisualState.cs" />
+    <Compile Include="Controls\Accordion\SelectionSequence.cs" />
+    <Compile Include="Controls\Accordion\VisualStates.cs" />
+    <Compile Include="Controls\Accordion\AccordionResources.Designer.cs">
+      <DependentUpon>AccordionResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Controls\AdornedControl\AdornedControl.cs" />
+    <Compile Include="Controls\AdornedControl\AdornerPlacement.cs" />
+    <Compile Include="Controls\AdornedControl\FrameworkElementAdorner.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridColumnToolTipHelper.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridMultiLineTextColumn.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridDateTimeColumn.cs" />
+    <Compile Include="Controls\DataGrid\DataGridAttached.cs" />
+    <Compile Include="Controls\DataGrid\GroupSummary\DataGridGroupSummaryCollection.cs" />
+    <Compile Include="Controls\DataGrid\GroupSummary\DataGridGroupSummary.cs" />
+    <Compile Include="Controls\GroupStyleCollection.cs" />
+    <Compile Include="Controls\ItemsControlAttached.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridDoubleUpDownColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGrid\Columns\DataGridIntegerUpDownColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGrid\Columns\DataGridLongUpDownColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGrid\Columns\DataGridNumberColumn.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridDecimalUpDownColumn.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\ElasticGroupNumberFormat.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\ElasticGroupSortMode.cs" />
+    <Compile Include="Controls\Panels\AnimatedWrapPanel.cs" />
+    <Compile Include="Controls\RichTextBox\RichTextBoxExtended.cs" />
+    <Compile Include="Controls\TreeView\TreeViewAttached.cs" />
+    <Compile Include="Controls\TreeView\TreeViewItemAttached.cs" />
+    <Compile Include="Converters\LessThanToBoolConverter.cs" />
+    <Compile Include="Converters\MoreThanToBoolConverter.cs" />
+    <Compile Include="Converters\MoreThanEqualToBoolConverter.cs" />
+    <Compile Include="Converters\LessThanEqualToBoolConverter.cs" />
+    <Compile Include="Converters\VisibilityToBoolConverter.cs" />
+    <Compile Include="DragAndDrop\DragViewer.cs" />
+    <Compile Include="Controls\ElementProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ThemeManager.cs" />
+    <Compile Include="VisualTreeHelpers.cs" />
+    <Compile Include="Commands\EventCommand.cs" />
+    <Compile Include="Commands\Internal\ActionExecutionStrategy.cs" />
+    <Compile Include="Commands\CommandBinding.cs" />
+    <Compile Include="Commands\CommandBindingCollection.cs" />
+    <Compile Include="Commands\Internal\CommandBehaviorBinding.cs" />
+    <Compile Include="Commands\EventCommand.CommandBindings.cs" />
+    <Compile Include="Commands\Internal\CommandExecutionStrategy.cs" />
+    <Compile Include="Commands\Internal\EventHandlerGenerator.cs" />
+    <Compile Include="Commands\Internal\IExecutionStrategy.cs" />
+    <Compile Include="Commands\KeyCommand.cs" />
+    <Compile Include="Controls\Borders\ClippingBorder.cs" />
+    <Compile Include="Controls\Borders\DropShadowBorder.cs" />
+    <Compile Include="Controls\Borders\GlassBorder.cs" />
+    <Compile Include="Controls\Borders\InnerGlowBorder.cs" />
+    <Compile Include="Controls\Borders\OuterGlowBorder.cs" />
+    <Compile Include="Controls\Borders\PerspectiveShadowBorder.cs" />
+    <Compile Include="Controls\Borders\RadialShadowBorder.cs" />
+    <Compile Include="Controls\Interactivity\Behaviors.cs" />
+    <Compile Include="Controls\Interactivity\Triggers.cs" />
+    <Compile Include="Controls\TextBox\ButtonTextBox.cs" />
+    <Compile Include="Controls\CalloutContentControl\ArrowAlignment.cs" />
+    <Compile Include="Controls\CalloutContentControl\ArrowPlacement.cs" />
+    <Compile Include="Controls\CalloutContentControl\CalloutContentControl.cs" />
+    <Compile Include="Controls\CalloutContentControl\CalloutContentControlToThicknessConverter.cs" />
+    <Compile Include="Controls\CalloutContentControl\CalloutShape.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridDateColumn.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridTextColumn.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridHyperlinkColumn.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridComboBoxColumn.cs" />
+    <Compile Include="Controls\DataGrid\Columns\DataGridCheckBoxColumn.cs" />
+    <Compile Include="Controls\ElasticPicker\ListBox\ElasticListBox.cs" />
+    <Compile Include="Controls\ElasticPicker\ListBox\ElasticListBoxItem.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\ElasticGroup.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\ElasticGroupCollection.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\ElasticPicker.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\ElasticView.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\Internal\Entity.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\Internal\EntityCollection.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\Internal\EntityGroup.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\Internal\EntityGroupCollection.cs" />
+    <Compile Include="Controls\ElasticPicker\Picker\Internal\EntityView.cs" />
+    <Compile Include="Controls\FlipControl.cs" />
+    <Compile Include="Controls\Interactivity\AnimatingItemsControlBehavior.cs" />
+    <Compile Include="Controls\Interactivity\FadeBehavior.cs" />
+    <Compile Include="Controls\Interactivity\Interactivities.cs" />
+    <Compile Include="Controls\Interactivity\RotateBehavior.cs" />
+    <Compile Include="Controls\Interactivity\SlideBehavior.cs" />
+    <Compile Include="Controls\NumericUpDown\AllowedSpecialValuesEnum.cs" />
+    <Compile Include="Controls\NumericUpDown\ByteUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\CommonNumericUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\DecimalUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\DoubleUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\InputBase.cs" />
+    <Compile Include="Controls\NumericUpDown\InputValidationErrorEventArgs.cs" />
+    <Compile Include="Controls\NumericUpDown\IntegerUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\IValidateInput.cs" />
+    <Compile Include="Controls\NumericUpDown\LongUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\SByteUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\ShortUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\SingleUpDown.cs" />
+    <Compile Include="Controls\Spinner\ButtonSpinner.cs" />
+    <Compile Include="Controls\Spinner\SpinDirection.cs" />
+    <Compile Include="Controls\Spinner\SpinEventArgs.cs" />
+    <Compile Include="Controls\Spinner\Spinner.cs" />
+    <Compile Include="Controls\NumericUpDown\UIntegerUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\ULongUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\UpDownBase.cs" />
+    <Compile Include="Controls\NumericUpDown\UShortUpDown.cs" />
+    <Compile Include="Controls\Spinner\ValidSpinDirections.cs" />
+    <Compile Include="Controls\PagingItemsControl\NumberedPage.cs" />
+    <Compile Include="Controls\PagingItemsControl\PagingDecorator.cs" />
+    <Compile Include="Controls\PagingItemsControl\SmartColumnsPanel.cs" />
+    <Compile Include="Controls\TextBox\QueryMoveFocusEventArgs.cs" />
+    <Compile Include="Controls\TextBox\QueryMoveFocusEventHandler.cs" />
+    <Compile Include="Controls\TextBox\TextBoxExtended.cs" />
+    <Compile Include="Controls\Window\Window.cs" />
+    <Compile Include="Controls\Wizard\Internal\WizardItemModel.cs" />
+    <Compile Include="Controls\Wizard\Internal\WizardItemModelCollection.cs" />
+    <Compile Include="Controls\Wizard\Wizard.cs" />
+    <Compile Include="Controls\Wizard\WizardAnimation.cs" />
+    <Compile Include="Controls\Wizard\WizardCollectionAnimation.cs" />
+    <Compile Include="Controls\Wizard\WizardItem.cs" />
+    <Compile Include="Controls\Wizard\WizardItemCollection.cs" />
+    <Compile Include="Controls\Wizard\WizardMode.cs" />
+    <Compile Include="Controls\Wizard\WizardXaml.cs" />
+    <Compile Include="DependencyObjectExtensions.cs" />
+    <Compile Include="DispatcherExtensions.cs" />
+    <Compile Include="WeakEvent.cs" />
+    <Compile Include="Controls\Window\NotifyBox.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Converters\InverseBoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\InverseNullToVisibilityConverter.cs" />
+    <Compile Include="Converters\LessThanEqualToVisibilityConverter.cs" />
+    <Compile Include="Converters\MoreThanEqualToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullToBoolConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringFormatConverter.cs" />
+    <Compile Include="DragAndDrop\DragCommand.cs" />
+    <Compile Include="DragAndDrop\DragManager.cs" />
+    <Compile Include="Controls\LoadingContent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XamlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\ElysiumExtra\BorderFix.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Elysium\ApplicationBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Elysium\ProgressRing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Elysium\Submenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\DrawingImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\Geometry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\GeometryIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\Icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\Watermark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\RichTextBoxExtended.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\ButtonTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\NumericUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\LoadingContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\FlipControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\CalloutContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\MessageDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\Accordion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\ElasticPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\PagingItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\ExpanderMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\NotesListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\Wizard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\TextBoxExtended.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ElysiumExtra\ComboDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Elysium\CommandButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Elysium\DropDownCommandButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Elysium\ToggleSwitch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Elysium\ToggleCommandButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\Border.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\GroupStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\Theme\DarkColor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\Theme\LightColor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Elysium\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\PasswordBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\RichTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ContextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ScrollBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ScrollViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\TreeViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\HeaderedContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\GridSplitter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\DatePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Calendar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Label.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Hyperlink.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Slider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\TabItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\TabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ListBoxItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\RepeatButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\CheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ComboBoxItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\Brush.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\Color.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\Converter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\FocusVisualStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Controls\Separator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WPF\Base\Validation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{20d52b40-00b7-40d1-a3a0-56f3d900c0d6}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Divider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\Accordion\AccordionResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccordionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

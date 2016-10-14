@@ -1,0 +1,85 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/><controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="{x:Type RadioButton}" Style.TargetType="{x:Type RadioButton}" >
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource MiddleLightBrush}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.DefaultThickness),Mode=OneWay}" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.ContentFontSize),Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="Medium" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.BoldPadding),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter=Left}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator Background="{StaticResource TransparentBrush}" 
+                                     TextBlock.Foreground="{TemplateBinding Foreground}" 
+                                     TextBlock.FontFamily="{TemplateBinding FontFamily}" 
+                                     TextBlock.FontSize="{TemplateBinding FontSize}" 
+                                     TextBlock.FontWeight="{TemplateBinding FontWeight}" 
+                                     FlowDirection="{TemplateBinding FlowDirection}" 
+                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <BulletDecorator.Bullet>
+                            <Grid Height="{TemplateBinding params:Bullet.DecoratorSize}"
+                                  Width="{TemplateBinding params:Bullet.DecoratorSize}">
+                                <Ellipse Fill="{TemplateBinding Background}" 
+                                         Stroke="{TemplateBinding BorderBrush}" 
+                                         StrokeThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=BorderThickness,Mode=OneWay,Converter={StaticResource ThicknessToDoubleConverter}}"/>
+                                <Ellipse x:Name="CheckBullet" 
+                                         Fill="{StaticResource AccentFixBrush}" 
+                                         Height="{TemplateBinding params:Bullet.Size}"
+                                         HorizontalAlignment="Center" 
+                                         StrokeThickness="0"
+                                         VerticalAlignment="Center" 
+                                         Visibility="Collapsed" 
+                                         Width="{TemplateBinding params:Bullet.Size}"/>
+                            </Grid>
+                        </BulletDecorator.Bullet>
+                        <Border Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(params:General.BoldPaddingValue),Mode=OneWay,Converter={StaticResource DoubleToThicknessConverter},ConverterParameter=Left}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" 
+                                              RecognizesAccessKey="True" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckBullet" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="CheckBullet" Value="{StaticResource DisabledBrush}" Property="Fill" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource HighlightBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource MiddleLightBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource HighlightBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource LowlightBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource DisabledBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource DisabledBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

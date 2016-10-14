@@ -1,0 +1,511 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.ElasticPickerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=System"
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="ItemTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                           Style="{StaticResource HeaderTextStyle}"
+                           Text="{Binding Profession}"/>
+
+                <TextBlock Grid.Row="1"
+                           Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                           Style="{StaticResource NormalTextStyle}"
+                           Text="{Binding Gender}"/>
+
+                <TextBlock Grid.Row="2"
+                           Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                           Style="{StaticResource AccentTextStyle}"
+                           Text="{Binding EyeColour}"/>
+
+                <TextBlock Grid.Row="3"
+                           Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                           Style="{StaticResource ContrastTextStyle}"
+                           Text="{Binding Nationality}"/>
+
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="ElasticGroupSelectedItemsListBoxStyle" BasedOn="{StaticResource {x:Type ListBox}}" TargetType="{x:Type ListBox}">
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <extra:AnimatedWrapPanel/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="SelectionMode" Value="Multiple"/>
+        </Style>
+
+        <DataTemplate x:Key="ElasticGroupSettingsTemplate">  
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Label Content="IsCountVisible"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <metro:ToggleSwitch Grid.Column="1" 
+                                    IsChecked="{Binding IsCountVisible}"
+                                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                <Label Grid.Row="1" 
+                       Content="IsFilterEnabled"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <metro:ToggleSwitch Grid.Column="1" 
+                                    Grid.Row="1" 
+                                    IsChecked="{Binding IsFilterEnabled}"
+                                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                <Label Grid.Row="2" 
+                       Content="IsResetButtonVisible"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <metro:ToggleSwitch Grid.Column="1" 
+                                    Grid.Row="2" 
+                                    IsChecked="{Binding IsResetButtonVisible}"
+                                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                <Label Grid.Row="3" 
+                       Content="IsSelectAllButtonVisible"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <metro:ToggleSwitch Grid.Column="1" 
+                                    Grid.Row="3" 
+                                    IsChecked="{Binding IsSelectAllButtonVisible}"
+                                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                <Label Grid.Row="4" 
+                       Content="IsVisible"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <metro:ToggleSwitch Grid.Column="1" 
+                                    Grid.Row="4" 
+                                    IsChecked="{Binding IsVisible}"
+                                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                <Label Grid.Row="5" 
+                       Content="MaxHeight"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <TextBox Grid.Column="1" 
+                         Grid.Row="5" 
+                         Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                         Text="{Binding MaxHeight}"/>
+
+                <Label Grid.Row="6" 
+                       Content="MinDisabledHeight"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <extra:DoubleUpDown Grid.Column="1" 
+                                    Grid.Row="6" 
+                                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                    Value="{Binding MinDisabledHeight}"/>
+
+                <Label Grid.Row="7" 
+                       Content="MinEnabledHeight"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <extra:DoubleUpDown Grid.Column="1" 
+                                    Grid.Row="7" 
+                                    Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                    Value="{Binding MinEnabledHeight}"/>
+
+                <Label Grid.Row="8" 
+                       Content="NullContent"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <TextBox Grid.Column="1" 
+                          Grid.Row="8" 
+                          Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                          Text="{Binding NullContent}"/>
+
+                <Label Grid.Row="9" 
+                       Content="NumberFormat"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <ComboBox Grid.Column="1" 
+                          Grid.Row="9" 
+                          Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                          SelectedItem="{Binding NumberFormat}">
+                    <extra:ElasticGroupNumberFormat>Total</extra:ElasticGroupNumberFormat>
+                    <extra:ElasticGroupNumberFormat>Value</extra:ElasticGroupNumberFormat>
+                    <extra:ElasticGroupNumberFormat>ValueAndTotal</extra:ElasticGroupNumberFormat>
+                </ComboBox>
+
+                <Label Grid.Row="10" 
+                       Content="SelectionMode"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <ComboBox Grid.Column="1" 
+                          Grid.Row="10" 
+                          Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                          SelectedItem="{Binding SelectionMode}">
+                    <SelectionMode>Extended</SelectionMode>
+                    <SelectionMode>Multiple</SelectionMode>
+                    <SelectionMode>Single</SelectionMode>
+                </ComboBox>
+
+                <Label Grid.Row="11" 
+                       Content="SortDirection"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <ComboBox Grid.Column="1" 
+                          Grid.Row="11" 
+                          Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                          SelectedItem="{Binding SortDirection}">
+                    <componentModel:ListSortDirection>Ascending</componentModel:ListSortDirection>
+                    <componentModel:ListSortDirection>Descending</componentModel:ListSortDirection>
+                </ComboBox>
+
+                <Label Grid.Row="12" 
+                       Content="SortMode"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <ComboBox Grid.Column="1" 
+                          Grid.Row="12" 
+                          Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                          SelectedItem="{Binding SortMode}">
+                    <extra:ElasticGroupSortMode>Content</extra:ElasticGroupSortMode>
+                    <extra:ElasticGroupSortMode>Count</extra:ElasticGroupSortMode>
+                </ComboBox>
+
+                <Label Grid.Row="13" 
+                       Content="Width"
+                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                <TextBox Grid.Column="1" 
+                         Grid.Row="13" 
+                         Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                         Text="{Binding Width}"/>
+
+            </Grid>
+        </DataTemplate>
+        
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <extra:AnimatedWrapPanel>
+            <!-- Reset -->
+            <metro:CommandButton Command="{Binding ElementName=ElasticPicker, Path=ResetAllCommand}" 
+                                 Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                 Style="{StaticResource ResetCommandButtonStyle}"/>
+            <!-- Show/Hide Filter -->
+            <metro:ToggleCommandButton x:Name="ShowHideFilterToggleCommandButton" 
+                                       IsChecked="True"
+                                       Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                       Style="{StaticResource ShowHideFilterToggleCommandButtonStyle}"/>
+        </extra:AnimatedWrapPanel>
+
+        <extra:ElasticPicker x:Name="ElasticPicker" 
+                             Grid.Row="1"
+                             Height="250"
+                             IsSelectedBinding="{Binding IsSelected}"
+                             ItemsSource="{Binding People}"
+                             Visibility="{Binding Converter={StaticResource BoolToVisibilityConverter}, ElementName=ShowHideFilterToggleCommandButton, Path=IsChecked}">
+            <extra:ElasticPicker.View>
+                <extra:ElasticView>
+                    <extra:ElasticGroup x:Name="GenderElasticGroup" SortMode="Content"
+                                        DisplayMemberBinding="{Binding Gender}"
+                                        Header="Gender" 
+                                        Width="Auto"/>
+                    <extra:ElasticGroup x:Name="EyeColourElasticGroup" 
+                                        DisplayMemberBinding="{Binding EyeColour}" 
+                                        Header="Eye Colour"
+                                        Width="*">
+                        <extra:ElasticGroup.ContentTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding}"
+                                               Height="20"
+                                               Width="20"/>
+                                    <TextBlock Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                               Text="{Binding}"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </extra:ElasticGroup.ContentTemplate>
+                    </extra:ElasticGroup>
+                    <extra:ElasticGroup x:Name="NationalityElasticGroup" 
+                                        DisplayMemberBinding="{Binding Nationality}" 
+                                        Header="Nationality"
+                                        SelectionMode="Multiple"
+                                        Width="*"/>
+                    <extra:ElasticGroup x:Name="ProfessionElasticGroup" 
+                                        DisplayMemberBinding="{Binding Profession}" 
+                                        Header="Profession"
+                                        SelectionMode="Multiple"
+                                        Width="*"/>
+                </extra:ElasticView>
+            </extra:ElasticPicker.View>
+        </extra:ElasticPicker>
+        
+        <TabControl Grid.Row="2"
+                    SelectedIndex="3">
+
+            <TabItem Header="Notes">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="About"/>
+                    <TextBlock Grid.Row="1" 
+                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="This is a UNIQUE control which you will not see anywhere else. A LOT of work has gone into building it and making it SUPER SIMPLE to use. If you like it please let us know."/>
+
+                    <TextBlock Grid.Row="2" 
+                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Performance"/>
+                    <TextBlock Grid.Row="3" 
+                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="A LOT of work has gone into making this control run fast. This sample is a little slow because there are so many binding going on to showcase the control. I have had 10000 items showing in this control, so its pretty fast."/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="All Items">
+                <DataGrid ItemsSource="{Binding People}"
+                          Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}">
+                    <DataGrid.Columns>
+                        <extra:DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
+                                                      Header="Selected"
+                                                      Width="Auto"/>
+                        <extra:DataGridTextColumn Binding="{Binding Gender}" 
+                                                  Header="Gender"
+                                                  Width="*"/>
+                        <extra:DataGridTextColumn Binding="{Binding EyeColour}" 
+                                                  Header="Eye Colour"
+                                                  Width="*"/>
+                        <extra:DataGridTextColumn Binding="{Binding Nationality}" 
+                                                  Header="Nationality"
+                                                  Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="SelectedItems">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="Bound to the SelectedItems property of the ElasticPicker. This example uses the PagingItemsControl style for a nice paged effect."/>
+
+                    <ItemsControl Grid.Row="1"
+                                  ItemsSource="{Binding Delay=500, ElementName=ElasticPicker, Path=SelectedItems}"
+                                  ItemTemplate="{StaticResource ItemTemplate}"
+                                  Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                  Style="{StaticResource PagingItemsControl}"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="IsSelectedBinding">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="This property on the ElasticPicker can be used to set a boolean value determining whether an item is selected or not. This can then be used to set the visibility of the item and combined with the AnimatedWrapPanel can give a nice effect."/>
+
+                    <ListBox Grid.Row="1"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             ItemsSource="{Binding People}"
+                             ItemTemplate="{StaticResource ItemTemplate}"
+                             Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}">
+                        <ListBox.ItemContainerStyle>
+                            <Style BasedOn="{StaticResource {x:Type ListBoxItem}}" TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Visibility" Value="{Binding Converter={StaticResource BoolToVisibilityConverter}, Delay=250, Path=IsSelected}"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <extra:AnimatedWrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="ElasticGroup Items &amp; SelectedItems">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.ColumnSpan="4" 
+                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="Bound to the SelectedItems property of the ElasticGroup. This example uses the PagingItemsControl style for a nice paged effect."/>
+
+                    <TextBlock Grid.Row="1"
+                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Gender"/>
+                    <ListBox Grid.Row="2"
+                             ItemsSource="{Binding Delay=500, ElementName=GenderElasticGroup, Path=Items}"
+                             Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                             extra:ListBoxAttached.BindableSelectedItems="{Binding Delay=500, ElementName=GenderElasticGroup, Path=SelectedItems}"
+                             Style="{StaticResource ElasticGroupSelectedItemsListBoxStyle}"/>
+
+                    <TextBlock Grid.Column="1" 
+                               Grid.Row="1"
+                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Eye Colour"/>
+                    <ListBox Grid.Column="1" 
+                             Grid.Row="2"
+                             ItemsSource="{Binding Delay=500, ElementName=EyeColourElasticGroup, Path=Items}"
+                             Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                             extra:ListBoxAttached.BindableSelectedItems="{Binding Delay=500, ElementName=EyeColourElasticGroup, Path=SelectedItems}"
+                             Style="{StaticResource ElasticGroupSelectedItemsListBoxStyle}"/>
+
+                    <TextBlock Grid.Column="2"
+                               Grid.Row="1"
+                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Nationality"/>
+                    <ListBox Grid.Column="2"
+                             Grid.Row="2"
+                             ItemsSource="{Binding Delay=500, ElementName=NationalityElasticGroup, Path=Items}"
+                             Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                             extra:ListBoxAttached.BindableSelectedItems="{Binding Delay=500, ElementName=NationalityElasticGroup, Path=SelectedItems}"
+                             Style="{StaticResource ElasticGroupSelectedItemsListBoxStyle}"/>
+
+                    <TextBlock Grid.Column="3"
+                               Grid.Row="1"
+                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Profession"/>
+                    <ListBox Grid.Column="3"
+                             Grid.Row="2"
+                             ItemsSource="{Binding Delay=500, ElementName=ProfessionElasticGroup, Path=Items}"
+                             Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                             extra:ListBoxAttached.BindableSelectedItems="{Binding Delay=500, ElementName=ProfessionElasticGroup, Path=SelectedItems}"
+                             Style="{StaticResource ElasticGroupSelectedItemsListBoxStyle}"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Settings">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.ColumnSpan="4" 
+                                   Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                   Style="{StaticResource NormalTextStyle}" 
+                                   Text="These are the settings for each of the ElasticGroup filters."/>
+
+                        <TextBlock Grid.Row="1"
+                                   Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                   Style="{StaticResource HeaderTextStyle}" 
+                                   Text="Gender"/>
+                        <ContentControl Grid.Row="2"
+                                        Content="{Binding ElementName=GenderElasticGroup}"
+                                        ContentTemplate="{StaticResource ElasticGroupSettingsTemplate}"
+                                        Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                        <TextBlock Grid.Column="1" 
+                                   Grid.Row="1"
+                                   Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                   Style="{StaticResource HeaderTextStyle}" 
+                                   Text="Eye Colour"/>
+                        <ContentControl Grid.Column="1" 
+                                        Grid.Row="2"
+                                        Content="{Binding ElementName=EyeColourElasticGroup}"
+                                        ContentTemplate="{StaticResource ElasticGroupSettingsTemplate}"
+                                        Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="1"
+                                   Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                   Style="{StaticResource HeaderTextStyle}" 
+                                   Text="Nationality"/>
+                        <ContentControl Grid.Column="2" 
+                                        Grid.Row="2"
+                                        Content="{Binding ElementName=NationalityElasticGroup}"
+                                        ContentTemplate="{StaticResource ElasticGroupSettingsTemplate}"
+                                        Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                   Style="{StaticResource HeaderTextStyle}" 
+                                   Text="Profession"/>
+                        <ContentControl Grid.Column="3" 
+                                        Grid.Row="2"
+                                        Content="{Binding ElementName=ProfessionElasticGroup}"
+                                        ContentTemplate="{StaticResource ElasticGroupSettingsTemplate}"
+                                        Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</UserControl>

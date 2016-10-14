@@ -1,0 +1,105 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TextBlock.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/BorderFix.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type controls:FlipControl}">
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.HeaderFontSize), Mode=OneWay}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:FlipControl}">
+                    <controls:BorderFix Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}">
+                        <Grid>
+                            <ContentControl x:Name="PART_PreviousContent" 
+                                            Content="{TemplateBinding PreviousSelectedItem}"
+                                            ContentTemplate="{TemplateBinding ItemTemplate}"
+                                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                            Focusable="False"
+                                            FontSize="{TemplateBinding FontSize}">
+                                <ContentControl.RenderTransform>
+                                    <TranslateTransform/>
+                                </ContentControl.RenderTransform>
+                            </ContentControl>
+                            <ContentControl x:Name="PART_Content" 
+                                            Content="{TemplateBinding SelectedItem}"
+                                            ContentTemplate="{TemplateBinding ItemTemplate}"
+                                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                            Focusable="False"
+                                            FontSize="{TemplateBinding FontSize}">
+                                <ContentControl.RenderTransform>
+                                    <TranslateTransform/>
+                                </ContentControl.RenderTransform>
+                            </ContentControl>
+                        </Grid>
+                    </controls:BorderFix>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="FadeFlipControl" BasedOn="{StaticResource {x:Type controls:FlipControl}}" TargetType="{x:Type controls:FlipControl}">
+        <Style.Resources>
+            <Storyboard x:Key="FadeStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+                                 BeginTime="00:00:00.5"
+                                 Duration="00:00:01"
+                                 From="1"
+                                 To="0"/>
+            </Storyboard>
+        </Style.Resources>
+        <Setter Property="Opacity" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsFlipping" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFlipping" Value="False">
+                <Trigger.EnterActions>
+                    <BeginStoryboard x:Name="FadeBeginStoryboard" 
+                                     Storyboard="{StaticResource FadeStoryboard}"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StopStoryboard BeginStoryboardName="FadeBeginStoryboard"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="LargeFadeFlipControl" BasedOn="{StaticResource FadeFlipControl}" TargetType="{x:Type controls:FlipControl}">
+        <!--<Setter Property="FontSize" Value="72"/>-->
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock FontSize="72" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Text="{Binding}"
+                               VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="NormalTextFlipControl" BasedOn="{StaticResource {x:Type controls:FlipControl}}" TargetType="{x:Type controls:FlipControl}">
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TextFontSize)}"/>
+    </Style>
+    <Style x:Key="BoldTextFlipControl" BasedOn="{StaticResource {x:Type controls:FlipControl}}" TargetType="{x:Type controls:FlipControl}">
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TextFontSize)}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    <Style x:Key="AccentTextFlipControl" BasedOn="{StaticResource {x:Type controls:FlipControl}}" TargetType="{x:Type controls:FlipControl}">
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TextFontSize)}"/>
+        <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+    </Style>
+
+</ResourceDictionary>

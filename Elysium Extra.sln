@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Source\Framework\Framework.csproj", "{20D52B40-00B7-40D1-A3A0-56F3D900C0D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.UI", "Source\Framework.UI\Framework.UI.csproj", "{925D4016-8D41-4E81-9287-695C5A1E1E85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.UI.TestHarness", "Source\Framework.UI.TestHarness\Framework.UI.TestHarness.csproj", "{8997C52D-E84C-4B0F-91F2-37DE75BD0FD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{E13D0BC8-D59F-4488-AB7F-3C6151F030C4}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs20
+		SccProjectUniqueName0 = Source\\Framework\\Framework.csproj
+		SccProjectTopLevelParentUniqueName0 = Elysium\u0020Extra.sln
+		SccProjectName0 = Source/Framework
+		SccLocalPath0 = Source\\Framework
+		SccProjectUniqueName1 = Source\\Framework.UI\\Framework.UI.csproj
+		SccProjectTopLevelParentUniqueName1 = Elysium\u0020Extra.sln
+		SccProjectName1 = Source/Framework.UI
+		SccLocalPath1 = Source\\Framework.UI
+		SccProjectUniqueName2 = Source\\Framework.UI.TestHarness\\Framework.UI.TestHarness.csproj
+		SccProjectTopLevelParentUniqueName2 = Elysium\u0020Extra.sln
+		SccProjectName2 = Source/Framework.UI.TestHarness
+		SccLocalPath2 = Source\\Framework.UI.TestHarness
+		SccLocalPath3 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20D52B40-00B7-40D1-A3A0-56F3D900C0D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20D52B40-00B7-40D1-A3A0-56F3D900C0D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20D52B40-00B7-40D1-A3A0-56F3D900C0D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20D52B40-00B7-40D1-A3A0-56F3D900C0D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{925D4016-8D41-4E81-9287-695C5A1E1E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925D4016-8D41-4E81-9287-695C5A1E1E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925D4016-8D41-4E81-9287-695C5A1E1E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925D4016-8D41-4E81-9287-695C5A1E1E85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8997C52D-E84C-4B0F-91F2-37DE75BD0FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8997C52D-E84C-4B0F-91F2-37DE75BD0FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8997C52D-E84C-4B0F-91F2-37DE75BD0FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8997C52D-E84C-4B0F-91F2-37DE75BD0FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20D52B40-00B7-40D1-A3A0-56F3D900C0D6} = {E13D0BC8-D59F-4488-AB7F-3C6151F030C4}
+		{925D4016-8D41-4E81-9287-695C5A1E1E85} = {E13D0BC8-D59F-4488-AB7F-3C6151F030C4}
+		{8997C52D-E84C-4B0F-91F2-37DE75BD0FD0} = {E13D0BC8-D59F-4488-AB7F-3C6151F030C4}
+	EndGlobalSection
+EndGlobal

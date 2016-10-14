@@ -1,0 +1,272 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:metro="http://schemas.codeplex.com/elysium"
+                    xmlns:params="clr-namespace:Elysium.Parameters;assembly=Elysium"
+                    xmlns:primitives="clr-namespace:Elysium.Controls.Primitives;assembly=Elysium">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/Submenu.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/CommandButton.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Icon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/GeometryIcon.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="{x:Type metro:DropDownCommandButton}" TargetType="{x:Type metro:DropDownCommandButton}" BasedOn="{StaticResource {x:Type primitives:CommandButtonBase}}" >
+        <Style.Resources>
+            <ResourceDictionary>
+                <Style TargetType="{x:Type metro:Submenu}" BasedOn="{StaticResource DropDownCommandButtonSubmenuStyle}" />
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type metro:DropDownCommandButton}">
+                    <Grid Panel.Background="{StaticResource TransparentBrush}" TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontFamily="{TemplateBinding Control.FontFamily}" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.FontStretch="{TemplateBinding FontStretch}" TextBlock.FontStyle="{TemplateBinding FontStyle}" TextBlock.FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Ellipse x:Name="PART_Decor" Grid.Row="0" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={StaticResource ThicknessToDoubleConverter}}" />
+                        <ContentPresenter x:Name="PART_ContentHost" Grid.Row="0" ContentPresenter.Content="{TemplateBinding ContentControl.Content}" ContentPresenter.ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ContentPresenter x:Name="PART_HeaderHost" Grid.Row="1" ContentPresenter.Content="{TemplateBinding primitives:CommandButtonBase.Header}" ContentPresenter.ContentStringFormat="{TemplateBinding primitives:CommandButtonBase.HeaderStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding primitives:CommandButtonBase.HeaderTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding primitives:CommandButtonBase.HeaderTemplateSelector}" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" />
+                        <Popup x:Name="PART_Popup" Grid.Row="1" Popup.AllowsTransparency="True" Popup.StaysOpen="False" 
+                               Popup.Placement="Custom" Popup.VerticalOffset="{TemplateBinding params:General.BoldPaddingValue}" 
+                               MaxHeight="{TemplateBinding metro:DropDownCommandButton.MaxDropDownHeight}" 
+                               Popup.IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsDropDownOpen,Mode=TwoWay}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Value="{x:Null}" Property="primitives:CommandButtonBase.Header">
+                            <Setter TargetName="PART_HeaderHost" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="metro:DropDownCommandButton.IsDropDownOpen" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource MiddleLightBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource MiddleLightBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DropDownCommandButtonApplicationBarStyle" TargetType="{x:Type metro:DropDownCommandButton}" BasedOn="{StaticResource CommandButtonBaseApplicationBarStyle}" >
+        <Style.Resources>
+            <ResourceDictionary>
+                <Style TargetType="{x:Type metro:Submenu}" BasedOn="{StaticResource DropDownCommandButtonSubmenuStyle}" />
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type metro:DropDownCommandButton}">
+                    <Grid Panel.Background="{StaticResource TransparentBrush}" TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontFamily="{TemplateBinding Control.FontFamily}" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.FontStretch="{TemplateBinding FontStretch}" TextBlock.FontStyle="{TemplateBinding FontStyle}" TextBlock.FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Ellipse x:Name="PART_Decor" Grid.Row="0" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={StaticResource ThicknessToDoubleConverter}}" />
+                        <Ellipse Grid.Row="0" Fill="{TemplateBinding params:CommandButtons.Mask}" Stroke="{StaticResource TransparentBrush}" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={StaticResource ThicknessToDoubleConverter}}" Width="{Binding ElementName=PART_Decor,Path=ActualWidth,Mode=OneWay}" Height="{Binding ElementName=PART_Decor,Path=ActualHeight,Mode=OneWay}">
+                            <UIElement.OpacityMask>
+                                <VisualBrush VisualBrush.AutoLayoutContent="True" TileBrush.AlignmentX="Center" TileBrush.AlignmentY="Center" TileBrush.Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <ContentPresenter x:Name="PART_ContentHost" ContentPresenter.Content="{TemplateBinding ContentControl.Content}" ContentPresenter.ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </UIElement.OpacityMask>
+                        </Ellipse>
+                        <ContentPresenter x:Name="PART_HeaderHost" Grid.Row="1" ContentPresenter.Content="{TemplateBinding primitives:CommandButtonBase.Header}" ContentPresenter.ContentStringFormat="{TemplateBinding primitives:CommandButtonBase.HeaderStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding primitives:CommandButtonBase.HeaderTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding primitives:CommandButtonBase.HeaderTemplateSelector}" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" />
+                        <Popup x:Name="PART_Popup" Grid.Row="1" Popup.AllowsTransparency="True" Popup.StaysOpen="False" 
+                               Popup.Placement="Custom" Popup.VerticalOffset="{TemplateBinding params:General.BoldPaddingValue}" 
+                               MaxHeight="{TemplateBinding metro:DropDownCommandButton.MaxDropDownHeight}" 
+                               Popup.IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsDropDownOpen,Mode=TwoWay}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Value="{x:Null}" Property="primitives:CommandButtonBase.Header">
+                            <Setter TargetName="PART_HeaderHost" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="metro:DropDownCommandButton.IsDropDownOpen" Value="True">
+                <Setter Property="Background" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource AccentBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!-- DropDownCommandButton -->
+    <Style x:Key="MediumIconDropDownCommandButtonStyle" BasedOn="{StaticResource {x:Type metro:DropDownCommandButton}}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Style.Resources>
+            <DataTemplate x:Key="PressedContentTemplate">
+                <controls:Icon Foreground="{StaticResource ContrastBrush}"
+                               Size="Medium"
+                               Style="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="DisabledContentTemplate">
+                <controls:Icon Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:DropDownCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                               Size="Medium"
+                               Style="{Binding}"/>
+            </DataTemplate>
+        </Style.Resources>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <controls:Icon Size="Medium" 
+                                   Style="{Binding}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="DropDownDirection" Value="Down"/>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="ContentTemplate" Value="{StaticResource PressedContentTemplate}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="ContentTemplate" Value="{StaticResource DisabledContentTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="SmallIconDropDownCommandButtonStyle" BasedOn="{StaticResource {x:Type metro:DropDownCommandButton}}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Style.Resources>
+            <DataTemplate x:Key="PressedContentTemplate">
+                <controls:Icon Foreground="{StaticResource ContrastBrush}"
+                               Size="Small"
+                               Style="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="DisabledContentTemplate">
+                <controls:Icon Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:DropDownCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                               Size="Small"
+                               Style="{Binding}"/>
+            </DataTemplate>
+        </Style.Resources>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <controls:Icon Size="Small" 
+                                   Style="{Binding}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="DropDownDirection" Value="Down"/>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="ContentTemplate" Value="{StaticResource PressedContentTemplate}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="ContentTemplate" Value="{StaticResource DisabledContentTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="NewDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource NewItemIconStyle}"/>
+        <Setter Property="Header" Value="New"/>
+    </Style>
+    <Style x:Key="ExpandCollapseDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ExpandCollapseIconStyle}"/>
+        <Setter Property="Header" Value="Expand/Collapse"/>
+    </Style>
+    <Style x:Key="ExportDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource Export1IconStyle}"/>
+        <Setter Property="Header" Value="Export"/>
+    </Style>
+    <Style x:Key="PrintDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource PrintIconStyle}"/>
+        <Setter Property="Header" Value="Print"/>
+    </Style>
+    <Style x:Key="SaveDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource Save1IconStyle}"/>
+        <Setter Property="Header" Value="Save"/>
+    </Style>
+    <Style x:Key="SettingsDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource Settings1IconStyle}"/>
+        <Setter Property="Header" Value="Settings"/>
+    </Style>
+    <Style x:Key="ZoomDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ZoomIconStyle}"/>
+        <Setter Property="Header" Value="Zoom"/>
+    </Style>
+    <Style x:Key="DisplayDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource Monitor1IconStyle}"/>
+        <Setter Property="Header" Value="Display"/>
+    </Style>
+    <Style x:Key="ViewDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ViewIconStyle}"/>
+        <Setter Property="Header" Value="View"/>
+    </Style>
+    <Style x:Key="AlignDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextJustifyAlignIconStyle}"/>
+        <Setter Property="Header" Value="Align"/>
+    </Style>
+    <Style x:Key="RemoveDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource SubtractIconStyle}"/>
+        <Setter Property="Header" Value="Remove"/>
+    </Style>
+    <Style x:Key="FontSizeDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource FontSizeIconStyle}"/>
+        <Setter Property="Header" Value="Font Size"/>
+    </Style>
+    <Style x:Key="ListDropDownCommandButtonStyle" BasedOn="{StaticResource MediumIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ListIconStyle}"/>
+        <Setter Property="Header" Value="List"/>
+    </Style>
+
+    <!-- Small DropDownCommandButton -->
+    <Style x:Key="NewDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource NewItemIconStyle}"/>
+        <Setter Property="ToolTip" Value="New"/>
+    </Style>
+    <Style x:Key="ExpandCollapseDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ExpandCollapseIconStyle}"/>
+        <Setter Property="ToolTip" Value="Expand/Collapse"/>
+    </Style>
+    <Style x:Key="ExportDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource Export1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Export"/>
+    </Style>
+    <Style x:Key="PrintDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource PrintIconStyle}"/>
+        <Setter Property="ToolTip" Value="Print"/>
+    </Style>
+    <Style x:Key="SaveDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource Save1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Save"/>
+    </Style>
+    <Style x:Key="SettingsDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource Settings1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Settings"/>
+    </Style>
+    <Style x:Key="ZoomDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ZoomIconStyle}"/>
+        <Setter Property="ToolTip" Value="Zoom"/>
+    </Style>
+    <Style x:Key="DisplayDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource Monitor1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Display"/>
+    </Style>
+    <Style x:Key="ViewDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ViewIconStyle}"/>
+        <Setter Property="ToolTip" Value="View"/>
+    </Style>
+    <Style x:Key="AlignDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextJustifyAlignIconStyle}"/>
+        <Setter Property="ToolTip" Value="Align"/>
+    </Style>
+    <Style x:Key="RemoveDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource SubtractIconStyle}"/>
+        <Setter Property="ToolTip" Value="Remove"/>
+    </Style>
+    <Style x:Key="FontSizeDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource FontSizeIconStyle}"/>
+        <Setter Property="ToolTip" Value="Font Size"/>
+    </Style>
+    <Style x:Key="ListDropDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconDropDownCommandButtonStyle}" TargetType="{x:Type metro:DropDownCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ListIconStyle}"/>
+        <Setter Property="ToolTip" Value="List"/>
+    </Style>
+
+</ResourceDictionary>

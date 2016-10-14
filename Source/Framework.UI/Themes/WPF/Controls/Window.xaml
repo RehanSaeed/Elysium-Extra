@@ -1,0 +1,800 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:metro="http://schemas.codeplex.com/elysium"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Button.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/TextBlock.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/BorderFix.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Window Geometries -->
+    <GeometryGroup x:Key="AdvancedIcon">
+        <EllipseGeometry Center="3,3" RadiusX="2.5" RadiusY="2.5" />
+        <EllipseGeometry Center="12,3" RadiusX="2.5" RadiusY="2.5" />
+        <EllipseGeometry Center="21,3" RadiusX="2.5" RadiusY="2.5" />
+    </GeometryGroup>
+    <GeometryGroup x:Key="MinimizeIcon" FillRule="EvenOdd">
+        <RectangleGeometry Rect="0,0,10,10" />
+        <RectangleGeometry Rect="0,0,10,7" />
+    </GeometryGroup>
+    <GeometryGroup x:Key="MaximizeIcon">
+        <LineGeometry StartPoint="0,0.5" EndPoint="10,0.5" />
+        <LineGeometry StartPoint="0,1.5" EndPoint="10,1.5" />
+        <LineGeometry StartPoint="0,2.5" EndPoint="10,2.5" />
+        <LineGeometry StartPoint="0.5,3" EndPoint="0.5,10" />
+        <LineGeometry StartPoint="9.5,3" EndPoint="9.5,10" />
+        <LineGeometry StartPoint="1,9.5" EndPoint="9,9.5" />
+    </GeometryGroup>
+    <GeometryGroup x:Key="RestoreIcon">
+        <LineGeometry StartPoint="3,0.5" EndPoint="10,0.5" />
+        <LineGeometry StartPoint="3,1.5" EndPoint="10,1.5" />
+        <LineGeometry StartPoint="3.5,2" EndPoint="3.5,3" />
+        <LineGeometry StartPoint="9.5,2" EndPoint="9.5,7" />
+        <LineGeometry StartPoint="7,6.5" EndPoint="10,6.5" />
+        <LineGeometry StartPoint="0,3.5" EndPoint="7,3.5" />
+        <LineGeometry StartPoint="0,4.5" EndPoint="7,4.5" />
+        <LineGeometry StartPoint="0.5,5" EndPoint="0.5,10" />
+        <LineGeometry StartPoint="6.5,5" EndPoint="6.5,10" />
+        <LineGeometry StartPoint="1,9.5" EndPoint="6,9.5" />
+    </GeometryGroup>
+    <GeometryGroup x:Key="CloseIcon">
+        <LineGeometry StartPoint="1,0" EndPoint="10,9" />
+        <LineGeometry StartPoint="0,1" EndPoint="9,10" />
+        <LineGeometry StartPoint="1,1" EndPoint="9,9" />
+        <LineGeometry StartPoint="9,0" EndPoint="0,9" />
+        <LineGeometry StartPoint="10,1" EndPoint="1,10" />
+        <LineGeometry StartPoint="9,1" EndPoint="1,9" />
+    </GeometryGroup>
+
+    <Style x:Key="{x:Static controls:Window.DefaultCaptionButtonStyleKey}" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="MinWidth" Value="32" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="ToolTipService.ShowOnDisabled" Value="true" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{StaticResource HighlightBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource HighlightBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource ContrastBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="{x:Static controls:Window.MainWindowCaptionButtonStyleKey}" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ContrastBrush}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="MinWidth" Value="32" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="ToolTipService.ShowOnDisabled" Value="true" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{StaticResource SemitransparentContrastBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SemitransparentContrastBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource ContrastBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <DataTemplate x:Key="WindowOverlayTemplate">
+        <Grid Height="16"
+              Width="16">
+            <Grid.Style>
+                <Style TargetType="{x:Type Grid}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding}" Value="">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Ellipse Fill="{StaticResource AccentBrush}"/>
+            <TextBlock Foreground="{StaticResource ContrastBrush}"
+                       Style="{StaticResource BoldTextStyle}"  
+                       Text="{Binding}"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Grid>
+    </DataTemplate>
+
+    <!-- Normal Window Style -->
+    <Style TargetType="{x:Type controls:Window}">
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.DefaultThickness), Mode=OneWay}"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="{DynamicResource AccentColor}"
+                                  BlurRadius="4"
+                                  ShadowDepth="0"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="EffectFocused">
+            <Setter.Value>
+                <DropShadowEffect Color="{DynamicResource AccentColor}"
+                                  BlurRadius="8"
+                                  ShadowDepth="0"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="8"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TextFontSize), Mode=OneWay}"/>
+        <Setter Property="FontStretch" Value="Medium"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
+        <Setter Property="HasDropShadow" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="TitleBarBackground" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="TitleBarBorderBrush" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="TitleBarBorderThickness" Value="0"/>
+        <Setter Property="TitleBarForeground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:Window}">
+                    <Grid>
+                        <controls:BorderFix Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                UseLayoutRounding="True" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                Margin="{TemplateBinding Margin}">
+                            <Grid x:Name="PART_LayoutRoot">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <ContentControl Grid.RowSpan="2" 
+                                                Content="{TemplateBinding BackgroundContent}"
+                                                ContentTemplate="{TemplateBinding BackgroundContentTemplate}"
+                                                ContentTemplateSelector="{TemplateBinding BackgroundContentTemplateSelector}"
+                                                Focusable="False"/>
+                                <AdornerDecorator x:Name="PART_AdornerDecorator"
+                                                  Grid.Row="1" 
+                                                  TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" 
+                                                  TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" 
+                                                  RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}">
+                                    <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                                </AdornerDecorator>
+                                <ContentControl Grid.RowSpan="2" 
+                                                Content="{TemplateBinding ForegroundContent}"
+                                                ContentTemplate="{TemplateBinding ForegroundContentTemplate}"
+                                                ContentTemplateSelector="{TemplateBinding ForegroundContentTemplateSelector}"
+                                                Focusable="False"/>
+                                <Border x:Name="PART_Caption" 
+                                        Grid.Row="0"
+                                        Background="{TemplateBinding TitleBarBackground}"
+                                        BorderBrush="{TemplateBinding TitleBarBorderBrush}"
+                                        BorderThickness="{TemplateBinding TitleBarBorderThickness}"
+                                        Visibility="{TemplateBinding TitleBarVisibility}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image x:Name="PART_Icon" 
+                                               Grid.Column="0" 
+                                               Height="21"
+                                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                               Source="{TemplateBinding Icon}"
+                                               Stretch="Uniform"/>
+                                        <TextBlock x:Name="PART_Title" 
+                                                   Grid.Column="1" 
+                                                   Foreground="{TemplateBinding TitleBarForeground}"
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:General.TitleFontSize), Mode=OneWay}" 
+                                                   FontWeight="Normal" 
+                                                   Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:General.BoldPadding), Mode=OneWay}" 
+                                                   Text="{TemplateBinding Title}" 
+                                                   TextTrimming="CharacterEllipsis" 
+                                                   VerticalAlignment="Center"/>
+                                        <Decorator x:Name="PART_TitleBarHost" 
+                                                   Grid.Column="2" 
+                                                   controls:Window.IsTitleBarHost="true" 
+                                                   WindowChrome.IsHitTestVisibleInChrome="true"/>
+                                        <ContentControl x:Name="PART_TitleBarContent" 
+                                                        Grid.Column="3" 
+                                                        WindowChrome.IsHitTestVisibleInChrome="true"
+                                                        Content="{TemplateBinding TitleBarContent}"
+                                                        ContentTemplate="{TemplateBinding TitleBarContentTemplate}"
+                                                        ContentTemplateSelector="{TemplateBinding TitleBarContentTemplateSelector}"
+                                                        Focusable="False"
+                                                        Foreground="{TemplateBinding TitleBarForeground}"/>
+                                        <Grid Grid.Column="4" 
+                                              WindowChrome.IsHitTestVisibleInChrome="true">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button x:Name="PART_Minimize" 
+                                                    Grid.Column="0" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Minimize}" 
+                                                    Foreground="{TemplateBinding TitleBarForeground}"
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.MinimizeButtonToolTip), Mode=OneWay}">
+                                                <Path Data="{StaticResource MinimizeIcon}" 
+                                                      Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Width="10"/>
+                                            </Button>
+                                            <Button x:Name="PART_Maximize" 
+                                                    Grid.Column="1" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Maximize}" 
+                                                    Foreground="{TemplateBinding TitleBarForeground}"
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.MaximizeButtonToolTip), Mode=OneWay}">
+                                                <Path Data="{StaticResource MaximizeIcon}" 
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Width="10"/>
+                                            </Button>
+                                            <Button x:Name="PART_Restore" 
+                                                    Grid.Column="1" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Restore}" 
+                                                    Foreground="{TemplateBinding TitleBarForeground}"
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.RestoreButtonToolTip), Mode=OneWay}"
+                                                    Visibility="Hidden">
+                                                <Path Data="{StaticResource RestoreIcon}" 
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Width="10"/>
+                                            </Button>
+                                            <Button x:Name="PART_Close" 
+                                                    Grid.Column="2" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Close}" 
+                                                    Foreground="{TemplateBinding TitleBarForeground}"
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.CloseButtonToolTip), Mode=OneWay}">
+                                                <Path Data="{StaticResource CloseIcon}" 
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Width="10"/>
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <metro:ProgressBar x:Name="PART_ProgressBar" 
+                                                   Grid.RowSpan="2" 
+                                                   Background="{StaticResource TransparentBrush}" 
+                                                   Height="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldThicknessValue), Mode=OneWay}"
+                                                   IsHitTestVisible="False"
+                                                   Value="{TemplateBinding Progress}" 
+                                                   VerticalAlignment="Top"/>
+                                <Decorator x:Name="ApplicationBarHost" 
+                                           Grid.Row="1" 
+                                           controls:Window.IsApplicationBarHost="true"/>
+                                <ResizeGrip x:Name="PART_Grip" 
+                                            Grid.Row="1" 
+                                            WindowChrome.ResizeGripDirection="BottomRight" 
+                                            IsTabStop="false" 
+                                            HorizontalAlignment="Right" 
+                                            VerticalAlignment="Bottom" 
+                                            Visibility="Collapsed"/>
+                            </Grid>
+                        </controls:BorderFix>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive" Value="True">
+                            <Setter Property="Effect" Value="{Binding Path=EffectFocused, RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <Trigger Property="AllowsTransparency" Value="False">
+                            <Setter Property="Effect" Value="{x:Null}"/>
+                            <Setter Property="Margin" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="HasDropShadow" Value="False">
+                            <Setter Property="Effect" Value="{x:Null}"/>
+                            <Setter Property="Margin" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsFullScreen" Value="True">
+                            <Setter Property="TitleBarVisibility" Value="Collapsed"/>
+                            <Setter Property="WindowState" Value="Maximized"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TitleFontSize), Mode=OneWay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=18}">
+                            <Setter TargetName="PART_Title" Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+                        </DataTrigger>
+                        <Trigger Property="IsBusy" Value="true">
+                            <Setter TargetName="PART_ProgressBar" Property="State" Value="Indeterminate"/>
+                        </Trigger>
+                        <Trigger Property="IsMainWindow" Value="true">
+                            <Setter TargetName="PART_Caption" Value="{StaticResource AccentBrush}" Property="Background"/>
+                            <Setter TargetName="PART_ProgressBar" Value="{StaticResource ContrastBrush}" Property="Foreground"/>
+                            <Setter TargetName="PART_Title" Value="{StaticResource ContrastBrush}" Property="Foreground"/>
+                            <Setter TargetName="PART_Minimize" Property="Style" Value="{StaticResource {x:Static controls:Window.MainWindowCaptionButtonStyleKey}}"/>
+                            <Setter TargetName="PART_Maximize" Property="Style" Value="{StaticResource {x:Static controls:Window.MainWindowCaptionButtonStyleKey}}"/>
+                            <Setter TargetName="PART_Restore" Property="Style" Value="{StaticResource {x:Static controls:Window.MainWindowCaptionButtonStyleKey}}"/>
+                            <Setter TargetName="PART_Close" Property="Style" Value="{StaticResource {x:Static controls:Window.MainWindowCaptionButtonStyleKey}}"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Effect" Value="{x:Null}"/>
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Hidden"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Trigger.Setters>
+                                <Setter TargetName="PART_Minimize" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanMinimize">
+                            <Trigger.Setters>
+                                <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                            <Trigger.Setters>
+                                <Setter TargetName="PART_Grip" Property="Visibility" Value="Visible"/>
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=FontSize, Mode=OneWay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=18}">
+                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="BackgroundFadeWindowStyle" BasedOn="{StaticResource {x:Type controls:Window}}" TargetType="{x:Type controls:Window}">
+        <Setter Property="BackgroundContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Rectangle Fill="{StaticResource WindowBackgroundGradientBrush}" 
+                               Height="96" 
+                               VerticalAlignment="Top"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="AccentTitleBarWindowStyle" BasedOn="{StaticResource {x:Type controls:Window}}" TargetType="{x:Type controls:Window}">
+        <Setter Property="TitleBarBackground" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="TitleBarForeground" Value="{StaticResource ContrastBrush}"/>
+    </Style>
+
+    <!-- NotifyBoxWindowStyle -->
+    <Style x:Key="NotifyBoxWindowStyle" BasedOn="{StaticResource {x:Type controls:Window}}" TargetType="{x:Type controls:Window}">
+        <Setter Property="controls:Window.IsFullScreenShortcutsEnabled" Value="False"/>
+        <Setter Property="Margin" Value="8"/>
+        <Setter Property="Height" Value="93"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="ShowInTaskbar" Value="False"/>
+        <Setter Property="Topmost" Value="True"/>
+        <Setter Property="Width" Value="316"/>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:Window}">
+                    <Grid>
+                        <controls:BorderFix x:Name="PART_Border"  
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                UseLayoutRounding="True" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                Margin="{TemplateBinding Margin}">
+                            <Grid x:Name="PART_LayoutRoot">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border x:Name="PART_Caption" 
+                                        WindowChrome.IsHitTestVisibleInChrome="true"
+                                        Background="{TemplateBinding TitleBarBackground}"
+                                        BorderBrush="{TemplateBinding TitleBarBorderBrush}"
+                                        BorderThickness="{TemplateBinding TitleBarBorderThickness}"
+                                        Visibility="{TemplateBinding TitleBarVisibility}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image x:Name="PART_Icon" 
+                                               Height="21"
+                                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                               Source="{TemplateBinding Icon}"
+                                               Stretch="Uniform"/>
+                                        <TextBlock x:Name="PART_Title" 
+                                                   Grid.Column="1" 
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:General.TitleFontSize), Mode=OneWay}" 
+                                                   FontWeight="Normal" 
+                                                   Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:General.BoldPadding), Mode=OneWay}" 
+                                                   Text="{TemplateBinding Title}" 
+                                                   TextTrimming="CharacterEllipsis" 
+                                                   VerticalAlignment="Center"/>
+                                        <ContentControl x:Name="PART_TitleBarContent" 
+                                                        Grid.Column="2" 
+                                                        Content="{TemplateBinding TitleBarContent}"
+                                                        ContentTemplate="{TemplateBinding TitleBarContentTemplate}"
+                                                        ContentTemplateSelector="{TemplateBinding TitleBarContentTemplateSelector}"
+                                                        Focusable="False"/>
+                                        <Grid Grid.Column="3">
+                                            <Button x:Name="PART_Close" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Close}" 
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.CloseButtonToolTip), Mode=OneWay}">
+                                                <Path Data="{StaticResource CloseIcon}" 
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Width="10"/>
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <metro:ProgressBar x:Name="PART_ProgressBar" 
+                                                   Grid.RowSpan="2" 
+                                                   Background="{StaticResource TransparentBrush}" 
+                                                   Height="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldThicknessValue), Mode=OneWay}"
+                                                   IsHitTestVisible="False"
+                                                   Value="{TemplateBinding Progress}" 
+                                                   VerticalAlignment="Top"/>
+                                <AdornerDecorator x:Name="PART_AdornerDecorator"
+                                                  Grid.Row="1" 
+                                                  TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" 
+                                                  TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" 
+                                                  RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}">
+                                    <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                                </AdornerDecorator>
+                            </Grid>
+                        </controls:BorderFix>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect" Value="{Binding Path=EffectFocused, RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <Trigger Property="AllowsTransparency" Value="False">
+                            <Setter Property="Effect" Value="{x:Null}"/>
+                            <Setter Property="Margin" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="HasDropShadow" Value="False">
+                            <Setter Property="Effect" Value="{x:Null}"/>
+                            <Setter Property="Margin" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="Margin" Value="0">
+                            <Setter Property="Height" Value="75"/>
+                            <Setter Property="Width" Value="300"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TitleFontSize), Mode=OneWay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=18}">
+                            <Setter TargetName="PART_Title" Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+                        </DataTrigger>
+                        <Trigger Property="IsBusy" Value="true">
+                            <Setter TargetName="PART_ProgressBar" Property="State" Value="Indeterminate"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- OverlayWindow -->
+    <Style TargetType="{x:Type controls:OverlayWindow}">
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="OverlayBackground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="OverlayBorderBrush" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="OverlayBorderThickness" Value="0"/>
+        <Setter Property="OverlayOpacity" Value="0.7"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TextFontSize), Mode=OneWay}"/>
+        <Setter Property="FontStretch" Value="Medium"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
+        <Setter Property="HasDropShadow" Value="False"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="ShowInTaskbar" Value="False"/>
+        <Setter Property="WindowState" Value="Maximized"/>
+        <Setter Property="Opacity" Value="0"/>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="TitleBarBackground" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="TitleBarBorderBrush" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="TitleBarBorderThickness" Value="0"/>
+        <Setter Property="TitleBarForeground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="TitleBarVisibility" Value="Collapsed"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:OverlayWindow}">
+                    <Grid>
+                        <Rectangle x:Name="PART_Overlay" 
+                                   Fill="{TemplateBinding OverlayBackground}" 
+                                   Stroke="{TemplateBinding OverlayBorderBrush}" 
+                                   StrokeThickness="{TemplateBinding OverlayBorderThickness}" 
+                                   Margin="{TemplateBinding Margin}"
+                                   Opacity="{TemplateBinding OverlayOpacity}"
+                                   UseLayoutRounding="True" 
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <controls:BorderFix x:Name="PART_Border" 
+                                Background="{TemplateBinding Background}"   
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Margin}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid x:Name="PART_LayoutRoot">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <ContentControl Grid.RowSpan="2" 
+                                                Content="{TemplateBinding BackgroundContent}"
+                                                ContentTemplate="{TemplateBinding BackgroundContentTemplate}"
+                                                ContentTemplateSelector="{TemplateBinding BackgroundContentTemplateSelector}"
+                                                Focusable="False"/>
+
+                                <AdornerDecorator x:Name="PART_AdornerDecorator"
+                                                  Grid.Row="1" 
+                                                  TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" 
+                                                  TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" 
+                                                  RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}">
+                                    <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                                </AdornerDecorator>
+
+                                <ContentControl Grid.RowSpan="2" 
+                                                Content="{TemplateBinding ForegroundContent}"
+                                                ContentTemplate="{TemplateBinding ForegroundContentTemplate}"
+                                                ContentTemplateSelector="{TemplateBinding ForegroundContentTemplateSelector}"
+                                                Focusable="False"/>
+
+                                <Border x:Name="PART_Caption"
+                                        Grid.Row="0"
+                                        Visibility="{TemplateBinding TitleBarVisibility}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image x:Name="PART_Icon" 
+                                               Grid.Column="0" 
+                                               Height="21"
+                                               Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Top, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                               Source="{TemplateBinding Icon}"
+                                               Stretch="Uniform"/>
+                                        <TextBlock x:Name="PART_Title" 
+                                                   Grid.Column="1" 
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:General.TitleFontSize), Mode=OneWay}" 
+                                                   FontWeight="Normal" 
+                                                   Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:General.BoldPadding), Mode=OneWay}" 
+                                                   Text="{TemplateBinding Title}" 
+                                                   TextTrimming="CharacterEllipsis" 
+                                                   VerticalAlignment="Center"/>
+                                        <Decorator x:Name="PART_TitleBarHost" 
+                                                   Grid.Column="2" 
+                                                   controls:Window.IsTitleBarHost="true" 
+                                                   WindowChrome.IsHitTestVisibleInChrome="true"/>
+                                        <ContentControl x:Name="PART_TitleBarContent" 
+                                                        Grid.Column="3" 
+                                                        WindowChrome.IsHitTestVisibleInChrome="true"
+                                                        Content="{TemplateBinding TitleBarContent}"
+                                                        ContentTemplate="{TemplateBinding TitleBarContentTemplate}"
+                                                        ContentTemplateSelector="{TemplateBinding TitleBarContentTemplateSelector}"
+                                                        Focusable="False"/>
+                                        <Grid Grid.Column="4" 
+                                              WindowChrome.IsHitTestVisibleInChrome="true">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button x:Name="PART_Minimize" 
+                                                    Grid.Column="0" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Minimize}" 
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.MinimizeButtonToolTip), Mode=OneWay}">
+                                                <Path Data="{StaticResource MinimizeIcon}" 
+                                                      Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Width="10"/>
+                                            </Button>
+                                            <Button x:Name="PART_Maximize" 
+                                                    Grid.Column="1" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Maximize}" 
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.MaximizeButtonToolTip), Mode=OneWay}">
+                                                <Path Data="{StaticResource MaximizeIcon}" 
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Width="10"/>
+                                            </Button>
+                                            <Button x:Name="PART_Restore" 
+                                                    Grid.Column="1" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Restore}" 
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.RestoreButtonToolTip), Mode=OneWay}"
+                                                    Visibility="Hidden">
+                                                <Path Data="{StaticResource RestoreIcon}" 
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Width="10"/>
+                                            </Button>
+                                            <Button x:Name="PART_Close" 
+                                                    Grid.Column="2" 
+                                                    BorderThickness="0" 
+                                                    Command="{x:Static metro:WindowCommands.Close}" 
+                                                    Style="{StaticResource {x:Static controls:Window.DefaultCaptionButtonStyleKey}}" 
+                                                    ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(params:Window.CloseButtonToolTip), Mode=OneWay}">
+                                                <Path Data="{StaticResource CloseIcon}" 
+                                                      Height="10" 
+                                                      Stretch="None" 
+                                                      Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}"
+                                                      Width="10"/>
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+
+                                <metro:ProgressBar x:Name="PART_ProgressBar" 
+                                                   Grid.RowSpan="2" 
+                                                   Background="{StaticResource TransparentBrush}" 
+                                                   Height="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldThicknessValue), Mode=OneWay}"
+                                                   IsHitTestVisible="False"
+                                                   Value="{TemplateBinding Progress}" 
+                                                   VerticalAlignment="Top"/>
+
+                                <Decorator x:Name="ApplicationBarHost" 
+                                           Grid.Row="1" 
+                                           controls:Window.IsApplicationBarHost="true"/>
+
+                                <ResizeGrip x:Name="PART_Grip" 
+                                            Grid.Row="1" 
+                                            WindowChrome.ResizeGripDirection="BottomRight" 
+                                            IsTabStop="false" 
+                                            HorizontalAlignment="Right" 
+                                            VerticalAlignment="Bottom" 
+                                            Visibility="Collapsed"/>
+
+                            </Grid>
+                        </controls:BorderFix>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsBusy" Value="true">
+                            <Setter TargetName="PART_ProgressBar" Property="State" Value="Indeterminate"/>
+                        </Trigger>
+                        <Trigger Property="IsMainWindow" Value="true">
+                            <Setter TargetName="PART_Caption" Value="{StaticResource AccentBrush}" Property="Background"/>
+                            <Setter TargetName="PART_ProgressBar" Value="{StaticResource ContrastBrush}" Property="Foreground"/>
+                            <Setter TargetName="PART_Title" Value="{StaticResource ContrastBrush}" Property="Foreground"/>
+                            <Setter TargetName="PART_Minimize" Property="Style" Value="{StaticResource {x:Static controls:Window.MainWindowCaptionButtonStyleKey}}"/>
+                            <Setter TargetName="PART_Maximize" Property="Style" Value="{StaticResource {x:Static controls:Window.MainWindowCaptionButtonStyleKey}}"/>
+                            <Setter TargetName="PART_Restore" Property="Style" Value="{StaticResource {x:Static controls:Window.MainWindowCaptionButtonStyleKey}}"/>
+                            <Setter TargetName="PART_Close" Property="Style" Value="{StaticResource {x:Static controls:Window.MainWindowCaptionButtonStyleKey}}"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Effect" Value="{x:Null}"/>
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Hidden"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Trigger.Setters>
+                                <Setter TargetName="PART_Minimize" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanMinimize">
+                            <Trigger.Setters>
+                                <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                            <Trigger.Setters>
+                                <Setter TargetName="PART_Grip" Property="Visibility" Value="Visible"/>
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="Opacity" Value="1">
+                            <Setter Property="IsHitTestVisible" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="IsOverlayVisible" Value="False">
+                            <Setter Property="Visibility" TargetName="PART_Overlay" Value="Collapsed"/>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard x:Name="LoadedStoryboard">
+                                    <Storyboard FillBehavior="HoldEnd">
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         Duration="00:00:00.5"
+                                                         To="1">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="AccentOverlayWindowStyle" BasedOn="{StaticResource {x:Type controls:OverlayWindow}}" TargetType="{x:Type controls:OverlayWindow}">
+        <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+    </Style>
+    <Style x:Key="DarkOverlayWindowStyle" BasedOn="{StaticResource {x:Type controls:OverlayWindow}}" TargetType="{x:Type controls:OverlayWindow}">
+        <Setter Property="Background" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+    </Style>
+
+</ResourceDictionary>

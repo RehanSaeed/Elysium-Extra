@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                   xmlns:controls="clr-namespace:Framework.UI.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/><controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Geometry.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!-- DrawingImage Icons -->
+    <DrawingImage x:Key="SearchDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource LowlightBrush}" 
+                             Geometry="{StaticResource SearchGeometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="LinkDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource LowlightBrush}"
+                             Geometry="{StaticResource Link1Geometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="DeleteDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource LowlightBrush}"
+                             Geometry="{StaticResource Delete1Geometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="FolderDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource LowlightBrush}"
+                             Geometry="{StaticResource FolderGeometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="LightFolderDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource ContrastBrush}"
+                             Geometry="{StaticResource FolderGeometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+</ResourceDictionary>

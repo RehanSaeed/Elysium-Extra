@@ -1,0 +1,797 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:local="clr-namespace:Framework.UI"
+                    xmlns:metro="http://schemas.codeplex.com/elysium"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/GroupStyle.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Validation.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/DatePicker.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/MenuItem.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Controls/Separator.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Icon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/GeometryIcon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/BorderFix.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Width" Value="8"/>
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="Cursor" Value="SizeWE"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="SeparatorBrush" Value="{StaticResource ContrastBrush}"/>
+        <Setter Property="SeparatorVisibility" Value="Visible"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <controls:BorderFix Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                IsHitTestVisible="{TemplateBinding CanUserSort}" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </controls:BorderFix>
+                        <Path x:Name="PART_SortIcon"
+                              Data="F1 M -5.215,0.0L 5.215,0.0L 0,6.099L -5.215,0.0 Z "
+                              Fill="{TemplateBinding Foreground}"
+                              HorizontalAlignment="Right"
+                              Opacity="0"
+                              Margin="{TemplateBinding Padding}"
+                              Stretch="Uniform"
+                              Width="8">
+                            <Path.RenderTransform>
+                                <ScaleTransform CenterX="4"
+                                                CenterY="2.5"
+                                                ScaleX="1"
+                                                ScaleY="1"/>
+                            </Path.RenderTransform>
+                        </Path>
+                        <Rectangle Grid.Column="1"
+                                   Fill="{TemplateBinding SeparatorBrush}"
+                                   Visibility="{TemplateBinding SeparatorVisibility}" 
+                                   Width="1"/>
+                        <Thumb x:Name="PART_LeftHeaderGripper" 
+                               Grid.ColumnSpan="2"
+                               HorizontalAlignment="Left" 
+                               Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                        <Thumb x:Name="PART_RightHeaderGripper" 
+                               Grid.ColumnSpan="2"
+                               HorizontalAlignment="Right" 
+                               Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SortDirection" Value="Ascending">
+                            <Setter Property="Opacity" TargetName="PART_SortIcon" Value="1"/>
+                            <Setter Property="RenderTransform" TargetName="PART_SortIcon">
+                                <Setter.Value>
+                                    <ScaleTransform CenterX="4"
+                                                    CenterY="2.5"
+                                                    ScaleX="1"
+                                                    ScaleY="-1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Descending">
+                            <Setter Property="Opacity" TargetName="PART_SortIcon" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource ForegroundBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource LowlightBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type DataGridRowHeader}">
+        <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}"/>
+        <Setter Property="BorderThickness" Value="0, 1, 0, 0"/>
+        <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="SeparatorBrush" Value="{StaticResource ContrastBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource ForegroundBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource LowlightBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type DataGridCell}">
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource LowlightBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <controls:BorderFix Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </controls:BorderFix>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="True">
+                <Setter Property="Background" Value="{StaticResource MiddleLightBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+            </DataTrigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource LowlightBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <controls:BorderFix Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ForegroundBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource ForegroundBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LowlightBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LowlightBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource DisabledBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- DataGridRow -->
+    <Style TargetType="{x:Type DataGridRow}">
+        <Setter Property="controls:DataGridRowAttached.IsDeselectionEnabled" Value="True"/>
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TextFontSize), Mode=OneWay}"/>
+        <Setter Property="FontStretch" Value="Medium"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+        <Setter Property="ValidationErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <TextBlock Foreground="{StaticResource NegativeActionBrush}" 
+                               Margin="2,0,0,0" 
+                               Text="!"
+                               VerticalAlignment="Center"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridRow}">
+                    <controls:BorderFix x:Name="DGR_Border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
+                            <SelectiveScrollingGrid>
+                                <SelectiveScrollingGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </SelectiveScrollingGrid.ColumnDefinitions>
+                                <SelectiveScrollingGrid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </SelectiveScrollingGrid.RowDefinitions>
+                                <Border Grid.Column="1"
+                                    Background="{TemplateBinding Background}">
+                                    <DataGridCellsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </Border>
+                                <Border Grid.Column="1" 
+                                    Grid.Row="1">
+                                    <DataGridDetailsPresenter SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                          TextBlock.Foreground="{StaticResource ForegroundBrush}"
+                                                          MaxWidth="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
+                                                          Visibility="{TemplateBinding DetailsVisibility}"/>
+                                </Border>
+                                <DataGridRowHeader Grid.RowSpan="2" 
+                                               SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" 
+                                               Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </SelectiveScrollingGrid>
+                    </controls:BorderFix>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="False">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource MiddleLightBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource MiddleLightBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LowlightBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LowlightBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="DraggableDataGridRowStyle" BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridRow}">
+                    <controls:BorderFix x:Name="DGR_Border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            SnapsToDevicePixels="True">
+                            <SelectiveScrollingGrid>
+                                <SelectiveScrollingGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </SelectiveScrollingGrid.ColumnDefinitions>
+                                <SelectiveScrollingGrid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </SelectiveScrollingGrid.RowDefinitions>
+                                <Border Grid.Column="1"
+                                    Background="{TemplateBinding Background}">
+                                    <controls:AdornedControl IsAdornerVisible="{Binding ElementName=MoveUpBorder, Path=(local:DragCommand.IsDragOver)}">
+                                        <controls:AdornedControl.AdornerContent>
+                                            <Separator Style="{StaticResource HorizontalDragSeparatorStyle}"
+                                                   VerticalAlignment="Top"/>
+                                        </controls:AdornedControl.AdornerContent>
+                                        <controls:AdornedControl IsAdornerVisible="{Binding ElementName=MoveDownBorder, Path=(local:DragCommand.IsDragOver)}">
+                                            <controls:AdornedControl.AdornerContent>
+                                                <Separator Style="{StaticResource HorizontalDragSeparatorStyle}"
+                                                       VerticalAlignment="Bottom"/>
+                                            </controls:AdornedControl.AdornerContent>
+                                            <Grid local:DragManager.ContentTemplate="{TemplateBinding controls:DataGridRowAttached.MoveDragContentTemplate}" 
+                                              local:DragManager.Data="{Binding}"
+                                              local:DragManager.Effects="Move"
+                                              local:DragManager.Format="{TemplateBinding controls:DataGridRowAttached.MoveDragFormat}"
+                                              Background="{StaticResource TransparentBrush}">
+
+                                                <DataGridCellsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+
+                                                <Grid local:DragViewer.Format="{TemplateBinding controls:DataGridRowAttached.MoveDragFormat}"
+                                                  IsHitTestVisible="{Binding Path=(local:DragViewer.IsDragging), RelativeSource={RelativeSource Self}}">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Border x:Name="MoveUpBorder" 
+                                                        local:DragCommand.Command="{TemplateBinding controls:DataGridRowAttached.MoveAboveCommand}"
+                                                        local:DragCommand.Format="{TemplateBinding controls:DataGridRowAttached.MoveDragFormat}"
+                                                        AllowDrop="True"
+                                                        Background="{StaticResource TransparentBrush}"
+                                                        Focusable="False"/>
+                                                    <Border x:Name="MoveDownBorder" 
+                                                        Grid.Row="1"
+                                                        local:DragCommand.Command="{TemplateBinding controls:DataGridRowAttached.MoveBelowCommand}"
+                                                        local:DragCommand.Format="{TemplateBinding controls:DataGridRowAttached.MoveDragFormat}"
+                                                        AllowDrop="True"
+                                                        Background="{StaticResource TransparentBrush}"
+                                                        Focusable="False"/>
+                                                </Grid>
+
+                                            </Grid>
+                                        </controls:AdornedControl>
+                                    </controls:AdornedControl>
+                                </Border>
+                                <Border Grid.Column="1" 
+                                    Grid.Row="1">
+                                    <DataGridDetailsPresenter SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                          TextBlock.Foreground="{StaticResource ForegroundBrush}"
+                                                          MaxWidth="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
+                                                          Visibility="{TemplateBinding DetailsVisibility}"/>
+                                </Border>
+                                <DataGridRowHeader Grid.RowSpan="2" 
+                                               SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" 
+                                               Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </SelectiveScrollingGrid>
+                    </controls:BorderFix>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="False">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource MiddleLightBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource MiddleLightBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LowlightBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LowlightBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- DataGridColumn -->
+    <Style x:Key="DataGridTemplateColumnCellStyle" BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+        <Style.Resources>
+            <Style TargetType="{x:Type ContentPresenter}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Style.Resources>
+    </Style>
+    <Style x:Key="DataGridCheckBoxColumnEditingElementStyle" BasedOn="{StaticResource {x:Type CheckBox}}" TargetType="{x:Type CheckBox}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource SmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridCheckBoxColumnElementStyle" BasedOn="{StaticResource {x:Type CheckBox}}" TargetType="{x:Type CheckBox}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Padding" Value="0, 0, 5, 0"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <controls:Icon x:Name="PART_OkIcon" 
+                                       Margin="{TemplateBinding Padding}"
+                                       Style="{StaticResource OkIconStyle}"/>
+                        <controls:Icon x:Name="PART_CancelIcon" 
+                                       Margin="{TemplateBinding Padding}"
+                                       Style="{StaticResource Delete1IconStyle}"
+                                       Visibility="Collapsed"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Visibility" TargetName="PART_OkIcon" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="PART_CancelIcon" Value="Visible"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Value="True">
+                            <Setter Property="Foreground" TargetName="PART_OkIcon" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                            <Setter Property="Foreground" TargetName="PART_CancelIcon" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Value="True">
+                            <Setter Property="Foreground" TargetName="PART_OkIcon" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                            <Setter Property="Foreground" TargetName="PART_CancelIcon" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource SmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridComboBoxColumnEditingElementStyle" BasedOn="{StaticResource {x:Type ComboBox}}" TargetType="{x:Type ComboBox}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridComboBoxColumnElementStyle" BasedOn="{StaticResource {x:Type ComboBox}}" TargetType="{x:Type ComboBox}">
+        <Setter Property="Padding" Value="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                      IsHitTestVisible="False"
+                                      Margin="{TemplateBinding Padding}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource InternalSmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridHyperlinkColumnEditingElementStyle" BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridHyperlinkColumnElementStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource {x:Type Hyperlink}}" TargetType="{x:Type Hyperlink}">
+                <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Style.Resources>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource InternalSmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridTextColumnEditingElementStyle" BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridTextColumnElementStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource InternalSmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridMultiLineTextColumnEditingElementStyle" BasedOn="{StaticResource MultiLineTextBox}" TargetType="{x:Type TextBox}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridMultiLineTextColumnElementStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource InternalSmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridDateColumnEditingElementStyle" BasedOn="{StaticResource {x:Type DatePicker}}" TargetType="{x:Type DatePicker}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridDateColumnElementStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource LeftSmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridDateTimeColumnEditingElementStyle" BasedOn="{StaticResource {x:Type DatePicker}}" TargetType="{x:Type DatePicker}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridDateTimeColumnElementStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource LeftSmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridNumberUpDownColumnElementStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource LeftSmallWarningValidationErrorControlTemplate}"/>
+            </Trigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Value="False"/>
+                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Value="False"/>
+                    <Condition Binding="{Binding Converter={StaticResource LessThanToBoolConverter}, ConverterParameter=0}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridDecimalUpDownColumnEditingElementStyle" BasedOn="{StaticResource {x:Type controls:DecimalUpDown}}" TargetType="{x:Type controls:DecimalUpDown}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridDecimalUpDownColumnElementStyle" BasedOn="{StaticResource DataGridNumberUpDownColumnElementStyle}" TargetType="{x:Type TextBlock}"/>
+    <Style x:Key="DataGridDoubleUpDownColumnEditingElementStyle" BasedOn="{StaticResource {x:Type controls:DoubleUpDown}}" TargetType="{x:Type controls:DoubleUpDown}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridDoubleUpDownColumnElementStyle" BasedOn="{StaticResource DataGridNumberUpDownColumnElementStyle}" TargetType="{x:Type TextBlock}"/>
+    <Style x:Key="DataGridIntegerUpDownColumnEditingElementStyle" BasedOn="{StaticResource {x:Type controls:IntegerUpDown}}" TargetType="{x:Type controls:IntegerUpDown}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridIntegerUpDownColumnElementStyle" BasedOn="{StaticResource DataGridNumberUpDownColumnElementStyle}" TargetType="{x:Type TextBlock}"/>
+    <Style x:Key="DataGridLongUpDownColumnEditingElementStyle" BasedOn="{StaticResource {x:Type controls:LongUpDown}}" TargetType="{x:Type controls:LongUpDown}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridLongUpDownColumnElementStyle" BasedOn="{StaticResource DataGridNumberUpDownColumnElementStyle}" TargetType="{x:Type TextBlock}"/>
+    <Style x:Key="DataGridProgressBarColumnEditingElementStyle" BasedOn="{StaticResource {x:Type Slider}}" TargetType="{x:Type Slider}">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridProgressBarColumnElementStyle" BasedOn="{StaticResource {x:Type metro:ProgressBar}}" TargetType="{x:Type metro:ProgressBar}">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type DataGrid}">
+        <Setter Property="controls:ItemsControlAttached.GroupStyles" Value="{StaticResource DataGridGroupStyles}"/>
+        <Setter Property="controls:DataGridAttached.IsDeselectionEnabled" Value="True"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
+        <Setter Property="CanUserResizeColumns" Value="True"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.TextFontSize), Mode=OneWay}"/>
+        <Setter Property="FontStretch" Value="Medium"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="GridLinesVisibility" Value="None"/>
+        <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="RowHeight" Value="NaN"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGrid}">
+                    <ControlTemplate.Resources>
+                        <Style BasedOn="{StaticResource {x:Type CheckBox}}" TargetType="{x:Type CheckBox}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <controls:BorderFix Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}" 
+                            SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
+                                <ScrollViewer.Template>
+                                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Button Command="{x:Static DataGrid.SelectAllCommand}" 
+                                                Focusable="false" 
+                                                Style="{StaticResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                            <Border Grid.Column="2" 
+                                                Background="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                            <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" 
+                                                                        Grid.Column="1" 
+                                                                        Grid.ColumnSpan="2"
+                                                                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                                        Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
+                                                <DataGridColumnHeadersPresenter.ContextMenu>
+                                                    <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}"
+                                                             ItemsSource="{Binding Columns}" 
+                                                             StaysOpen="True"
+                                                             Visibility="{Binding Converter={StaticResource BoolToVisibilityConverter}, Path=PlacementTarget.Tag.(controls:DataGridAttached.CanUserHideColumns), RelativeSource={RelativeSource Self}}">
+                                                        <ContextMenu.ItemContainerStyle>
+                                                            <Style TargetType="MenuItem">
+                                                                <Setter Property="Header" Value="{Binding Header}"/>
+                                                                <Setter Property="HeaderTemplate" Value="{Binding HeaderTemplate}"/>
+                                                                <Setter Property="HeaderTemplateSelector" Value="{Binding HeaderTemplateSelector}"/>
+                                                                <Setter Property="IsCheckable" Value="True"/>
+                                                                <Setter Property="IsChecked" Value="{Binding Converter={StaticResource VisibilityToBoolConverter}, Mode=TwoWay, Path=Visibility}"/>
+                                                                <Setter Property="IsEnabled" Value="{Binding Path=(controls:DataGridColumnAttached.CanUserHideColumn)}"/>
+                                                                <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                                                                <Setter Property="StaysOpenOnClick" Value="True"/>
+                                                            </Style>
+                                                        </ContextMenu.ItemContainerStyle>
+                                                    </ContextMenu>
+                                                </DataGridColumnHeadersPresenter.ContextMenu>
+                                            </DataGridColumnHeadersPresenter>
+                                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" 
+                                                                Grid.ColumnSpan="2" 
+                                                                Grid.Row="1"
+                                                                CanContentScroll="{TemplateBinding CanContentScroll}"/>
+                                            <ScrollBar x:Name="PART_VerticalScrollBar" 
+                                                   Grid.Column="2" 
+                                                   Grid.Row="1" 
+                                                   Maximum="{TemplateBinding ScrollableHeight}" 
+                                                   Orientation="Vertical" 
+                                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" 
+                                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                   ViewportSize="{TemplateBinding ViewportHeight}"/>
+                                            <Grid Grid.Column="1" 
+                                              Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <ScrollBar x:Name="PART_HorizontalScrollBar" 
+                                                       Grid.Column="1" 
+                                                       Maximum="{TemplateBinding ScrollableWidth}" 
+                                                       Orientation="Horizontal" 
+                                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" 
+                                                       Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                       ViewportSize="{TemplateBinding ViewportWidth}"/>
+                                            </Grid>
+                                            <Grid Grid.Column="1" 
+                                              Grid.Row="1" 
+                                              Grid.RowSpan="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                        BorderThickness="0, 0, 1, 0">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding FrozenColumnCount, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Value="0">
+                                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                </Border>
+                                            </Grid>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ScrollViewer.Template>
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                    </controls:BorderFix>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsGrouping" Value="true">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

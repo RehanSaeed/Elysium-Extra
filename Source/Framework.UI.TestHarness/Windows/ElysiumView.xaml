@@ -1,0 +1,891 @@
+﻿<extra:Window x:Class="Framework.UI.TestHarness.Windows.ElysiumView"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:extra="http://schemas.extra.com/ui"
+              xmlns:metro="http://schemas.codeplex.com/elysium"
+              xmlns:params="http://schemas.codeplex.com/elysium/params"
+              params:Design.Theme="Dark"
+              params:Design.AccentBrush="{x:Static metro:AccentBrushes.Blue}"
+              params:Design.ContrastBrush="White"
+              Height="640"
+              Title="Elysium Showcase"
+              Width="1024"
+              WindowStartupLocation="CenterScreen">
+    <metro:Window.Resources>
+        <GeometryGroup x:Key="SampleIcon16px">
+            <RectangleGeometry Rect="2.5,2.5,1,1"/>
+            <RectangleGeometry Rect="7.5,2.5,1,1"/>
+            <RectangleGeometry Rect="12.5,2.5,1,1"/>
+            <RectangleGeometry Rect="2.5,7.5,1,1"/>
+            <RectangleGeometry Rect="7.5,7.5,1,1"/>
+            <RectangleGeometry Rect="12.5,7.5,1,1"/>
+            <RectangleGeometry Rect="2.5,12.5,1,1"/>
+            <RectangleGeometry Rect="7.5,12.5,1,1"/>
+            <RectangleGeometry Rect="12.5,12.5,1,1"/>
+        </GeometryGroup>
+        <GeometryGroup x:Key="SampleIcon24px">
+            <RectangleGeometry Rect="2.5,2.5,3,3"/>
+            <RectangleGeometry Rect="10.5,2.5,3,3"/>
+            <RectangleGeometry Rect="18.5,2.5,3,3"/>
+            <RectangleGeometry Rect="2.5,10.5,3,3"/>
+            <RectangleGeometry Rect="10.5,10.5,3,3"/>
+            <RectangleGeometry Rect="18.5,10.5,3,3"/>
+            <RectangleGeometry Rect="2.5,18.5,3,3"/>
+            <RectangleGeometry Rect="10.5,18.5,3,3"/>
+            <RectangleGeometry Rect="18.5,18.5,3,3"/>
+        </GeometryGroup>
+    </metro:Window.Resources>
+    <extra:Window.ApplicationBar>
+        <metro:ApplicationBar>
+            <metro:DropDownCommandButton Header="Theme type"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs x:Name="ThemeGlyph"
+                        Initialized="ThemeGlyphInitialized"
+                        FontRenderingEmSize="24"
+                        StyleSimulations="BoldSimulation"
+                        UnicodeString="T"
+                        Fill="Black"
+                        OriginX="0" OriginY="0"/>
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu>
+                        <MenuItem Header="Light theme"
+                                  Click="LightClick"/>
+                        <MenuItem Header="Dark theme"
+                                  Click="DarkClick"/>
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>
+            <metro:DropDownCommandButton Header="Accent color"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs x:Name="AccentGlyph"
+                        Initialized="AccentGlyphInitialized"
+                        FontRenderingEmSize="24"
+                        StyleSimulations="BoldSimulation"
+                        UnicodeString="A"
+                        Fill="Black"
+                        OriginX="0" OriginY="0"/>
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu>
+                        <MenuItem Header="Blue"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Blue}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Brown"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Brown}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Green"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Green}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Lime"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Lime}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Magenta"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Magenta}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Mango"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Mango}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Orange"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Orange}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Pink"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Pink}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Purple"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Purple}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Red"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Red}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Rose"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Rose}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Sky"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Sky}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Viridian"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Viridian}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Violet"
+                                  Click="AccentClick">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Violet}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>
+            <metro:DropDownCommandButton Header="Contrast color"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs x:Name="ContrastGlyph"
+                        Initialized="ContrastGlyphInitialized"
+                        FontRenderingEmSize="24"
+                        StyleSimulations="BoldSimulation"
+                        UnicodeString="C"
+                        Fill="Black"
+                        OriginX="0" OriginY="0"/>
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu>
+                        <MenuItem Header="White"
+                                  Click="WhiteClick"/>
+                        <MenuItem Header="Black"
+                                  Click="BlackClick"/>
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>
+            <metro:CommandButton Header="Notification"
+                                 Click="NotificationClick"
+                                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Rectangle Fill="Black"
+                           Stroke="Black"
+                           Width="24" Height="12"/>
+            </metro:CommandButton>
+            <metro:DropDownCommandButton Header="More"
+                                         metro:ApplicationBar.Dock="Right"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Path Data="{StaticResource AdvancedIcon}"
+                      Fill="Black"
+                      Stroke="Black"
+                      Width="24" Height="24"/>
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu>
+                        <MenuItem Header="Authors" Click="AuthorsClick"/>
+                        <MenuItem Header="License" Click="LicenseClick"/>
+                        <MenuItem Header="Donate" Click="DonateClick"/>
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>
+        </metro:ApplicationBar>
+    </extra:Window.ApplicationBar>
+    <TabControl Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+        <TabItem Header="buttons">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="0"
+                            Grid.Row="0"
+                            Content="DISABLED"
+                            IsEnabled="False"
+                            Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                    <Button Grid.Column="0"
+                            Grid.Row="1"
+                            Content="BUTTON"
+                            Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                    <Button Grid.Column="0"
+                            Grid.Row="2"
+                            Content="DEFAULT"
+                            IsDefault="True"
+                            Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                    <RepeatButton Grid.Column="1"
+                                  Grid.Row="0"
+                                  Content="DISABLED"
+                                  IsEnabled="False"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                    <RepeatButton Grid.Column="1"
+                                  Grid.Row="1"
+                                  Content="REPEATBUTTON"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                    <ToggleButton Grid.Column="2"
+                                  Grid.Row="0"
+                                  Content="DISABLED"
+                                  IsEnabled="False"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                    <ToggleButton Grid.Column="2"
+                                  Grid.Row="1"
+                                  Content="TOGGLEBUTTON"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                    <ToggleButton Grid.Column="2"
+                                  Grid.Row="2"
+                                  Content="CHECKED"
+                                  IsChecked="True"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                    <ToggleButton Grid.Column="2"
+                                  Grid.Row="3"
+                                  Content="INDETERMINATE"
+                                  IsThreeState="True"
+                                  IsChecked="{x:Null}"
+                                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Column="0"
+                              Grid.Row="0"
+                              IsEnabled="False"
+                              IsChecked="False"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Disabled unchecked"/>
+                        </Grid>
+                    </CheckBox>
+                    <CheckBox Grid.Column="0"
+                              Grid.Row="1"
+                              IsEnabled="False"
+                              IsChecked="True"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Disabled checked"/>
+                        </Grid>
+                    </CheckBox>
+                    <CheckBox Grid.Column="0"
+                              Grid.Row="2"
+                              IsEnabled="False"
+                              IsThreeState="True"
+                              IsChecked="{x:Null}"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Disabled indeterminate"/>
+                        </Grid>
+                    </CheckBox>
+                    <CheckBox Grid.Column="0"
+                              Grid.Row="3"
+                              IsChecked="False"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Unchecked"/>
+                        </Grid>
+                    </CheckBox>
+                    <CheckBox Grid.Column="0"
+                              Grid.Row="4"
+                              IsChecked="True"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Checked"/>
+                        </Grid>
+                    </CheckBox>
+                    <CheckBox Grid.Column="0"
+                              Grid.Row="5"
+                              IsThreeState="True"
+                              IsChecked="{x:Null}"
+                              Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                              VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Indeterminate"/>
+                        </Grid>
+                    </CheckBox>
+                    <RadioButton Grid.Column="1"
+                                 Grid.Row="0"
+                                 IsEnabled="False"
+                                 IsChecked="False"
+                                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                 VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Disabled unchecked"/>
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton Grid.Column="1"
+                                 Grid.Row="1"
+                                 IsEnabled="False"
+                                 IsChecked="True"
+                                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                 VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Disabled checked"/>
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton Grid.Column="1"
+                                 Grid.Row="3"
+                                 GroupName="RadioButtons"
+                                 IsChecked="False"
+                                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                 VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Unchecked"/>
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton Grid.Column="1"
+                                 Grid.Row="4"
+                                 GroupName="RadioButtons"
+                                 IsChecked="True"
+                                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                 VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="Checked"/>
+                        </Grid>
+                    </RadioButton>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <metro:CommandButton Grid.Column="0"
+                                         Grid.Row="0"
+                                         Header="Disabled"
+                                         IsEnabled="False"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                        <Path Data="{StaticResource SampleIcon24px}"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:CommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:CommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Width="24" Height="24"/>
+                    </metro:CommandButton>
+                    <metro:CommandButton Grid.Column="0"
+                                         Grid.Row="1"
+                                         Header="CommandButton"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                        <Path Data="{StaticResource SampleIcon24px}"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:CommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:CommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Width="24" Height="24"/>
+                    </metro:CommandButton>
+                    <metro:ToggleCommandButton Grid.Column="1"
+                                               Grid.Row="0"
+                                               Header="Disabled"
+                                               IsEnabled="False"
+                                               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                        <Path Data="{StaticResource SampleIcon24px}"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Width="24" Height="24"/>
+                    </metro:ToggleCommandButton>
+                    <metro:ToggleCommandButton Grid.Column="1"
+                                               Grid.Row="1"
+                                               Header="ToggleCommandButton"
+                                               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                        <Path Data="{StaticResource SampleIcon24px}"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Width="24" Height="24"/>
+                    </metro:ToggleCommandButton>
+                    <metro:ToggleCommandButton Grid.Column="1"
+                                               Grid.Row="2"
+                                               Header="Checked"
+                                               IsChecked="True"
+                                               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                        <Path Data="{StaticResource SampleIcon24px}"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Width="24" Height="24"/>
+                    </metro:ToggleCommandButton>
+                    <metro:ToggleCommandButton Grid.Column="1"
+                                               Grid.Row="3"
+                                               Header="Indeterminate"
+                                               IsThreeState="True"
+                                               IsChecked="{x:Null}"
+                                               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                        <Path Data="{StaticResource SampleIcon24px}"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Width="24" Height="24"/>
+                    </metro:ToggleCommandButton>
+
+                    <metro:CommandButton Grid.Column="0"
+                                         Grid.Row="1"
+                                         Header="CommandButton"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                        <Path Data="{StaticResource SampleIcon24px}"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:CommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:CommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Width="24" Height="24"/>
+                    </metro:CommandButton>
+                    <metro:ToggleCommandButton Grid.Column="1"
+                                               Grid.Row="0"
+                                               Header="Disabled"
+                                               IsEnabled="False"
+                                               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                        <Path Data="{StaticResource SampleIcon24px}"
+                              Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                              Width="24" Height="24"/>
+                    </metro:ToggleCommandButton>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="text and menus">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Menu Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      Grid.Row="0">
+                    <MenuItem Header="FILE"/>
+                    <MenuItem Header="EDIT">
+                        <MenuItem Header="Undo"/>
+                        <MenuItem Header="Always use Elysium"
+                                          IsCheckable="True"
+                                          IsChecked="True"/>
+                        <MenuItem Header="Copy">
+                            <MenuItem.Icon>
+                                <Path Data="{StaticResource SampleIcon16px}"
+                                      Fill="{StaticResource AccentBrush}"
+                                      Stroke="{StaticResource AccentBrush}"
+                                      Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Paste"
+                                          IsEnabled="False"/>
+                        <MenuItem Header="Preferences">
+                            <MenuItem Header="Item"/>
+                            <MenuItem Header="Item"/>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="HELP" IsEnabled="False"/>
+                </Menu>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           Text="Lorem ipsum dolor sit amet"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <TextBlock Grid.Column="1"
+                           Grid.Row="1"
+                           IsEnabled="False"
+                           Text="Lorem ipsum dolor sit amet"
+                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <TextBox Grid.Column="0"
+                         Grid.Row="2"
+                         Text="Lorem ipsum dolor sit amet"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <TextBox Grid.Column="1"
+                         Grid.Row="2"
+                         IsEnabled="False"
+                         Text="Lorem ipsum dolor sit amet"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <PasswordBox Grid.Column="0"
+                             Grid.Row="3"
+                             Password="Password"
+                             Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <PasswordBox Grid.Column="1"
+                             Grid.Row="3"
+                             IsEnabled="False"
+                             Password="Password"
+                             Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <RichTextBox Grid.Column="0"
+                             Grid.Row="4"
+                             Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </Run>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <RichTextBox Grid.Column="1"
+                             Grid.Row="4"
+                             IsEnabled="False"
+                             Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </Run>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <Grid Grid.Column="2"
+                      Grid.Row="0"
+                      Grid.RowSpan="5"
+                      Background="{StaticResource TransparentBrush}"
+                      metro:ApplicationBar.PreventsOpen="true">
+                    <TextBlock Foreground="{StaticResource MiddleLightBrush}"
+                               FontSize="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.HeaderFontSize)}"
+                               Text="Click here to see ContextMenu"
+                               TextOptions.TextFormattingMode="Ideal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                    <Grid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Select"/>
+                            <MenuItem Header="Always use Elysium"
+                                      IsCheckable="True"
+                                      IsChecked="True"/>
+                            <MenuItem Header="Copy">
+                                <MenuItem.Icon>
+                                    <Path Data="{StaticResource SampleIcon16px}"
+                                          Fill="{StaticResource AccentBrush}"
+                                          Stroke="{StaticResource AccentBrush}"
+                                          Width="16" Height="16"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Paste...">
+                                <MenuItem Header="Content"/>
+                                <MenuItem Header="Ignore markup"
+                                          IsCheckable="True"
+                                          IsChecked="True"/>
+                                <MenuItem Header="Markup"
+                                          IsEnabled="False"/>
+                                <MenuItem Header="OLE Object">
+                                    <MenuItem Header="From Word"/>
+                                    <MenuItem Header="From WordPad"/>
+                                </MenuItem>
+                            </MenuItem>
+                            <MenuItem Header="Delete"
+                                      IsEnabled="False"/>
+                        </ContextMenu>
+                    </Grid.ContextMenu>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="selectors and ranges">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Column="0"
+                          Grid.Row="0"
+                          IsEnabled="False"
+                          IsEditable="False"
+                          SelectedIndex="2"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <ComboBoxItem Content="First item"/>
+                    <ComboBoxItem Content="Second item"/>
+                    <ComboBoxItem Content="Third item"/>
+                    <ComboBoxItem Content="4th item"/>
+                    <ComboBoxItem Content="5th item"/>
+                    <ComboBoxItem Content="6th item"/>
+                    <ComboBoxItem Content="7th item"/>
+                </ComboBox>
+                <ComboBox Grid.Column="1"
+                          Grid.Row="0"
+                          IsEnabled="False"
+                          IsEditable="True"
+                          SelectedIndex="4"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <ComboBoxItem Content="First item"/>
+                    <ComboBoxItem Content="Second item"/>
+                    <ComboBoxItem Content="Third item"/>
+                    <ComboBoxItem Content="4th item"/>
+                    <ComboBoxItem Content="5th item"/>
+                    <ComboBoxItem Content="6th item"/>
+                    <ComboBoxItem Content="7th item"/>
+                </ComboBox>
+                <ComboBox Grid.Column="0"
+                          Grid.Row="1"
+                          IsEditable="False"
+                          SelectedIndex="2"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <ComboBoxItem Content="First item"/>
+                    <ComboBoxItem Content="Second item"/>
+                    <ComboBoxItem Content="Third item"/>
+                    <ComboBoxItem Content="4th item"/>
+                    <ComboBoxItem Content="5th item"/>
+                    <ComboBoxItem Content="6th item"/>
+                    <ComboBoxItem Content="7th item"/>
+                </ComboBox>
+                <ComboBox Grid.Column="1"
+                          Grid.Row="1"
+                          IsEditable="True"
+                          SelectedIndex="4"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <ComboBoxItem Content="First item"/>
+                    <ComboBoxItem Content="Second item"/>
+                    <ComboBoxItem Content="Third item"/>
+                    <ComboBoxItem Content="4th item"/>
+                    <ComboBoxItem Content="5th item"/>
+                    <ComboBoxItem Content="6th item"/>
+                    <ComboBoxItem Content="7th item"/>
+                </ComboBox>
+                <ListBox Grid.Column="0"
+                         Grid.Row="2"
+                         IsEnabled="False"
+                         SelectedIndex="1"
+                         SelectionMode="Single"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <ListBoxItem Content="First item"/>
+                    <ListBoxItem Content="Second item"/>
+                    <ListBoxItem Content="Third item"/>
+                    <ListBoxItem Content="4th item"/>
+                    <ListBoxItem Content="5th item"/>
+                    <ListBoxItem Content="6th item"/>
+                    <ListBoxItem Content="7th item"/>
+                </ListBox>
+                <ListBox Grid.Column="1"
+                         Grid.Row="2"
+                         IsEnabled="False"
+                         SelectedIndex="0"
+                         SelectionMode="Multiple"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <ListBoxItem Content="First item"/>
+                    <ListBoxItem Content="Second item"/>
+                    <ListBoxItem Content="Third item"/>
+                    <ListBoxItem Content="4th item"/>
+                    <ListBoxItem Content="5th item"/>
+                    <ListBoxItem Content="6th item"/>
+                    <ListBoxItem Content="7th item"/>
+                </ListBox>
+                <ListBox Grid.Column="0"
+                         Grid.Row="3"
+                         SelectedIndex="1"
+                         SelectionMode="Single"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <ListBoxItem Content="First item"/>
+                    <ListBoxItem Content="Second item"/>
+                    <ListBoxItem Content="Third item"/>
+                    <ListBoxItem Content="4th item"/>
+                    <ListBoxItem Content="5th item"/>
+                    <ListBoxItem Content="6th item"/>
+                    <ListBoxItem Content="7th item"/>
+                </ListBox>
+                <ListBox Grid.Column="1"
+                         Grid.Row="3"
+                         SelectedIndex="0"
+                         SelectionMode="Multiple"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <ListBoxItem Content="First item"/>
+                    <ListBoxItem Content="Second item"/>
+                    <ListBoxItem Content="Third item"/>
+                    <ListBoxItem Content="4th item"/>
+                    <ListBoxItem Content="5th item"/>
+                    <ListBoxItem Content="6th item"/>
+                    <ListBoxItem Content="7th item"/>
+                </ListBox>
+                <metro:ToggleSwitch Grid.Column="2"
+                                    Grid.Row="0"
+                                    OnHeader="On"
+                                    OffHeader="Off"
+                                    IsEnabled="False"
+                                    IsChecked="False"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ToggleSwitch Grid.Column="2"
+                                    Grid.Row="1"
+                                    OnHeader="On"
+                                    OffHeader="Off"
+                                    IsEnabled="False"
+                                    IsChecked="True"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ToggleSwitch Grid.Column="2"
+                                    Grid.Row="2"
+                                    OnHeader="On"
+                                    OffHeader="Off"
+                                    IsEnabled="True"
+                                    IsChecked="False"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ToggleSwitch Grid.Column="2"
+                                    Grid.Row="3"
+                                    OnHeader="On"
+                                    OffHeader="Off"
+                                    IsEnabled="True"
+                                    IsChecked="True"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <Slider Grid.Column="3"
+                        Grid.Row="0"
+                        IsEnabled="False"
+                        Orientation="Horizontal"
+                        Value="4"
+                        Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <Slider Grid.Column="3"
+                        Grid.Row="1"
+                        Orientation="Horizontal"
+                        Value="4"
+                        Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <Slider Grid.Column="3"
+                        Grid.Row="2"
+                        IsEnabled="False"
+                        Orientation="Vertical"
+                        Value="6"
+                        Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <Slider Grid.Column="3"
+                        Grid.Row="3"
+                        Orientation="Vertical"
+                        Value="6"
+                        Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="4"
+                                         Grid.Row="0"
+                                         IsEnabled="False"
+                                         Orientation="Horizontal"
+                                         Value="70"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="4"
+                                         Grid.Row="1"
+                                         Orientation="Horizontal"
+                                         Value="70"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="4"
+                                         Grid.Row="2"
+                                         IsEnabled="False"
+                                         Orientation="Vertical"
+                                         Value="45"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="4"
+                                         Grid.Row="3"
+                                         Orientation="Vertical"
+                                         Value="45"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="5"
+                                         Grid.Row="0"
+                                         IsEnabled="False"
+                                         Orientation="Horizontal"
+                                         State="Indeterminate"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="5"
+                                         Grid.Row="1"
+                                         Orientation="Horizontal"
+                                         State="Indeterminate"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="5"
+                                         Grid.Row="2"
+                                         IsEnabled="False"
+                                         Orientation="Vertical"
+                                         State="Indeterminate"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="5"
+                                         Grid.Row="3"
+                                         Orientation="Vertical"
+                                         State="Indeterminate"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="6"
+                                         Grid.Row="0"
+                                         IsEnabled="False"
+                                         Orientation="Horizontal"
+                                         State="Busy"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="6"
+                                         Grid.Row="1"
+                                         Orientation="Horizontal"
+                                         State="Busy"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="6"
+                                         Grid.Row="2"
+                                         IsEnabled="False"
+                                         Orientation="Vertical"
+                                         State="Busy"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressBar Grid.Column="6"
+                                         Grid.Row="3"
+                                         Orientation="Vertical"
+                                         State="Busy"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressRing Grid.Column="7"
+                                           Grid.Row="0"
+                                           IsEnabled="False"
+                                           Value="65"
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressRing Grid.Column="7"
+                                           Grid.Row="1"
+                                           Value="65"
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressRing Grid.Column="8"
+                                           Grid.Row="0"
+                                           IsEnabled="False"
+                                           State="Indeterminate"
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressRing Grid.Column="8"
+                                           Grid.Row="1"
+                                           State="Indeterminate"
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressRing Grid.Column="9"
+                                           Grid.Row="0"
+                                           IsEnabled="False"
+                                           State="Busy"
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                <metro:ProgressRing Grid.Column="9"
+                                           Grid.Row="1"
+                                           State="Busy"
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</extra:Window>

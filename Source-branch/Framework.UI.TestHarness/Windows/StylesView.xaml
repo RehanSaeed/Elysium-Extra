@@ -1,0 +1,598 @@
+﻿<extra:Window x:Class="Framework.UI.TestHarness.Windows.StylesView"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+              xmlns:metro="http://schemas.codeplex.com/elysium"
+              xmlns:params="http://schemas.codeplex.com/elysium/params"
+              xmlns:extra="http://schemas.extra.com/ui"
+              xmlns:system="clr-namespace:System;assembly=mscorlib"
+              xmlns:Views="clr-namespace:Framework.UI.TestHarness.Views"
+              Height="768"
+              Icon="{StaticResource FolderDrawingImage}"
+              TaskbarOverlayTemplate="{StaticResource WindowOverlayTemplate}"
+              Title="Styles" 
+              Width="1366">
+    <!--<extra:Wizard>
+        <extra:WizardItem Description="Elysium Extra Samples Home"  
+                          Icon="{StaticResource HomeGeometry}" 
+                          Id="Home" 
+                          Title="Home"/>
+        <extra:WizardItem Description="Differences beteen Elysium and Elysium Extra"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Elysium" 
+                          ParentId="Home"
+                          Title="Elysium">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ElysiumView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Theming support in Elysium Extra"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Theme" 
+                          ParentId="Home"
+                          Title="Theme">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ThemeView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Background geometries which can be used on your window"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Background" 
+                          ParentId="Home"
+                          Title="Background">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:BackgroundView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Good practice guidelines for building a WPF application"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Practices" 
+                          ParentId="Home"
+                          Title="Practices">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:PracticesView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="An overview of all Elysium Extra Color's and Brush's"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Colour" 
+                          ParentId="Home"
+                          Title="Colour">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ColoursView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Type ramp, TextBlock and Label styles"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Text" 
+                          ParentId="Home"
+                          Title="Text">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:TextView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Guide to using margins and padding"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Thickness" 
+                          ParentId="Home"
+                          Title="Thickness">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ThicknessView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="A list of all converters provided by Elysiuym Extra"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Converters" 
+                          ParentId="Home"
+                          Title="Converters">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ConvertersView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Separator control styles"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Separator" 
+                          ParentId="Home"
+                          Title="Separator">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:SeparatorsView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Border styles and guidelines"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Border" 
+                          ParentId="Home"
+                          Title="Border">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:BordersView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Panel guidelines and custom panels"  
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Panel" 
+                          ParentId="Home"
+                          Title="Panel">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:PanelsView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Scroll bars and ScrollViewer controls"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Scroll" 
+                          ParentId="Home"
+                          Title="Scroll">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ScrollView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="All button styles in Elysium and Elysium Extra"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Button" 
+                          ParentId="Home"
+                          Title="Button">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ButtonsView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Icons provided by Elysium Extra"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Icon" 
+                          ParentId="Home"
+                          Title="Icon">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:IconsView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Input controls such as TextBox, ComboBox etc."
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Input" 
+                          ParentId="Home"
+                          Title="Input">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:InputView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Validation of input controls"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Validation" 
+                          ParentId="Home"
+                          Title="Validation">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ValidationView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Progress measuring controls"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Progress" 
+                          ParentId="Home"
+                          Title="Progress">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ProgressView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Window control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Window" 
+                          ParentId="Home"
+                          Title="Window">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:WindowView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="OverlayWindow control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="OverlayWindow" 
+                          ParentId="Home"
+                          Title="OverlayWindow">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:OverlayWindowView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="MessageDialog control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="MessageDialog" 
+                          ParentId="Home"
+                          Title="MessageDialog">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:MessageDialogView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="NotifyBox control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="NotifyBox" 
+                          ParentId="Home"
+                          Title="NotifyBox">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:NotifyBoxView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="ListBox custom styles"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="ListBox" 
+                          ParentId="Home"
+                          Title="ListBox">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ListBoxView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="ListView custom styles"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="ListView" 
+                          ParentId="Home"
+                          Title="ListView">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ListViewView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="DataGrid control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="DataGrid" 
+                          ParentId="Home"
+                          Title="DataGrid">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:DataGridView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Firing ICommand's using events and key presses"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Command" 
+                          ParentId="Home"
+                          Title="Command">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:CommandsView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Popup control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Popup" 
+                          ParentId="Home"
+                          Title="Popup">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:PopupsView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="ToolTip patterns and practices"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="ToolTip" 
+                          ParentId="Home"
+                          Title="ToolTip">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ToolTipsView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="App bar button styles"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="AppBar" 
+                          ParentId="Home"
+                          Title="App Bar">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:AppBarView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="MenuItem styles"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="MenuItem" 
+                          ParentId="Home"
+                          Title="MenuItem">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:MenuItemView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Animation helpers, allowing one line animations"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Animation" 
+                          ParentId="Home"
+                          Title="Animation">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:AnimationView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Drag and Drop support and reordering items support"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Drag &amp; Drop" 
+                          ParentId="Home"
+                          Title="Drag &amp; Drop">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:DragAndDropView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="TreeView control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="TreeView" 
+                          ParentId="Home"
+                          Title="TreeView">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:TreeViewView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="ElasticPicker control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="ElasticPicker" 
+                          ParentId="Home"
+                          Title="ElasticPicker">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ElasticPickerView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Expander control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Expander" 
+                          ParentId="Home"
+                          Title="Expander">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ExpandersView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="A special Expander style"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Flyout" 
+                          ParentId="Home"
+                          Title="Flyout">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:FlyoutView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="ExpanderMenu control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="ExpanderMenu" 
+                          ParentId="Home"
+                          Title="ExpanderMenu">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:ExpanderMenuView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="An ItemsControl style allowing paging"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Paging" 
+                          ParentId="Home"
+                          Title="Paging">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:PagingView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="Wizard control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="Wizard" 
+                          ParentId="Home"
+                          Title="Wizard">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:WizardView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="WebBrowser control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="WebBrowser" 
+                          ParentId="Home"
+                          Title="WebBrowser">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:WebBrowserView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="FlipControl control and it's properties"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="FlipControl" 
+                          ParentId="Home"
+                          Title="FlipControl">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:FlipControlView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+        <extra:WizardItem Description="FocusVisualStyle of all controls"
+                          Icon="{StaticResource InformationGeometry}" 
+                          Id="FocusVisualStyle" 
+                          ParentId="Home"
+                          Title="FocusVisualStyle">
+            <extra:WizardItem.ContentTemplate>
+                <DataTemplate>
+                    <Views:FocusVisualStyleView/>
+                </DataTemplate>
+            </extra:WizardItem.ContentTemplate>
+        </extra:WizardItem>
+    </extra:Wizard>-->
+    
+    <TabControl>
+        <TabItem Header="Elysium">
+            <Views:ElysiumView/>
+        </TabItem>
+        <TabItem Header="Theme">
+            <Views:ThemeView/>
+        </TabItem>
+        <TabItem Header="Background">
+            <Views:BackgroundView/>
+        </TabItem>
+        <TabItem Header="Practices">
+            <Views:PracticesView/>
+        </TabItem>
+        <TabItem Header="Colour">
+            <Views:ColoursView/>
+        </TabItem>
+        <TabItem Header="Text">
+            <Views:TextView/>
+        </TabItem>
+        <TabItem Header="Thickness">
+            <Views:ThicknessView/>
+        </TabItem>
+        <TabItem Header="Converters">
+            <Views:ConvertersView/>
+        </TabItem>
+        <TabItem Header="Separator">
+            <Views:SeparatorsView/>
+        </TabItem>
+        <TabItem Header="Border">
+            <Views:BordersView/>
+        </TabItem>
+        <TabItem Header="Panel">
+            <Views:PanelsView/>
+        </TabItem>
+        <TabItem Header="Scroll">
+            <Views:ScrollView/>
+        </TabItem>
+        <TabItem Header="Button">
+            <Views:ButtonsView/>
+        </TabItem>
+        <TabItem Header="Icon">
+            <Views:IconsView/>
+        </TabItem>
+        <TabItem Header="Input">
+            <Views:InputView/>
+        </TabItem>
+        <TabItem Header="Validation">
+            <Views:ValidationView/>
+        </TabItem>
+        <TabItem Header="Progress">
+            <Views:ProgressView/>
+        </TabItem>
+        <TabItem Header="Window">
+            <Views:WindowView/>
+        </TabItem>
+        <TabItem Header="OverlayWindow">
+            <Views:OverlayWindowView/>
+        </TabItem>
+        <TabItem Header="MessageDialog">
+            <Views:MessageDialogView/>
+        </TabItem>
+        <TabItem Header="NotifyBox">
+            <Views:NotifyBoxView/>
+        </TabItem>
+        <TabItem Header="ListBox">
+            <Views:ListBoxView/>
+        </TabItem>
+        <TabItem Header="ListView">
+            <Views:ListViewView/>
+        </TabItem>
+        <TabItem Header="DataGrid">
+            <Views:DataGridView/>
+        </TabItem>
+        <TabItem Header="Command">
+            <Views:CommandsView/>
+        </TabItem>
+        <TabItem Header="Popup">
+            <Views:PopupsView/>
+        </TabItem>
+        <TabItem Header="ToolTip">
+            <Views:ToolTipsView/>
+        </TabItem>
+        <TabItem Header="App Bar">
+            <Views:AppBarView/>
+        </TabItem>
+        <TabItem Header="MenuItem">
+            <Views:MenuItemView/>
+        </TabItem>
+        <TabItem Header="Animation">
+            <Views:AnimationView/>
+        </TabItem>
+        <TabItem Header="Drag &amp; Drop">
+            <Views:DragAndDropView/>
+        </TabItem>
+        <TabItem Header="TreeView">
+            <Views:TreeViewView/>
+        </TabItem>
+        <TabItem Header="ElasticPicker">
+            <Views:ElasticPickerView/>
+        </TabItem>
+        <TabItem Header="Expander">
+            <Views:ExpandersView/>
+        </TabItem>
+        <TabItem Header="Flyout">
+            <Views:FlyoutView/>
+        </TabItem>
+        <TabItem Header="ExpanderMenu">
+            <Views:ExpanderMenuView/>
+        </TabItem>
+        <TabItem Header="Paging">
+            <Views:PagingView/>
+        </TabItem>
+        <TabItem Header="Wizard">
+            <Views:WizardView/>
+        </TabItem>
+        <TabItem Header="WebBrowser">
+            <Views:WebBrowserView/>
+        </TabItem>
+        <TabItem Header="FlipControl">
+            <Views:FlipControlView/>
+        </TabItem>
+        <TabItem Header="FocusVisualStyle">
+            <Views:FocusVisualStyleView/>
+        </TabItem>
+    </TabControl>
+</extra:Window>

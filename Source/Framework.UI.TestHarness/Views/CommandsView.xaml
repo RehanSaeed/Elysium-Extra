@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.CommandsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <StackPanel>
+        <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource HeaderTextStyle}" 
+                   Text="Key Commands"/>
+        <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource NormalTextStyle}" 
+                   Text="You can raise commands when a key is pressed or a key combination is pressed."/>
+        <TextBox extra:KeyCommand.Command="{Binding ShowMessageBoxCommand}"
+                 extra:KeyCommand.CommandParameter="{Binding Path=Text, RelativeSource={RelativeSource Self}}"
+                 extra:KeyCommand.Key="Enter"
+                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                 Text="Press Enter to fire a command"/>
+        <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource HeaderTextStyle}" 
+                   Text="Event Commands"/>
+        <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource NormalTextStyle}" 
+                   Text="You can raise commands when an event is fired."/>
+        <Button extra:EventCommand.Command="{Binding ShowMessageBoxCommand}"
+                extra:EventCommand.CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
+                extra:EventCommand.Event="Click"
+                Content="Click to fire a command from the click event."
+                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource HeaderTextStyle}" 
+                   Text="Multiple Event Commands"/>
+        <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource NormalTextStyle}" 
+                   Text="You can raise multiple commands when an event is fired."/>
+        <Button Content="Click to fire a command from the click event."
+                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+            <extra:EventCommand.CommandBindings>
+                <extra:CommandBinding Command="{Binding ShowMessageBoxCommand}" CommandParameter="Message 1" Event="Click"/>
+                <extra:CommandBinding Command="{Binding ShowMessageBoxCommand}" CommandParameter="Message 2" Event="Click"/>
+            </extra:EventCommand.CommandBindings>
+        </Button>
+    </StackPanel>
+</UserControl>

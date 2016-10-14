@@ -1,0 +1,507 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.DataGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <UserControl.Resources>
+        <extra:ElementProxy x:Key="ElementProxy"/>
+    </UserControl.Resources>
+    
+    <ScrollViewer>
+        <StackPanel>
+            
+            <extra:AnimatedWrapPanel>
+                <!-- Display -->
+                <metro:DropDownCommandButton Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                             Style="{StaticResource DisplayDropDownCommandButtonStyle}">
+                    <metro:DropDownCommandButton.Submenu>
+                        <metro:Submenu>
+                            <MenuItem Style="{StaticResource DecimalPlacesMenuItemStyle}">
+                                <MenuItem Header="{Binding Mode=TwoWay, Path=DecimalPlaces}"
+                                          Style="{StaticResource DecimalPlacesSliderMenuItemStyle}"/>
+                            </MenuItem>
+                            <MenuItem Style="{StaticResource ZoomMenuItemStyle}">
+                                <MenuItem Header="{Binding Mode=TwoWay, Path=Zoom}"
+                                          Style="{StaticResource ZoomSliderMenuItemStyle}"/>
+                            </MenuItem>
+                        </metro:Submenu>
+                    </metro:DropDownCommandButton.Submenu>
+                </metro:DropDownCommandButton>
+                <!-- Export -->
+                <metro:DropDownCommandButton Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left, Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                             Style="{StaticResource ExportDropDownCommandButtonStyle}">
+                    <metro:DropDownCommandButton.Submenu>
+                        <metro:Submenu>
+                            <MenuItem Style="{StaticResource ExportMenuItemStyle}"/>
+                            <MenuItem Style="{StaticResource ExportCsvMenuItemStyle}"/>
+                            <MenuItem Style="{StaticResource PdfMenuItemStyle}"/>
+                            <MenuItem Style="{StaticResource ExcelMenuItemStyle}"/>
+                            <MenuItem Style="{StaticResource WordMenuItemStyle}"/>
+                            <MenuItem Style="{StaticResource OutlookMenuItemStyle}"/>
+                            <MenuItem Style="{StaticResource PowerPointMenuItemStyle}"/>
+                        </metro:Submenu>
+                    </metro:DropDownCommandButton.Submenu>
+                </metro:DropDownCommandButton>
+            </extra:AnimatedWrapPanel>
+
+            <DataGrid x:Name="DataGrid"
+                      extra:UIElementAttached.IsBubblingMouseWheelEvents="True"
+                      ItemsSource="{Binding FundsView}" 
+                      IsReadOnly="True"
+                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <extra:DataGridAttached.GroupSummary>
+                    <extra:DataGridGroupSummaryCollection>
+                        <extra:DataGridGroupSummary Column="{Binding Path=Columns[7], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
+                            <extra:DataGridGroupSummary.Template>
+                                <DataTemplate>
+                                    <TextBlock Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type GroupItem}}}"
+                                               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                               Text="{Binding Path=Items.Count, StringFormat='Count {0}'}"
+                                               TextAlignment="Right"
+                                               VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </extra:DataGridGroupSummary.Template>
+                        </extra:DataGridGroupSummary>
+                    </extra:DataGridGroupSummaryCollection>
+                </extra:DataGridAttached.GroupSummary>
+                <DataGrid.Columns>
+                    <extra:DataGridTemplateColumn extra:DataGridColumnAttached.CanUserHideColumn="{Binding Path=IsChecked, ElementName=CanUserHideColumnToggleSwitch}"  
+                                                  AutomationProperties.Name="Template"  
+                                                  Header="Template" 
+                                                  Width="140">
+                        <extra:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <extra:Icon Validation.ErrorTemplate="{StaticResource SmallWarningValidationErrorControlTemplate}" 
+                                            Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" 
+                                            Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                            Style="{StaticResource Refresh1IconStyle}"
+                                            ToolTip="{Binding Icon}"
+                                            VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </extra:DataGridTemplateColumn.CellTemplate>
+                        <extra:DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox Style="{StaticResource DataGridTextColumnEditingElementStyle}"
+                                         Text="{Binding Icon}"/>
+                            </DataTemplate>
+                        </extra:DataGridTemplateColumn.CellEditingTemplate>
+                    </extra:DataGridTemplateColumn>
+                    <extra:DataGridTextColumn extra:DataGridColumnAttached.CanUserHideColumn="{Binding Path=IsChecked, ElementName=CanUserHideColumnToggleSwitch}"  
+                                              AutomationProperties.Name="Text"  
+                                              Binding="{Binding Name}" 
+                                              Header="Text"
+                                              Width="140"/>
+                    <extra:DataGridCheckBoxColumn AutomationProperties.Name="CheckBox" 
+                                                  Binding="{Binding IsActive}"
+                                                  Header="CheckBox"
+                                                  Width="200"/>
+                    <extra:DataGridComboBoxColumn AutomationProperties.Name="ComboBox" 
+                                                  ItemsSourceBinding="{Binding Path=DataContext.Bools, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                  Header="ComboBox"
+                                                  SelectedItemBinding="{Binding IsActive}"
+                                                  Width="200"/>
+                    <extra:DataGridDateColumn AutomationProperties.Name="Date"
+                                              Binding="{Binding Date}" 
+                                              Header="Date"
+                                              Width="170"/>
+                    <extra:DataGridDateTimeColumn AutomationProperties.Name="DateTime"
+                                                  Binding="{Binding Date}" 
+                                                  Header="TODO DateTime"
+                                                  Width="170"/>
+                    <extra:DataGridHyperlinkColumn AutomationProperties.Name="Hyperlink"
+                                                   Binding="{Binding Url}" 
+                                                   Header="Hyperlink"
+                                                   Width="200"/>
+                    <extra:DataGridDecimalColumn AutomationProperties.Name="Decimal"
+                                                 Binding="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                                 FormatString="{Binding Path=Element.DataContext.NumberFormat, Source={StaticResource ElementProxy}}"
+                                                 Header="Decimal"
+                                                 Width="100"/>
+                    <extra:DataGridProgressBarColumn AutomationProperties.Name="ProgressBar"
+                                                     Binding="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                                     Header="ProgressBar"
+                                                     Maximum="{Binding Source=100}"
+                                                     Minimum="{Binding Source=-100}"
+                                                     Width="150"/>
+                </DataGrid.Columns>
+                <DataGrid.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                        <Setter Property="extra:DataGridRowAttached.IsDeselectionEnabled" Value="{Binding Path=IsChecked, ElementName=IsRowDeselectionEnabledToggleSwitch}"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+                <DataGrid.LayoutTransform>
+                    <ScaleTransform CenterX="0.5" 
+                                    CenterY="0.5" 
+                                    ScaleX="{Binding Zoom}" 
+                                    ScaleY="{Binding Zoom}"/>
+                </DataGrid.LayoutTransform>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Content="Name"
+                                   Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                            <TextBlock Grid.Column="1" 
+                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       Text="{Binding Name}"
+                                       VerticalAlignment="Center"/>
+
+                            <Label Grid.Row="1" 
+                                   Content="Etc."
+                                   Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                            <TextBlock Grid.Column="1" 
+                                       Grid.Row="1" 
+                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       Text="Etc."
+                                       VerticalAlignment="Center"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Example Data"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Group By (Comma seperated e.g. IsActive,Url)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=GroupsTextBox}"/>
+                <TextBox x:Name="GroupsTextBox" 
+                         Grid.Column="1"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         TextChanged="OnGroupsTextChanged"/>
+                
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Standard Properties"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="CanUserAddRows"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=CanUserAddRowsToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="CanUserAddRowsToggleSwitch"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=CanUserAddRows}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Column="2" 
+                       Content="CanUserDeleteRows"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=CanUserDeleteRowsToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="CanUserDeleteRowsToggleSwitch" 
+                                    Grid.Column="3" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=CanUserDeleteRows}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="1" 
+                       Content="CanUserReorderColumns"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=CanUserReorderColumnsToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="CanUserReorderColumnsToggleSwitch" 
+                                    Grid.Column="1" 
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=CanUserReorderColumns}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Column="2" 
+                       Grid.Row="1" 
+                       Content="CanUserResizeColumns"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=CanUserResizeColumnsToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="CanUserResizeColumnsToggleSwitch" 
+                                    Grid.Column="3" 
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=CanUserResizeColumns}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="2" 
+                       Content="CanUserResizeRows"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=CanUserResizeRowsToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="CanUserResizeRowsToggleSwitch" 
+                                    Grid.Column="1"
+                                    Grid.Row="2" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=CanUserResizeRows}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Column="2" 
+                       Grid.Row="2" 
+                       Content="CanUserSortColumns"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=CanUserSortColumnsToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="CanUserSortColumnsToggleSwitch" 
+                                    Grid.Column="3"
+                                    Grid.Row="2" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=CanUserSortColumns}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="3" 
+                       Content="IsReadOnly"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsReadOnlyToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="IsReadOnlyToggleSwitch" 
+                                    Grid.Column="1"
+                                    Grid.Row="3" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=IsReadOnly}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Column="2"
+                       Grid.Row="3" 
+                       Content="FrozenColumnCount"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=FrozenColumnCountIntegerUpDown}"/>
+                <extra:IntegerUpDown x:Name="FrozenColumnCountIntegerUpDown" 
+                                     Grid.Column="3"
+                                     Grid.Row="3"
+                                     AllowSpin="True"
+                                     Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                     Minimum="0"
+                                     Maximum="5"
+                                     ShowButtonSpinner="True"
+                                     Value="{Binding ElementName=DataGrid, Mode=TwoWay, Path=FrozenColumnCount}"/>
+                
+                <Label Grid.Row="4" 
+                       Content="IsTextSearchEnabled"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsTextSearchEnabledToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="IsTextSearchEnabledToggleSwitch" 
+                                    Grid.Column="1"
+                                    Grid.Row="4" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=IsTextSearchEnabled}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Column="2" 
+                       Grid.Row="4" 
+                       Content="IsTextSearchCaseSensitive"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsTextSearchCaseSensitiveToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="IsTextSearchCaseSensitiveToggleSwitch" 
+                                    Grid.Column="3"
+                                    Grid.Row="4" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=IsTextSearchCaseSensitive}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="5" 
+                       Content="AreRowDetailsFrozen"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=AreRowDetailsFrozenToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="AreRowDetailsFrozenToggleSwitch" 
+                                    Grid.Column="1"
+                                    Grid.Row="5" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=AreRowDetailsFrozen}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Column="2" 
+                       Grid.Row="5" 
+                       Content="RowDetailsVisibilityMode"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=RowDetailsVisibilityModeComboBox}"/>
+                <ComboBox x:Name="RowDetailsVisibilityModeComboBox" 
+                          Grid.Column="3"
+                          Grid.Row="5" 
+                          SelectedIndex="0"
+                          SelectedItem="{Binding ElementName=DataGrid, Mode=TwoWay, Path=RowDetailsVisibilityMode}"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <DataGridRowDetailsVisibilityMode>Collapsed</DataGridRowDetailsVisibilityMode>
+                    <DataGridRowDetailsVisibilityMode>Visible</DataGridRowDetailsVisibilityMode>
+                    <DataGridRowDetailsVisibilityMode>VisibleWhenSelected</DataGridRowDetailsVisibilityMode>
+                </ComboBox>
+
+                <Label Grid.Row="6" 
+                       Content="SelectionMode"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=SelectionModeComboBox}"/>
+                <ComboBox x:Name="SelectionModeComboBox" 
+                          Grid.Column="1"
+                          Grid.Row="6" 
+                          SelectedItem="{Binding ElementName=DataGrid, Mode=TwoWay, Path=SelectionMode}"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <DataGridSelectionMode>Extended</DataGridSelectionMode>
+                    <DataGridSelectionMode>Single</DataGridSelectionMode>
+                </ComboBox>
+
+                <Label Grid.Column="2" 
+                       Grid.Row="6" 
+                       Content="SelectionUnit"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=SelectionUnitComboBox}"/>
+                <ComboBox x:Name="SelectionUnitComboBox" 
+                          Grid.Column="3"
+                          Grid.Row="6" 
+                          SelectedItem="{Binding ElementName=DataGrid, Mode=TwoWay, Path=SelectionUnit}"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                    <DataGridSelectionUnit>Cell</DataGridSelectionUnit>
+                    <DataGridSelectionUnit>CellOrRowHeader</DataGridSelectionUnit>
+                    <DataGridSelectionUnit>FullRow</DataGridSelectionUnit>
+                </ComboBox>
+
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Custom Properties"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="Please read the tooltips of each option for more information."/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="IsSingleClickEdit (Enabled by Default)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsSingleClickEditToggleSwitch}"
+                       ToolTip="Single click a cell to edit, if it is not read only"/>
+                <metro:ToggleSwitch x:Name="IsSingleClickEditToggleSwitch" 
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=(extra:DataGridAttached.IsSingleClickEdit)}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                    ToolTip="Single click a cell to edit, if it is not read only"/>
+
+                <Label Grid.Column="2" 
+                       Content="IsDeselectionEnabled (Enabled by Default)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsDeselectionEnabledToggleSwitch}"
+                       ToolTip="Click on white space in the grid to deselect all rows"/>
+                <metro:ToggleSwitch x:Name="IsDeselectionEnabledToggleSwitch" 
+                                    Grid.Column="3" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=(extra:DataGridAttached.IsDeselectionEnabled)}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                    ToolTip="Click on white space in the grid to deselect all rows"/>
+
+                <Label Grid.Row="1" 
+                       Content="IsRowDeselectionEnabled (Enabled by Default)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsRowDeselectionEnabledToggleSwitch}"
+                       ToolTip="Click on a row while it is selected to deselect it"/>
+                <metro:ToggleSwitch x:Name="IsRowDeselectionEnabledToggleSwitch" 
+                                    Grid.Column="1"
+                                    Grid.Row="1" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="True"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                    ToolTip="Click on a row while it is selected to deselect it"/>
+
+                <Label Grid.Row="2" 
+                       Content="CanUserHideColumns (Enabled by Default)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=CanUserHideColumnsToggleSwitch}"
+                       ToolTip="Determines whether the show/hide column context menu (Right click the columns to see it) is visible."/>
+                <metro:ToggleSwitch x:Name="CanUserHideColumnsToggleSwitch" 
+                                    Grid.Column="1" 
+                                    Grid.Row="2" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=(extra:DataGridAttached.CanUserHideColumns)}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                    ToolTip="Determines whether the show/hide column context menu (Right click the columns to see it) is visible."/>
+
+                <Label Grid.Column="2" 
+                       Grid.Row="2" 
+                       Content="CanUserHideColumn (Enabled by Default)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=CanUserHideColumnToggleSwitch}"
+                       ToolTip="Determines whether the specified column can be hidden by the user or not using the column chooser."/>
+                <metro:ToggleSwitch x:Name="CanUserHideColumnToggleSwitch" 
+                                    Grid.Column="3" 
+                                    Grid.Row="2" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=(extra:DataGridAttached.CanUserHideColumns)}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                    ToolTip="Determines whether the specified column can be hidden by the user or not using the column chooser."/>
+
+                <Label Grid.Row="3" 
+                       Content="IsColumnSettingsEnabled (Disabled by Default)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsColumnSettingsEnabledToggleSwitch}"
+                       ToolTip="Enables the saving and loading of the column settings to the ColumnSettings property."/>
+                <metro:ToggleSwitch x:Name="IsColumnSettingsEnabledToggleSwitch" 
+                                    Grid.Column="1" 
+                                    Grid.Row="3" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding ElementName=DataGrid, Mode=TwoWay, Path=(extra:DataGridAttached.IsColumnSettingsEnabled)}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                    ToolTip="Enables the saving and loading of the column settings to the ColumnSettings property."/>
+
+                <Label Grid.Row="4" 
+                       Content="ColumnSettings"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=ColumnSettingsTextBox}"
+                       ToolTip="Enables the saving and loading of the column settings to the ColumnSettings property. Uses the AutomationProperties.Name to identify the column. Saves the display order, sort order and width of each column."
+                       VerticalAlignment="Top"/>
+                <TextBox x:Name="ColumnSettingsTextBox" 
+                         Grid.Column="1" 
+                         Grid.ColumnSpan="3"
+                         Grid.Row="4" 
+                         Style="{StaticResource MultiLineTextBoxStyle}"
+                         Text="{Binding ElementName=DataGrid, Mode=TwoWay, Path=(extra:DataGridAttached.ColumnSettings)}"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         ToolTip="Enables the saving and loading of the column settings to the ColumnSettings property. Uses the AutomationProperties.Name to identify the column. Saves the display order, sort order and width of each column."/>
+
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

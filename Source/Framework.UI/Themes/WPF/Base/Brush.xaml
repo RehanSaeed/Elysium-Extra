@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Color.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Theme/LightColor.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Theme -->
+    <SolidColorBrush x:Key="AccentBrush" options:Freeze="True" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="ContrastBrush" options:Freeze="True" Color="{DynamicResource ContrastColor}" />
+    <SolidColorBrush x:Key="SemitransparentContrastBrush" options:Freeze="True" Color="{DynamicResource SemitransparentContrastColor}" />
+    <SolidColorBrush x:Key="TransparentBrush" options:Freeze="True" Color="{DynamicResource TransparentColor}" />
+    <SolidColorBrush x:Key="SemitransparentBrush" options:Freeze="True" Color="{DynamicResource SemitransparentColor}" />
+    <SolidColorBrush x:Key="BackgroundBrush" options:Freeze="True" Color="{DynamicResource BackgroundColor}" />
+    <SolidColorBrush x:Key="ForegroundBrush" options:Freeze="True" Color="{DynamicResource ForegroundColor}" />
+    <SolidColorBrush x:Key="HighlightBrush" options:Freeze="True" Color="{DynamicResource HighlightColor}" />
+    <SolidColorBrush x:Key="MiddleLightBrush" options:Freeze="True" Color="{DynamicResource MiddleLightColor}" />
+    <SolidColorBrush x:Key="LowlightBrush" options:Freeze="True" Color="{DynamicResource LowlightColor}" />
+    <SolidColorBrush x:Key="DisabledBrush" options:Freeze="True" Color="{DynamicResource DisabledColor}" />
+    
+    <!-- Validation -->
+    <SolidColorBrush x:Key="ValidationErrorBrush" options:Freeze="True" Color="{StaticResource ValidationErrorColor}"/>
+
+    <!-- Action Brushes -->
+    <SolidColorBrush x:Key="NeutralActionBrush" options:Freeze="True" Color="{StaticResource NeutralActionColor}"/>
+    <SolidColorBrush x:Key="PositiveActionBrush" options:Freeze="True" Color="{StaticResource PositiveActionColor}"/>
+    <SolidColorBrush x:Key="CreateActionBrush" options:Freeze="True" Color="{StaticResource CreateActionColor}"/>
+    <SolidColorBrush x:Key="NegativeActionBrush" options:Freeze="True" Color="{StaticResource NegativeActionColor}"/>
+    <SolidColorBrush x:Key="WarningActionBrush" options:Freeze="True" Color="{StaticResource WarningActionColor}"/>
+    <SolidColorBrush x:Key="InformationActionBrush" options:Freeze="True" Color="{StaticResource InformationActionColor}"/>
+
+    <!-- Applicaton Brushes -->
+    <SolidColorBrush x:Key="AdobeApplicationBrush" options:Freeze="True" Color="{StaticResource AdobeApplicationColor}"/>
+    <SolidColorBrush x:Key="AccessApplicationBrush" options:Freeze="True" Color="{StaticResource AccessApplicationColor}"/>
+    <SolidColorBrush x:Key="ExcelApplicationBrush" options:Freeze="True" Color="{StaticResource ExcelApplicationColor}"/>
+    <SolidColorBrush x:Key="OneNoteApplicationBrush" options:Freeze="True" Color="{StaticResource OneNoteApplicationColor}"/>
+    <SolidColorBrush x:Key="OutlookApplicationBrush" options:Freeze="True" Color="{StaticResource OutlookApplicationColor}"/>
+    <SolidColorBrush x:Key="PowerPointApplicationBrush" options:Freeze="True" Color="{StaticResource PowerPointApplicationColor}"/>
+    <SolidColorBrush x:Key="WordApplicationBrush" options:Freeze="True" Color="{StaticResource WordApplicationColor}"/>
+    <SolidColorBrush x:Key="LyncApplicationBrush" options:Freeze="True" Color="{StaticResource LyncApplicationColor}"/>
+    <SolidColorBrush x:Key="OfficeApplicationBrush" options:Freeze="True" Color="{StaticResource OfficeApplicationColor}"/>
+    
+    <!-- Opaque Versions of AccentBrush  -->
+    <SolidColorBrush x:Key="AccentLevel1Brush" options:Freeze="True" Color="{DynamicResource AccentColor}" Opacity="0.5"/>
+    <SolidColorBrush x:Key="AccentLevel2Brush" options:Freeze="True" Color="{DynamicResource AccentColor}" Opacity="0.4"/>
+    <SolidColorBrush x:Key="AccentLevel3Brush" options:Freeze="True" Color="{DynamicResource AccentColor}" Opacity="0.3"/>
+    <SolidColorBrush x:Key="AccentLevel4Brush" options:Freeze="True" Color="{DynamicResource AccentColor}" Opacity="0.2"/>
+    <SolidColorBrush x:Key="AccentLevel5Brush" options:Freeze="True" Color="{DynamicResource AccentColor}" Opacity="0.1"/>
+
+    <!-- Window Background Gradient Brush -->
+    <LinearGradientBrush x:Key="WindowBackgroundGradientBrush" options:Freeze="True" StartPoint="0, 0" EndPoint="0, 1" Opacity=".1">
+        <GradientStop Offset="0" Color="{DynamicResource AccentColor}"/>
+        <GradientStop Offset=".3" Color="{DynamicResource AccentColor}"/>
+        <GradientStop Offset="1" Color="Transparent"/>
+    </LinearGradientBrush>
+
+    <!-- Why do we need this:
+         See http://stackoverflow.com/questions/17789648/dynamicresource-color-doesnt-work-for-borderbrush-on-a-border-bug/26738125#26738125 -->
+    <RadialGradientBrush x:Key="AccentFixBrush" options:Freeze="True" >
+        <GradientStop Color="{DynamicResource AccentColor}"/>
+        <GradientStop Color="{DynamicResource AccentColor}"/>
+    </RadialGradientBrush>
+
+</ResourceDictionary>

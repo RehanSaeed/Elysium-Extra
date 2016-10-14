@@ -1,0 +1,1264 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Geometry.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!-- Icons -->
+    <DataTemplate x:Key="IconTemplate">
+        <Path Data="{Binding}" 
+              Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=ContentControl}}" 
+              SnapsToDevicePixels="True"
+              Stretch="Uniform"/>
+    </DataTemplate>
+
+    <!-- ContentControl Icons -->
+    <Style x:Key="IconContentControlStyle" TargetType="ContentControl">
+        <Setter Property="ContentTemplate" Value="{StaticResource IconTemplate}"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Foreground" Value="{StaticResource LowlightBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource DisabledBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="Rotate180IconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="ContentControl">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <TransformGroup.Children>
+                        <RotateTransform Angle="180"/>
+                    </TransformGroup.Children>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+    </Style>
+
+    <Style x:Key="ArrowHeadDownIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadDownGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadLeftIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadLeftGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadRightIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadRightGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadUpIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadUpGeometry}"/>
+    </Style>
+    <Style x:Key="NextIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NextGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="PreviousIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PreviousGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="UpIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+    </Style>
+    <Style x:Key="DownIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+    </Style>
+    <Style x:Key="NegativeUpIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="NegativeDownIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="PositiveUpIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="PositiveDownIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="TopIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TopGeometry}"/>
+    </Style>
+    <Style x:Key="BottomIconContentControlStyle" BasedOn="{StaticResource Rotate180IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TopGeometry}"/>
+    </Style>
+    <Style x:Key="CutIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CutGeometry}"/>
+    </Style>
+    <Style x:Key="CopyIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CopyGeometry}"/>
+    </Style>
+    <Style x:Key="PasteIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PasteGeometry}"/>
+    </Style>
+    <Style x:Key="AddIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AddGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="AddAllIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AddAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="SubtractIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SubtractGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="SubtractAllIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SubtractAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="DeleteIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DeleteGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="OkIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OkGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="CancelIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CancelGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="NewIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NewGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource CreateActionBrush}"/>
+    </Style>
+    <Style x:Key="PrintIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PrintGeometry}"/>
+    </Style>
+    <Style x:Key="PrintPreviewIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PrintPreviewGeometry}"/>
+    </Style>
+    <Style x:Key="ExportIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExportGeometry}"/>
+    </Style>
+    <Style x:Key="ExportCsvIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExportCsvGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource ExcelApplicationBrush}"/>
+    </Style>
+    <Style x:Key="ExcelIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExcelGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource ExcelApplicationBrush}"/>
+    </Style>
+    <Style x:Key="WordIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource WordGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WordApplicationBrush}"/>
+    </Style>
+    <Style x:Key="OutlookIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OutlookGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource OutlookApplicationBrush}"/>
+    </Style>
+    <Style x:Key="PowerPointIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PowerPointGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PowerPointApplicationBrush}"/>
+    </Style>
+    <Style x:Key="AdobeIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AdobeGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource AdobeApplicationBrush}"/>
+    </Style>
+    <Style x:Key="ExpandCollapseIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExpandCollapseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="ExpandIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExpandGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="CollapseIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CollapseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="RefreshIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RefreshGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="UndoIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UndoGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="RedoIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RedoGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveAsIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveAsGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveAllIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="HomeIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HomeGeometry}"/>
+    </Style>
+    <Style x:Key="EditIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource EditGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="HelpIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HelpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource InformationActionBrush}"/>
+    </Style>
+    <Style x:Key="OpenIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OpenGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="CloseIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CloseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="ReloadIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ReloadGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SearchIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SearchGeometry}"/>
+    </Style>
+    <Style x:Key="SettingsIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SettingsGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomInIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomInGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomOutIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomOutGeometry}"/>
+    </Style>
+    <Style x:Key="DecimalPlacesIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DecimalPlacesGeometry}"/>
+    </Style>
+    <Style x:Key="DisplayIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DisplayGeometry}"/>
+    </Style>
+    <Style x:Key="ViewIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ViewGeometry}"/>
+    </Style>
+    <Style x:Key="ApplyIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ApplyGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="UploadIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UploadGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="ClearIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ClearGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="PublishIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PublishGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="UnpublishIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnpublishGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="RenameIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RenameGeometry}"/>
+    </Style>
+    <Style x:Key="FolderIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderGeometry}"/>
+    </Style>
+    <Style x:Key="FolderNewIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderNewGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource CreateActionBrush}"/>
+    </Style>
+    <Style x:Key="FolderOpenIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderOpenGeometry}"/>
+    </Style>
+    <Style x:Key="DocumentIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DocumentGeometry}"/>
+    </Style>
+    <Style x:Key="CashIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CashGeometry}"/>
+    </Style>
+    <Style x:Key="ClockIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ClockGeometry}"/>
+    </Style>
+    <Style x:Key="TrashIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TrashGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="UserIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UserGeometry}"/>
+    </Style>
+    <Style x:Key="InformationIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource InformationGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource InformationActionBrush}"/>
+    </Style>
+    <Style x:Key="WarningIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource WarningGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WarningActionBrush}"/>
+    </Style>
+    <Style x:Key="ErrorIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ErrorGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="DataIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DataGeometry}"/>
+    </Style>
+    <Style x:Key="ShowProgressIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ShowProgressGeometry}"/>
+    </Style>
+    <Style x:Key="HourglassIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HourglassGeometry}"/>
+    </Style>
+    <Style x:Key="RedSquareIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="AmberSquareIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WarningActionBrush}"/>
+    </Style>
+    <Style x:Key="GreenSquareIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="GroupIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource GroupGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SelectAllIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SelectAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="ResetIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ResetGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="FilterIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterGeometry}"/>
+    </Style>
+    <Style x:Key="FilterUpIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterUpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="FilterDownIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterDownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="SeriesIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SeriesGeometry}"/>
+    </Style>
+    <Style x:Key="PercentageIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PercentageGeometry}"/>
+    </Style>
+    <Style x:Key="AmountIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AmountGeometry}"/>
+    </Style>
+    <Style x:Key="ColumnChooserIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ColumnChooserGeometry}"/>
+    </Style>
+    <Style x:Key="RegionIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RegionGeometry}"/>
+    </Style>
+    <Style x:Key="LinkIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource LinkGeometry}"/>
+    </Style>
+    <Style x:Key="BoldIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource BoldGeometry}"/>
+    </Style>
+    <Style x:Key="ItalicIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ItalicGeometry}"/>
+    </Style>
+    <Style x:Key="UnderlineIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnderlineGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeDownIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeDownGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeUpIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeUpGeometry}"/>
+    </Style>
+    <Style x:Key="ListIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ListGeometry}"/>
+    </Style>
+    <Style x:Key="BulletIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource BulletGeometry}"/>
+    </Style>
+    <Style x:Key="NumberingIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NumberingGeometry}"/>
+    </Style>
+    <Style x:Key="TextRightAlignIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextRightAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextLeftAlignIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextLeftAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextCenterAlignIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextCenterAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextJustifyAlignIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextJustifyAlignGeometry}"/>
+    </Style>
+    <Style x:Key="HorizontalIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HorizontalGeometry}"/>
+    </Style>
+    <Style x:Key="VerticalIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource VerticalGeometry}"/>
+    </Style>
+    <Style x:Key="CompareIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CompareGeometry}"/>
+    </Style>
+    <Style x:Key="PinIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PinGeometry}"/>
+    </Style>
+    <Style x:Key="UnpinIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnpinGeometry}"/>
+    </Style>
+    <Style x:Key="SplitIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SplitGeometry}"/>
+    </Style>
+    <Style x:Key="OptionsIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OptionsGeometry}"/>
+    </Style>
+
+    <!-- Small ContentControl Icons -->
+    <Style x:Key="SmallIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="ContentControl">
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Width" Value="16"/>
+    </Style>
+    <Style x:Key="Rotate180SmallIconContentControlStyle" BasedOn="{StaticResource Rotate180IconContentControlStyle}" TargetType="ContentControl">
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Width" Value="16"/>
+    </Style>
+
+    <Style x:Key="ArrowHeadDownSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadDownGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadLeftSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadLeftGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadRightSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadRightGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadUpSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadUpGeometry}"/>
+    </Style>
+    <Style x:Key="NextSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NextGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="PreviousSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PreviousGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="UpSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+    </Style>
+    <Style x:Key="DownSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+    </Style>
+    <Style x:Key="NegativeUpSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="NegativeDownSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="PositiveUpSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="PositiveDownSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="TopSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TopGeometry}"/>
+    </Style>
+    <Style x:Key="BottomSmallIconContentControlStyle" BasedOn="{StaticResource Rotate180SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TopGeometry}"/>
+    </Style>
+    <Style x:Key="CutSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CutGeometry}"/>
+    </Style>
+    <Style x:Key="CopySmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CopyGeometry}"/>
+    </Style>
+    <Style x:Key="PasteSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PasteGeometry}"/>
+    </Style>
+    <Style x:Key="AddSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AddGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="AddAllSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AddAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="SubtractSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SubtractGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="SubtractAllSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SubtractAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="DeleteSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DeleteGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="OkSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OkGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="CancelSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CancelGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="NewSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NewGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource CreateActionBrush}"/>
+    </Style>
+    <Style x:Key="PrintSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PrintGeometry}"/>
+    </Style>
+    <Style x:Key="PrintPreviewSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PrintPreviewGeometry}"/>
+    </Style>
+    <Style x:Key="ExportSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExportGeometry}"/>
+    </Style>
+    <Style x:Key="ExportCsvSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExportCsvGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource ExcelApplicationBrush}"/>
+    </Style>
+    <Style x:Key="ExcelSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExcelGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource ExcelApplicationBrush}"/>
+    </Style>
+    <Style x:Key="WordSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource WordGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WordApplicationBrush}"/>
+    </Style>
+    <Style x:Key="OutlookSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OutlookGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource OutlookApplicationBrush}"/>
+    </Style>
+    <Style x:Key="PowerPointSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PowerPointGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PowerPointApplicationBrush}"/>
+    </Style>
+    <Style x:Key="AdobeSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AdobeGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource AdobeApplicationBrush}"/>
+    </Style>
+    <Style x:Key="ExpandCollapseSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExpandCollapseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="ExpandSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExpandGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="CollapseSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CollapseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="RefreshSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RefreshGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="UndoSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UndoGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="RedoSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RedoGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveAsSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveAsGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveAllSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="HomeSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HomeGeometry}"/>
+    </Style>
+    <Style x:Key="EditSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource EditGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="HelpSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HelpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource InformationActionBrush}"/>
+    </Style>
+    <Style x:Key="OpenSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OpenGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="CloseSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CloseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="ReloadSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ReloadGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SearchSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SearchGeometry}"/>
+    </Style>
+    <Style x:Key="ClientSearchSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ClientSearchGeometry}"/>
+    </Style>
+    <Style x:Key="SettingsSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SettingsGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomInSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomInGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomOutSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomOutGeometry}"/>
+    </Style>
+    <Style x:Key="DecimalPlacesSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DecimalPlacesGeometry}"/>
+    </Style>
+    <Style x:Key="DisplaySmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DisplayGeometry}"/>
+    </Style>
+    <Style x:Key="ViewSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ViewGeometry}"/>
+    </Style>
+    <Style x:Key="ApplySmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ApplyGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="UploadSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UploadGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="ClearSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ClearGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="PublishSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PublishGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="UnpublishSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnpublishGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="RenameSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RenameGeometry}"/>
+    </Style>
+    <Style x:Key="FolderSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderGeometry}"/>
+    </Style>
+    <Style x:Key="FolderNewSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderNewGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource CreateActionBrush}"/>
+    </Style>
+    <Style x:Key="FolderOpenSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderOpenGeometry}"/>
+    </Style>
+    <Style x:Key="DocumentSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DocumentGeometry}"/>
+    </Style>
+    <Style x:Key="CashSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CashGeometry}"/>
+    </Style>
+    <Style x:Key="ClockSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ClockGeometry}"/>
+    </Style>
+    <Style x:Key="TrashSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TrashGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="UserSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UserGeometry}"/>
+    </Style>
+    <Style x:Key="InformationSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource InformationGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource InformationActionBrush}"/>
+    </Style>
+    <Style x:Key="WarningSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource WarningGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WarningActionBrush}"/>
+    </Style>
+    <Style x:Key="ErrorSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ErrorGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="DataSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DataGeometry}"/>
+    </Style>
+    <Style x:Key="ShowProgressSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ShowProgressGeometry}"/>
+    </Style>
+    <Style x:Key="HourglassSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HourglassGeometry}"/>
+    </Style>
+    <Style x:Key="PrivateClientSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PrivateClientGeometry}"/>
+    </Style>
+    <Style x:Key="WhiteSquareSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style x:Key="RedSquareSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="AmberSquareSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WarningActionBrush}"/>
+    </Style>
+    <Style x:Key="GreenSquareSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="GroupSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource GroupGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SelectAllSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SelectAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="ResetSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ResetGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="FilterSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterGeometry}"/>
+    </Style>
+    <Style x:Key="FilterUpSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterUpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="FilterDownSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterDownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="PercentageSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PercentageGeometry}"/>
+    </Style>
+    <Style x:Key="AmountSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AmountGeometry}"/>
+    </Style>
+    <Style x:Key="ColumnChooserSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ColumnChooserGeometry}"/>
+    </Style>
+    <Style x:Key="RegionSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RegionGeometry}"/>
+    </Style>
+    <Style x:Key="LinkSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource LinkGeometry}"/>
+    </Style>
+    <Style x:Key="BoldSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource BoldGeometry}"/>
+    </Style>
+    <Style x:Key="ItalicSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ItalicGeometry}"/>
+    </Style>
+    <Style x:Key="UnderlineSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnderlineGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeDownSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeDownGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeUpSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeUpGeometry}"/>
+    </Style>
+    <Style x:Key="ListSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ListGeometry}"/>
+    </Style>
+    <Style x:Key="BulletSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource BulletGeometry}"/>
+    </Style>
+    <Style x:Key="NumberingSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NumberingGeometry}"/>
+    </Style>
+    <Style x:Key="TextRightAlignSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextRightAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextLeftAlignSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextLeftAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextCenterAlignSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextCenterAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextJustifyAlignSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextJustifyAlignGeometry}"/>
+    </Style>
+    <Style x:Key="HorizontalSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HorizontalGeometry}"/>
+    </Style>
+    <Style x:Key="VerticalSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource VerticalGeometry}"/>
+    </Style>
+    <Style x:Key="CompareSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CompareGeometry}"/>
+    </Style>
+    <Style x:Key="PinSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PinGeometry}"/>
+    </Style>
+    <Style x:Key="UnpinSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnpinGeometry}"/>
+    </Style>
+    <Style x:Key="SplitSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SplitGeometry}"/>
+    </Style>
+    <Style x:Key="OptionsSmallIconContentControlStyle" BasedOn="{StaticResource SmallIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OptionsGeometry}"/>
+    </Style>
+
+    <!-- Large ContentControl Icons -->
+    <Style x:Key="LargeIconContentControlStyle" BasedOn="{StaticResource IconContentControlStyle}" TargetType="ContentControl">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="Width" Value="24"/>
+    </Style>
+    <Style x:Key="Rotate180LargeIconContentControlStyle" BasedOn="{StaticResource Rotate180IconContentControlStyle}" TargetType="ContentControl">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="Width" Value="24"/>
+    </Style>
+
+    <Style x:Key="ArrowHeadDownLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadDownGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadLeftLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadLeftGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadRightLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadRightGeometry}"/>
+    </Style>
+    <Style x:Key="ArrowHeadUpLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadUpGeometry}"/>
+    </Style>
+    <Style x:Key="NextLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NextGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="PreviousLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PreviousGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="UpLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+    </Style>
+    <Style x:Key="DownLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+    </Style>
+    <Style x:Key="NegativeUpLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="NegativeDownLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="PositiveUpLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="PositiveDownLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="TopLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TopGeometry}"/>
+    </Style>
+    <Style x:Key="BottomLargeIconContentControlStyle" BasedOn="{StaticResource Rotate180LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TopGeometry}"/>
+    </Style>
+    <Style x:Key="CutLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CutGeometry}"/>
+    </Style>
+    <Style x:Key="CopyLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CopyGeometry}"/>
+    </Style>
+    <Style x:Key="PasteLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PasteGeometry}"/>
+    </Style>
+    <Style x:Key="AddLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AddGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="AddAllLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AddAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="SubtractLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SubtractGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="SubtractAllLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SubtractAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="DeleteLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DeleteGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="OkLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OkGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="CancelLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CancelGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="NewLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NewGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource CreateActionBrush}"/>
+    </Style>
+    <Style x:Key="PrintLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PrintGeometry}"/>
+    </Style>
+    <Style x:Key="PrintPreviewLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PrintPreviewGeometry}"/>
+    </Style>
+    <Style x:Key="ExportLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExportGeometry}"/>
+    </Style>
+    <Style x:Key="ExportCsvLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExportCsvGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource ExcelApplicationBrush}"/>
+    </Style>
+    <Style x:Key="ExcelLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExcelGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource ExcelApplicationBrush}"/>
+    </Style>
+    <Style x:Key="WordLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource WordGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WordApplicationBrush}"/>
+    </Style>
+    <Style x:Key="OutlookLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OutlookGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource OutlookApplicationBrush}"/>
+    </Style>
+    <Style x:Key="PowerPointLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PowerPointGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PowerPointApplicationBrush}"/>
+    </Style>
+    <Style x:Key="AdobeLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AdobeGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource AdobeApplicationBrush}"/>
+    </Style>
+    <Style x:Key="ExpandCollapseLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExpandCollapseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="ExpandLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ExpandGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="CollapseLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CollapseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="RefreshLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RefreshGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="UndoLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UndoGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="RedoLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RedoGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveAsLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveAsGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SaveAllLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SaveAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="HomeLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HomeGeometry}"/>
+    </Style>
+    <Style x:Key="EditLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource EditGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="HelpLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HelpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource InformationActionBrush}"/>
+    </Style>
+    <Style x:Key="OpenLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OpenGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="CloseLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CloseGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="ReloadLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ReloadGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SearchLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SearchGeometry}"/>
+    </Style>
+    <Style x:Key="SettingsLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SettingsGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomInLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomInGeometry}"/>
+    </Style>
+    <Style x:Key="ZoomOutLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ZoomOutGeometry}"/>
+    </Style>
+    <Style x:Key="DecimalPlacesLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DecimalPlacesGeometry}"/>
+    </Style>
+    <Style x:Key="DisplayLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DisplayGeometry}"/>
+    </Style>
+    <Style x:Key="ViewLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ViewGeometry}"/>
+    </Style>
+    <Style x:Key="ApplyLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ApplyGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="UploadLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UploadGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="ClearLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ClearGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="PublishLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PublishGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="UnpublishLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnpublishGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="RenameLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RenameGeometry}"/>
+    </Style>
+    <Style x:Key="FolderLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderGeometry}"/>
+    </Style>
+    <Style x:Key="FolderNewLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderNewGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource CreateActionBrush}"/>
+    </Style>
+    <Style x:Key="FolderOpenLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FolderOpenGeometry}"/>
+    </Style>
+    <Style x:Key="DocumentLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DocumentGeometry}"/>
+    </Style>
+    <Style x:Key="CashLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CashGeometry}"/>
+    </Style>
+    <Style x:Key="ClockLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ClockGeometry}"/>
+    </Style>
+    <Style x:Key="TrashLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TrashGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="UserLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UserGeometry}"/>
+    </Style>
+    <Style x:Key="InformationLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource InformationGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource InformationActionBrush}"/>
+    </Style>
+    <Style x:Key="WarningLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource WarningGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WarningActionBrush}"/>
+    </Style>
+    <Style x:Key="ErrorLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ErrorGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="DataLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource DataGeometry}"/>
+    </Style>
+    <Style x:Key="ShowProgressLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ShowProgressGeometry}"/>
+    </Style>
+    <Style x:Key="HourglassLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HourglassGeometry}"/>
+    </Style>
+    <Style x:Key="RedSquareLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="AmberSquareLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource WarningActionBrush}"/>
+    </Style>
+    <Style x:Key="GreenSquareLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SquareGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="GroupLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource GroupGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="SelectAllLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SelectAllGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeutralActionBrush}"/>
+    </Style>
+    <Style x:Key="ResetLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ResetGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="FilterLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterGeometry}"/>
+    </Style>
+    <Style x:Key="FilterUpLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterUpGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource NegativeActionBrush}"/>
+    </Style>
+    <Style x:Key="FilterDownLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FilterDownGeometry}"/>
+        <Setter Property="Foreground" Value="{StaticResource PositiveActionBrush}"/>
+    </Style>
+    <Style x:Key="PercentageLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PercentageGeometry}"/>
+    </Style>
+    <Style x:Key="AmountLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource AmountGeometry}"/>
+    </Style>
+    <Style x:Key="ColumnChooserLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ColumnChooserGeometry}"/>
+    </Style>
+    <Style x:Key="RegionLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource RegionGeometry}"/>
+    </Style>
+    <Style x:Key="LinkLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource LinkGeometry}"/>
+    </Style>
+    <Style x:Key="BoldLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource BoldGeometry}"/>
+    </Style>
+    <Style x:Key="ItalicLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ItalicGeometry}"/>
+    </Style>
+    <Style x:Key="UnderlineLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnderlineGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeDownLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeDownGeometry}"/>
+    </Style>
+    <Style x:Key="FontSizeUpLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource FontSizeUpGeometry}"/>
+    </Style>
+    <Style x:Key="ListLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource ListGeometry}"/>
+    </Style>
+    <Style x:Key="BulletLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource BulletGeometry}"/>
+    </Style>
+    <Style x:Key="NumberingLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource NumberingGeometry}"/>
+    </Style>
+    <Style x:Key="TextRightAlignLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextRightAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextLeftAlignLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextLeftAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextCenterAlignLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextCenterAlignGeometry}"/>
+    </Style>
+    <Style x:Key="TextJustifyAlignLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource TextJustifyAlignGeometry}"/>
+    </Style>
+    <Style x:Key="HorizontalLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource HorizontalGeometry}"/>
+    </Style>
+    <Style x:Key="VerticalLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource VerticalGeometry}"/>
+    </Style>
+    <Style x:Key="CompareLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource CompareGeometry}"/>
+    </Style>
+    <Style x:Key="PinLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource PinGeometry}"/>
+    </Style>
+    <Style x:Key="UnpinLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource UnpinGeometry}"/>
+    </Style>
+    <Style x:Key="SplitLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource SplitGeometry}"/>
+    </Style>
+    <Style x:Key="OptionsLargeIconContentControlStyle" BasedOn="{StaticResource LargeIconContentControlStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Content" Value="{StaticResource OptionsGeometry}"/>
+    </Style>
+
+    <!-- DrawingImage Icons -->
+    <DrawingImage x:Key="SearchDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource LowlightBrush}" 
+                             Geometry="{StaticResource SearchGeometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="LinkDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource LowlightBrush}"
+                             Geometry="{StaticResource LinkGeometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="DeleteDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource LowlightBrush}"
+                             Geometry="{StaticResource DeleteGeometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="FolderDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource LowlightBrush}"
+                             Geometry="{StaticResource FolderGeometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="LightFolderDrawingImage">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{StaticResource ContrastBrush}"
+                             Geometry="{StaticResource FolderGeometry}"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+</ResourceDictionary>

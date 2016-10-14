@@ -1,0 +1,115 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:metro="http://schemas.codeplex.com/elysium"
+                    xmlns:params="clr-namespace:Elysium.Parameters;assembly=Elysium"
+                    xmlns:primitives="clr-namespace:Elysium.Controls.Primitives;assembly=Elysium">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/Elysium/CommandButton.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Icon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/GeometryIcon.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="{x:Type metro:ToggleCommandButton}" TargetType="{x:Type metro:ToggleCommandButton}" BasedOn="{StaticResource {x:Type primitives:CommandButtonBase}}" >
+        <Style.Triggers>
+            <Trigger Property="metro:ToggleCommandButton.IsChecked" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource MiddleLightBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource MiddleLightBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ToggleCommandButtonApplicationBarStyle" TargetType="{x:Type metro:ToggleCommandButton}" BasedOn="{StaticResource CommandButtonBaseApplicationBarStyle}" >
+        <Style.Triggers>
+            <Trigger Property="metro:ToggleCommandButton.IsChecked" Value="True">
+                <Setter Property="Background" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource AccentBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!-- ToggleCommandButton -->
+    <Style x:Key="MediumIconToggleCommandButtonStyle" BasedOn="{StaticResource {x:Type metro:ToggleCommandButton}}" TargetType="{x:Type metro:ToggleCommandButton}">
+        <Style.Resources>
+            <DataTemplate x:Key="PressedContentTemplate">
+                <controls:Icon Foreground="{StaticResource ContrastBrush}"
+                               Size="Medium"
+                               Style="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="DisabledContentTemplate">
+                <controls:Icon Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:ToggleCommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                               Size="Medium"
+                               Style="{Binding}"/>
+            </DataTemplate>
+        </Style.Resources>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <controls:Icon Size="Medium"  
+                                   Style="{Binding}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="ContentTemplate" Value="{StaticResource PressedContentTemplate}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="ContentTemplate" Value="{StaticResource DisabledContentTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="PublishUnpublishToggleCommandButtonStyle" BasedOn="{StaticResource MediumIconToggleCommandButtonStyle}" TargetType="{x:Type metro:ToggleCommandButton}">
+        <Setter Property="Content" Value="{StaticResource BookAddIconStyle}"/>
+        <Setter Property="Header" Value="  Publish   "/>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Content" Value="{StaticResource BookDeleteIconStyle}"/>
+                <Setter Property="Header" Value="Un-Publish"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ShowHideFilterToggleCommandButtonStyle" BasedOn="{StaticResource MediumIconToggleCommandButtonStyle}" TargetType="{x:Type metro:ToggleCommandButton}">
+        <Setter Property="Content" Value="{StaticResource FilterDownIconStyle}"/>
+        <Setter Property="Header" Value="Show Filter"/>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Content" Value="{StaticResource FilterUpIconStyle}"/>
+                <Setter Property="Header" Value="Hide Filter "/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ShowHideGroupToggleCommandButtonStyle" BasedOn="{StaticResource MediumIconToggleCommandButtonStyle}" TargetType="{x:Type metro:ToggleCommandButton}">
+        <Setter Property="Content" Value="{StaticResource ClusterGroupIconStyle}"/>
+        <Setter Property="Header" Value="Show Group"/>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Header" Value="Hide Group"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ShowHideSearchToggleCommandButtonStyle" BasedOn="{StaticResource MediumIconToggleCommandButtonStyle}" TargetType="{x:Type metro:ToggleCommandButton}">
+        <Setter Property="Content" Value="{StaticResource SearchIconStyle}"/>
+        <Setter Property="Header" Value="Show Search"/>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Content" Value="{StaticResource SearchIconStyle}"/>
+                <Setter Property="Header" Value="Hide Search "/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="HorizontalVerticalToggleCommandButtonStyle" BasedOn="{StaticResource MediumIconToggleCommandButtonStyle}" TargetType="{x:Type metro:ToggleCommandButton}">
+        <Setter Property="Content" Value="{StaticResource HorizontalIconStyle}"/>
+        <Setter Property="Header" Value="Horizontal"/>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Content" Value="{StaticResource VerticalIconStyle}"/>
+                <Setter Property="Header" Value="  Vertical  "/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

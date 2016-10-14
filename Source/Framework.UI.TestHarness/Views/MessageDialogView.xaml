@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.MessageDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Header" 
+               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+               Target="{Binding ElementName=HeaderTextBox}"/>
+        <TextBox x:Name="HeaderTextBox"
+                 Grid.Column="1"
+                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                 Text="Header"/>
+
+        <Label Grid.Row="1"
+               Content="Content" 
+               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+               Target="{Binding ElementName=ContentTextBox}"/>
+        <TextBox x:Name="ContentTextBox"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                 Text="Content Content Content Content Content Content Content Content"/>
+
+        <Label Grid.Row="2"
+               Content="Button" 
+               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+               Target="{Binding ElementName=ButtonComboBox}"/>
+        <ComboBox x:Name="ButtonComboBox"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                  SelectedIndex="0">
+            <MessageBoxButton>OK</MessageBoxButton>
+            <MessageBoxButton>OKCancel</MessageBoxButton>
+            <MessageBoxButton>YesNoCancel</MessageBoxButton>
+            <MessageBoxButton>YesNo</MessageBoxButton>
+        </ComboBox>
+
+        <Label Grid.Row="3"
+               Content="Type" 
+               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+               Target="{Binding ElementName=TypeComboBox}"/>
+        <ComboBox x:Name="TypeComboBox"
+                  Grid.Column="1"
+                  Grid.Row="3"
+                  Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                  SelectedIndex="0">
+            <extra:MessageDialogType>Light</extra:MessageDialogType>
+            <extra:MessageDialogType>Dark</extra:MessageDialogType>
+            <extra:MessageDialogType>Accent</extra:MessageDialogType>
+        </ComboBox>
+
+        <Button Grid.ColumnSpan="2" 
+                Grid.Row="4"
+                Click="OnShowMessageDialogView" 
+                Content="Show MessageDialog"
+                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+        <Button Grid.ColumnSpan="2" 
+                Grid.Row="5"
+                Click="OnShowCustomMessageDialogView" 
+                Content="Show MessageDialog With Custom Buttons"
+                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Color.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Validation -->
+    <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
+
+    <!-- Action Brushes -->
+    <SolidColorBrush x:Key="NeutralActionBrush" Color="{StaticResource NeutralActionColor}"/>
+    <SolidColorBrush x:Key="PositiveActionBrush" Color="{StaticResource PositiveActionColor}"/>
+    <SolidColorBrush x:Key="CreateActionBrush" Color="{StaticResource CreateActionColor}"/>
+    <SolidColorBrush x:Key="NegativeActionBrush" Color="{StaticResource NegativeActionColor}"/>
+    <SolidColorBrush x:Key="WarningActionBrush" Color="{StaticResource WarningActionColor}"/>
+    <SolidColorBrush x:Key="InformationActionBrush" Color="{StaticResource InformationActionColor}"/>
+
+    <!-- Applicaton Brushes -->
+    <SolidColorBrush x:Key="AdobeApplicationBrush" Color="{StaticResource AdobeApplicationColor}"/>
+    <SolidColorBrush x:Key="AccessApplicationBrush" Color="{StaticResource AccessApplicationColor}"/>
+    <SolidColorBrush x:Key="ExcelApplicationBrush" Color="{StaticResource ExcelApplicationColor}"/>
+    <SolidColorBrush x:Key="OneNoteApplicationBrush" Color="{StaticResource OneNoteApplicationColor}"/>
+    <SolidColorBrush x:Key="OutlookApplicationBrush" Color="{StaticResource OutlookApplicationColor}"/>
+    <SolidColorBrush x:Key="PowerPointApplicationBrush" Color="{StaticResource PowerPointApplicationColor}"/>
+    <SolidColorBrush x:Key="WordApplicationBrush" Color="{StaticResource WordApplicationColor}"/>
+    <SolidColorBrush x:Key="LyncApplicationBrush" Color="{StaticResource LyncApplicationColor}"/>
+    <SolidColorBrush x:Key="OfficeApplicationBrush" Color="{StaticResource OfficeApplicationColor}"/>
+    
+    <!-- Opaque Versions of AccentBrush  -->
+    <SolidColorBrush x:Key="AccentLevel1Brush" Color="{Binding Path=Color, Source={StaticResource AccentBrush}}" Opacity="0.5"/>
+    <SolidColorBrush x:Key="AccentLevel2Brush" Color="{Binding Path=Color, Source={StaticResource AccentBrush}}" Opacity="0.4"/>
+    <SolidColorBrush x:Key="AccentLevel3Brush" Color="{Binding Path=Color, Source={StaticResource AccentBrush}}" Opacity="0.3"/>
+    <SolidColorBrush x:Key="AccentLevel4Brush" Color="{Binding Path=Color, Source={StaticResource AccentBrush}}" Opacity="0.2"/>
+    <SolidColorBrush x:Key="AccentLevel5Brush" Color="{Binding Path=Color, Source={StaticResource AccentBrush}}" Opacity="0.1"/>
+
+    <!-- Window Background Gradient Brush -->
+    <LinearGradientBrush x:Key="WindowBackgroundGradientBrush" StartPoint="0, 0" EndPoint="0, 1" Opacity=".1">
+        <GradientStop Offset="0" Color="{Binding Path=Color, Source={StaticResource AccentBrush}}"/>
+        <GradientStop Offset=".3" Color="{Binding Path=Color, Source={StaticResource AccentBrush}}"/>
+        <GradientStop Offset="1" Color="Transparent"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>

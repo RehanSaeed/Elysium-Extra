@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.ColoursView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}"
+                       Text="TODO"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}"
+                       Text="Show the Elysium colours."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="Do not apply any colours of your own. colours are applied for you in styles. The only exceptions are when applying colours to charts or row grouping in a table."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}"
+                       Text="Row Grouping"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="These are the styles applied to a group header background in a table. There are five brushes supplied to allow multiple nested group headers."/>
+            <WrapPanel Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Border Background="{StaticResource AccentLevel1Brush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="AccentLevel1Brush"/>
+                </Border>
+                <Border Background="{StaticResource AccentLevel2Brush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="AccentLevel2Brush"/>
+                </Border>
+                <Border Background="{StaticResource AccentLevel3Brush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="AccentLevel3Brush"/>
+                </Border>
+                <Border Background="{StaticResource AccentLevel4Brush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="AccentLevel4Brush"/>
+                </Border>
+                <Border Background="{StaticResource AccentLevel5Brush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource NormalTextStyle}" 
+                               Text="AccentLevel5Brush"/>
+                </Border>
+            </WrapPanel>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}"
+                       Text="Application Colours"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="These are the colours used in icons and buttons used to denote a particular application."/>
+            <WrapPanel Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Border Background="{StaticResource AdobeApplicationBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Adobe"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource AccessApplicationBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Access"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource ExcelApplicationBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Excel"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource OneNoteApplicationBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="OneNote"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource OutlookApplicationBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Outlook"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource PowerPointApplicationBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="PowerPoint"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource WordApplicationBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="Word"
+                               VerticalAlignment="Center"/>
+                </Border>
+            </WrapPanel>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}"
+                       Text="Action Colours"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="These are the colours used in icons and buttons used to denote a particular action. Details on where to use these colours can be found in the image below."/>
+            <WrapPanel Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Border Background="{StaticResource NeutralActionBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="NeutralActionBrush"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource PositiveActionBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="PositiveActionBrush"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource CreateActionBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="CreateActionBrush"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource NegativeActionBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="NegativeActionBrush"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource WarningActionBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="WarningActionBrush"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource InformationActionBrush}">
+                    <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                               Style="{StaticResource HeaderTextStyle}" 
+                               Text="InformationActionBrush"
+                               VerticalAlignment="Center"/>
+                </Border>
+            </WrapPanel>
+            <Image Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Source="\Framework.UI.TestHarness;component\Assets\IconColourSystem.png"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

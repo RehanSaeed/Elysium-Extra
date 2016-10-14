@@ -1,0 +1,27 @@
+﻿<extra:Window x:Class="Framework.UI.TestHarness.MainView"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:extra="http://schemas.extra.com/ui"
+              xmlns:metro="http://schemas.codeplex.com/elysium"
+              xmlns:params="http://schemas.codeplex.com/elysium/params"
+              Height="350" 
+              Icon="{StaticResource FolderDrawingImage}"
+              Title="WPF Style Guide" 
+              Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Button Click="OnElysiumClick" 
+                Content="Elysium SDK Examples"
+                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+        
+        <Button Grid.Column="1" 
+                Click="OnStylesClick"  ToolTip="Hello World"
+                Content="Custom Styles And Controls"
+                Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Top, Right, Bottom', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+
+    </Grid>
+</extra:Window>

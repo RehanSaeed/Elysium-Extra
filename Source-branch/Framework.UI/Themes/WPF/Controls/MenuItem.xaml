@@ -1,0 +1,577 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Icon.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/GeometryIcon.xaml"/>
+        <ResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/NumericUpDown.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- MenuItem -->
+    <Style x:Key="DefaultMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+    </Style>
+
+    <controls:Icon x:Key="NextMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource NextIconStyle}"/>
+    <Style x:Key="NextMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Next"/>
+        <Setter Property="Icon" Value="{StaticResource NextMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="PreviousMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource PreviousIconStyle}"/>
+    <Style x:Key="PreviousMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Previous"/>
+        <Setter Property="Icon" Value="{StaticResource PreviousMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="UpMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource RoadForwardIconStyle}"/>
+    <Style x:Key="UpMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Up"/>
+        <Setter Property="Icon" Value="{StaticResource UpMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="DownMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource RoadBackwardIconStyle}"/>
+    <Style x:Key="DownMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Down"/>
+        <Setter Property="Icon" Value="{StaticResource DownMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="TopMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource TopIconStyle}"/>
+    <Style x:Key="TopMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Top"/>
+        <Setter Property="Icon" Value="{StaticResource TopMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="BottomMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource BottomIconStyle}"/>
+    <Style x:Key="BottomMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Bottom"/>
+        <Setter Property="Icon" Value="{StaticResource BottomMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="CutMenuItemIcon" 
+                    x:Shared="False"  
+                    Style="{StaticResource CutIconStyle}"/>
+    <Style x:Key="CutMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Cut"/>
+        <Setter Property="Icon" Value="{StaticResource CutMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="CopyMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource CopyIconStyle}"/>
+    <Style x:Key="CopyMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Copy"/>
+        <Setter Property="Icon" Value="{StaticResource CopyMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="PasteMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Paste1IconStyle}"/>
+    <Style x:Key="PasteMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Paste"/>
+        <Setter Property="Icon" Value="{StaticResource PasteMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="AddMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Add1IconStyle}"/>
+    <Style x:Key="AddMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Add"/>
+        <Setter Property="Icon" Value="{StaticResource AddMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="RemoveMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource SubtractIconStyle}"/>
+    <Style x:Key="RemoveMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Remove"/>
+        <Setter Property="Icon" Value="{StaticResource RemoveMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="DeleteMenuItemIcon" 
+                    x:Shared="False"  
+                    Style="{StaticResource Delete1IconStyle}"/>
+    <Style x:Key="DeleteMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Delete"/>
+        <Setter Property="Icon" Value="{StaticResource DeleteMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="TrashMenuItemIcon" 
+                    x:Shared="False"  
+                    Style="{StaticResource TrashIconStyle}"/>
+    <Style x:Key="TrashMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Trash"/>
+        <Setter Property="Icon" Value="{StaticResource TrashMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="OkMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource OkIconStyle}"/>
+    <Style x:Key="OkMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Ok"/>
+        <Setter Property="Icon" Value="{StaticResource OkMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="CancelMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Cancel1IconStyle}"/>
+    <Style x:Key="CancelMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Cancel"/>
+        <Setter Property="Icon" Value="{StaticResource CancelMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="NewMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource New1IconStyle}"/>
+    <Style x:Key="NewMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="New"/>
+        <Setter Property="Icon" Value="{StaticResource NewMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="PrintMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource PrintIconStyle}"/>
+    <Style x:Key="PrintMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Print"/>
+        <Setter Property="Icon" Value="{StaticResource PrintMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="PrintPreviewMenuItemIcon" 
+                    x:Shared="False"  
+                    Style="{StaticResource PreviewIconStyle}"/>
+    <Style x:Key="PrintPreviewMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Print Preview"/>
+        <Setter Property="Icon" Value="{StaticResource PrintPreviewMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ExportMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Export1IconStyle}"/>
+    <Style x:Key="ExportMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Export"/>
+        <Setter Property="Icon" Value="{StaticResource ExportMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ExportCsvMenuItemIcon" 
+                    x:Shared="False"  
+                    Style="{StaticResource CSVExportIconStyle}"/>
+    <Style x:Key="ExportCsvMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Export CSV"/>
+        <Setter Property="Icon" Value="{StaticResource ExportCsvMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ExcelMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource MicrosoftExcel1IconStyle}"/>
+    <Style x:Key="ExcelMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Excel"/>
+        <Setter Property="Icon" Value="{StaticResource ExcelMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="WordMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource MicrosoftWord1IconStyle}"/>
+    <Style x:Key="WordMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Word"/>
+        <Setter Property="Icon" Value="{StaticResource WordMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="OutlookMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource MicrosoftOutlookIconStyle}"/>
+    <Style x:Key="OutlookMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Outlook"/>
+        <Setter Property="Icon" Value="{StaticResource OutlookMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="PowerPointMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource MicrosoftPowerPointIconStyle}"/>
+    <Style x:Key="PowerPointMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="PowerPoint"/>
+        <Setter Property="Icon" Value="{StaticResource PowerPointMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="AdobeMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource AdobeIconStyle}"/>
+    <Style x:Key="PdfMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="PDF"/>
+        <Setter Property="Icon" Value="{StaticResource AdobeMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ExpandCollapseMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ExpandCollapseIconStyle}"/>
+    <Style x:Key="ExpandCollapseMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Expand/Collapse"/>
+        <Setter Property="Icon" Value="{StaticResource ExpandCollapseMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ExpandMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ExpandIconStyle}"/>
+    <Style x:Key="ExpandMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Expand"/>
+        <Setter Property="Icon" Value="{StaticResource ExpandMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="CollapseMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource CollapseIconStyle}"/>
+    <Style x:Key="CollapseMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Collapse"/>
+        <Setter Property="Icon" Value="{StaticResource CollapseMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="RefreshMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Refresh1IconStyle}"/>
+    <Style x:Key="RefreshMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Refresh"/>
+        <Setter Property="Icon" Value="{StaticResource RefreshMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="UndoMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Undo1IconStyle}"/>
+    <Style x:Key="UndoMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Undo"/>
+        <Setter Property="Icon" Value="{StaticResource UndoMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="RedoMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Redo1IconStyle}"/>
+    <Style x:Key="RedoMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Redo"/>
+        <Setter Property="Icon" Value="{StaticResource RedoMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="SaveMenuItemIcon" 
+                    x:Shared="False"  
+                    Style="{StaticResource Save1IconStyle}"/>
+    <Style x:Key="SaveMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Save"/>
+        <Setter Property="Icon" Value="{StaticResource SaveMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="SaveAsMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource SaveAsIconStyle}"/>
+    <Style x:Key="SaveAsMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Save As"/>
+        <Setter Property="Icon" Value="{StaticResource SaveAsMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="SaveAllMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource SaveAllAttachmentsIconStyle}"/>
+    <Style x:Key="SaveAllMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Save All"/>
+        <Setter Property="Icon" Value="{StaticResource SaveAllMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="HomeMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource HouseIconStyle}"/>
+    <Style x:Key="HomeMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Home"/>
+        <Setter Property="Icon" Value="{StaticResource HomeMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="EditMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Edit2IconStyle}"/>
+    <Style x:Key="EditMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Edit"/>
+        <Setter Property="Icon" Value="{StaticResource EditMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="HelpMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Help1IconStyle}"/>
+    <Style x:Key="HelpMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Help"/>
+        <Setter Property="Icon" Value="{StaticResource HelpMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="OpenMenuItemIcon" 
+                    x:Shared="False"  
+                    Style="{StaticResource Open1IconStyle}"/>
+    <Style x:Key="OpenMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Open"/>
+        <Setter Property="Icon" Value="{StaticResource OpenMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="CloseMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Close1IconStyle}"/>
+    <Style x:Key="CloseMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Close"/>
+        <Setter Property="Icon" Value="{StaticResource CloseMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ReloadMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ReloadIconStyle}"/>
+    <Style x:Key="ReloadMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Reload"/>
+        <Setter Property="Icon" Value="{StaticResource ReloadMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="SearchMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource SearchIconStyle}"/>
+    <Style x:Key="SearchMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Search"/>
+        <Setter Property="Icon" Value="{StaticResource SearchMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="SettingsMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Settings1IconStyle}"/>
+    <Style x:Key="SettingsMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Settings"/>
+        <Setter Property="Icon" Value="{StaticResource SettingsMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ZoomMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ZoomIconStyle}"/>
+    <Style x:Key="ZoomMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Zoom"/>
+        <Setter Property="Icon" Value="{StaticResource ZoomMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ZoomInMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ZoomInIconStyle}"/>
+    <Style x:Key="ZoomInMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Zoom In"/>
+        <Setter Property="Icon" Value="{StaticResource ZoomInMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ZoomOutMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ZoomOutIconStyle}"/>
+    <Style x:Key="ZoomOutMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Zoom Out"/>
+        <Setter Property="Icon" Value="{StaticResource ZoomOutMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="DecimalPlacesMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource DecimalPlacesIconStyle}"/>
+    <Style x:Key="DecimalPlacesMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Decimal Places"/>
+        <Setter Property="Icon" Value="{StaticResource DecimalPlacesMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="DisplayMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource Monitor1IconStyle}"/>
+    <Style x:Key="DisplayMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Display"/>
+        <Setter Property="Icon" Value="{StaticResource DisplayMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ViewMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ViewIconStyle}"/>
+    <Style x:Key="ViewMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="View"/>
+        <Setter Property="Icon" Value="{StaticResource ViewMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="PublishMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource BookAddIconStyle}"/>
+    <Style x:Key="PublishMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Publish"/>
+        <Setter Property="Icon" Value="{StaticResource PublishMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="UnpublishMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource BookDeleteIconStyle}"/>
+    <Style x:Key="UnpublishMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Un-Publish"/>
+        <Setter Property="Icon" Value="{StaticResource UnpublishMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="RenameMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource RenameIconStyle}"/>
+    <Style x:Key="RenameMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Rename"/>
+        <Setter Property="Icon" Value="{StaticResource RenameMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="FolderNewMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource FolderNewIconStyle}"/>
+    <Style x:Key="FolderNewMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="New Folder"/>
+        <Setter Property="Icon" Value="{StaticResource FolderNewMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="FolderOpenMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource FolderOpenIconStyle}"/>
+    <Style x:Key="FolderOpenMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Open Folder"/>
+        <Setter Property="Icon" Value="{StaticResource FolderOpenMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ColumnChooserMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ColumnChooserIconStyle}"/>
+    <Style x:Key="ColumnChooserMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Choose Columns"/>
+        <Setter Property="Icon" Value="{StaticResource ColumnChooserMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ShowAmountMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource AmountIconStyle}"/>
+    <Style x:Key="ShowAmountMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Show Amounts"/>
+        <Setter Property="Icon" Value="{StaticResource ShowAmountMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ShowPercentageMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource PercentageIconStyle}"/>
+    <Style x:Key="ShowPercentageMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Show Percentages"/>
+        <Setter Property="Icon" Value="{StaticResource ShowPercentageMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="AlignMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource TextJustifyAlignIconStyle}"/>
+    <Style x:Key="AlignMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Align"/>
+        <Setter Property="Icon" Value="{StaticResource AlignMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="TextRightAlignMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource TextRightAlignIconStyle}"/>
+    <Style x:Key="TextRightAlignMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Right Align"/>
+        <Setter Property="Icon" Value="{StaticResource TextRightAlignMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="TextLeftAlignMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource TextLeftAlignIconStyle}"/>
+    <Style x:Key="TextLeftAlignMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Left Align"/>
+        <Setter Property="Icon" Value="{StaticResource TextLeftAlignMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="TextCenterAlignMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource TextCenterAlignIconStyle}"/>
+    <Style x:Key="TextCenterAlignMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Center"/>
+        <Setter Property="Icon" Value="{StaticResource TextCenterAlignMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="TextJustifyAlignMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource TextJustifyAlignIconStyle}"/>
+    <Style x:Key="TextJustifyAlignMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Justify"/>
+        <Setter Property="Icon" Value="{StaticResource TextJustifyAlignMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="HorizontalMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource HorizontalIconStyle}"/>
+    <controls:Icon x:Key="VerticalMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource VerticalIconStyle}"/>
+    <Style x:Key="HorizontalVerticalMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Horizontal"/>
+        <Setter Property="Icon" Value="{StaticResource HorizontalMenuItemIcon}"/>
+        <Setter Property="IsCheckable" Value="True"/>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Header" Value="Vertical"/>
+                <Setter Property="Icon" Value="{StaticResource VerticalMenuItemIcon}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <controls:Icon x:Key="FontSizeMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource FontSizeIconStyle}"/>
+    <Style x:Key="FontSizeMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Font Size"/>
+        <Setter Property="Icon" Value="{StaticResource FontSizeMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="ListMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource ListIconStyle}"/>
+    <Style x:Key="ListMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="List"/>
+        <Setter Property="Icon" Value="{StaticResource ListMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="BulletMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource BulletIconStyle}"/>
+    <Style x:Key="BulletMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Bullets"/>
+        <Setter Property="Icon" Value="{StaticResource BulletMenuItemIcon}"/>
+    </Style>
+    <controls:Icon x:Key="NumberingMenuItemIcon" 
+                    x:Shared="False" 
+                    Style="{StaticResource NumberingIconStyle}"/>
+    <Style x:Key="NumberingMenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
+        <Setter Property="Header" Value="Numbering"/>
+        <Setter Property="Icon" Value="{StaticResource NumberingMenuItemIcon}"/>
+    </Style>
+
+    <!-- MenuItem Slider -->
+    <Style x:Key="DecimalPlacesSliderMenuItemStyle" BasedOn="{StaticResource DecimalPlacesMenuItemStyle}" TargetType="{x:Type MenuItem}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Slider IsSnapToTickEnabled="True"
+                                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                Maximum="5"
+                                Minimum="0"
+                                TickFrequency="1"
+                                Value="{Binding ElementName=IntegerUpDown, Path=Value}"
+                                Width="250"/>
+                        <controls:IntegerUpDown x:Name="IntegerUpDown" 
+                                                AllowSpin="True" 
+                                                BorderThickness="0" 
+                                                Background="{StaticResource TransparentBrush}"
+                                                FormatString="0 Decimal Places"  
+                                                Increment="1"
+                                                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                                Maximum="5"
+                                                Minimum="0"
+                                                Padding="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                                ShowButtonSpinner="True"
+                                                Value="{Binding Path=Header, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ZoomSliderMenuItemStyle" BasedOn="{StaticResource ZoomMenuItemStyle}" TargetType="{x:Type MenuItem}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Slider IsSnapToTickEnabled="True"
+                                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                Maximum="3"
+                                Minimum="0.5"
+                                TickFrequency="0.1"
+                                Value="{Binding Path=Header, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                Width="250"/>
+                        <controls:DoubleUpDown AllowSpin="True"
+                                               BorderThickness="0" 
+                                               Background="{StaticResource TransparentBrush}"
+                                               FormatString="x 0.0"  
+                                               Increment="0.1"
+                                               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                               Maximum="3"
+                                               Minimum="0.5"
+                                               Padding="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                               ShowButtonSpinner="True"
+                                               Value="{Binding Path=Header, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="FontSizeSliderMenuItemStyle" BasedOn="{StaticResource FontSizeMenuItemStyle}" TargetType="{x:Type MenuItem}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Slider IsSnapToTickEnabled="True"
+                                Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                Maximum="72"
+                                Minimum="8"
+                                TickFrequency="1"
+                                Value="{Binding Path=Header, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                Width="250"/>
+                        <controls:DoubleUpDown AllowSpin="True"
+                                               BorderThickness="0" 
+                                               Background="{StaticResource TransparentBrush}"  
+                                               Increment="1"
+                                               Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                               Maximum="72"
+                                               Minimum="8"
+                                               Padding="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"
+                                               ShowButtonSpinner="True"
+                                               Value="{Binding Path=Header, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

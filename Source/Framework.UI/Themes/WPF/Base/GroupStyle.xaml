@@ -1,0 +1,298 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:params="http://schemas.codeplex.com/elysium/params">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="GroupItemBaseStyle" TargetType="{x:Type GroupItem}">
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.ContentFontSize), Mode=OneWay}"/>
+        <Setter Property="FontStretch" Value="Medium"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{StaticResource ContrastBrush}"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
+    </Style>
+    
+    <!-- Basic GroupStyle - Shows Lighter Accent Colours for each Group -->
+    <Style x:Key="GroupItem1Style" BasedOn="{StaticResource GroupItemBaseStyle}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel1Brush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <HeaderedContentControl Background="{TemplateBinding Background}"
+                                            Header="{Binding Name}">
+                        <ItemsPresenter Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                    </HeaderedContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="GroupItem2Style" BasedOn="{StaticResource GroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel2Brush}"/>
+    </Style>
+    <Style x:Key="GroupItem3Style" BasedOn="{StaticResource GroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel3Brush}"/>
+    </Style>
+    <Style x:Key="GroupItem4Style" BasedOn="{StaticResource GroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel4Brush}"/>
+    </Style>
+    <Style x:Key="GroupItem5Style" BasedOn="{StaticResource GroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel5Brush}"/>
+    </Style>
+    <controls:GroupStyleCollection x:Key="GroupStyles" x:Shared="True">
+        <GroupStyle ContainerStyle="{StaticResource GroupItem1Style}"/>
+        <GroupStyle ContainerStyle="{StaticResource GroupItem2Style}"/>
+        <GroupStyle ContainerStyle="{StaticResource GroupItem3Style}"/>
+        <GroupStyle ContainerStyle="{StaticResource GroupItem4Style}"/>
+        <GroupStyle ContainerStyle="{StaticResource GroupItem5Style}"/>
+    </controls:GroupStyleCollection>
+
+    <!-- Count GroupStyle - Shows Lighter Accent Colours for each Group and a Count for the number of items in a group -->
+    <Style x:Key="CountGroupItem1Style" BasedOn="{StaticResource GroupItemBaseStyle}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel1Brush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <HeaderedContentControl Background="{TemplateBinding Background}">
+                        <HeaderedContentControl.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" 
+                                           Text="{Binding Name}" 
+                                           Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Right', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}" 
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Path=ItemCount, StringFormat='{}{0} Items'}" 
+                                           VerticalAlignment="Center"/>
+
+                            </Grid>
+                        </HeaderedContentControl.Header>
+                        <ItemsPresenter Margin="{Binding Converter={StaticResource DoubleToThicknessConverter}, ConverterParameter='Left', RelativeSource={RelativeSource Self}, Path=(params:General.BoldPaddingValue), Mode=OneWay}"/>
+                    </HeaderedContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="CountGroupItem2Style" BasedOn="{StaticResource CountGroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel2Brush}"/>
+    </Style>
+    <Style x:Key="CountGroupItem3Style" BasedOn="{StaticResource CountGroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel3Brush}"/>
+    </Style>
+    <Style x:Key="CountGroupItem4Style" BasedOn="{StaticResource CountGroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel4Brush}"/>
+    </Style>
+    <Style x:Key="CountGroupItem5Style" BasedOn="{StaticResource CountGroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel5Brush}"/>
+    </Style>
+    <controls:GroupStyleCollection x:Key="CountGroupStyles" x:Shared="True">
+        <GroupStyle ContainerStyle="{StaticResource CountGroupItem1Style}"/>
+        <GroupStyle ContainerStyle="{StaticResource CountGroupItem2Style}"/>
+        <GroupStyle ContainerStyle="{StaticResource CountGroupItem3Style}"/>
+        <GroupStyle ContainerStyle="{StaticResource CountGroupItem4Style}"/>
+        <GroupStyle ContainerStyle="{StaticResource CountGroupItem5Style}"/>
+    </controls:GroupStyleCollection>
+
+    <!-- DataGrid GroupStyle -->
+    <ItemsPanelTemplate x:Key="DataGridGroupStylePanelTemplate">
+        <DataGridRowsPresenter/>
+    </ItemsPanelTemplate>
+    <Style x:Key="DataGridGroupItem1Style" BasedOn="{StaticResource GroupItemBaseStyle}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel1Brush}"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Tag" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <HeaderedContentControl Background="{TemplateBinding Background}"
+                                            Padding="0">
+                        <HeaderedContentControl.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Name}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+
+                                <TextBlock Foreground="{TemplateBinding Foreground}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           FontStretch="{TemplateBinding FontStretch}"
+                                           FontStyle="{TemplateBinding FontStyle}"
+                                           FontWeight="{TemplateBinding FontWeight}"
+                                           TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}"
+                                           TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}"
+                                           RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}"
+                                           Text="{Binding Name}" 
+                                           Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                           VerticalAlignment="Center"/>
+
+                                <ListBox Grid.ColumnSpan="2" 
+                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                         ItemsSource="{Binding Path=(controls:DataGridAttached.GroupSummaryInternal), RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                         Tag="{TemplateBinding Tag}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style BasedOn="{StaticResource {x:Type ListBoxItem}}" TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                        <ContentPresenter/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                                            ContentTemplate="{Binding Template}"
+                                                            Focusable="False"
+                                                            Width="{Binding Column.ActualWidth}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.Template>
+                                        <ControlTemplate TargetType="{x:Type ListBox}">
+                                            <ItemsPresenter/>
+                                            <ControlTemplate.Triggers>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="2"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="1"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="10, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="3"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="1"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="20, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="4"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="1"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="30, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="5"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="1"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="40, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="3"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="2"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="10, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="4"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="2"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="20, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="5"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="2"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="30, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="4"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="3"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="10, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="5"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="3"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="20, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding Path=ItemsSource.GroupDescriptions.Count, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="5"/>
+                                                        <Condition Binding="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="4"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Margin" Value="10, 0, 0, 0"/>
+                                                </MultiDataTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </ListBox.Template>
+                                </ListBox>
+
+                            </Grid>
+                        </HeaderedContentControl.Header>
+                        <ItemsPresenter/>
+                    </HeaderedContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="DataGridGroupItem2Style" BasedOn="{StaticResource DataGridGroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel2Brush}"/>
+        <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        <Setter Property="Tag" Value="2"/>
+    </Style>
+    <Style x:Key="DataGridGroupItem3Style" BasedOn="{StaticResource DataGridGroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel3Brush}"/>
+        <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        <Setter Property="Tag" Value="3"/>
+    </Style>
+    <Style x:Key="DataGridGroupItem4Style" BasedOn="{StaticResource DataGridGroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel4Brush}"/>
+        <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        <Setter Property="Tag" Value="4"/>
+    </Style>
+    <Style x:Key="DataGridGroupItem5Style" BasedOn="{StaticResource DataGridGroupItem1Style}" TargetType="{x:Type GroupItem}">
+        <Setter Property="Background" Value="{StaticResource AccentLevel5Brush}"/>
+        <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        <Setter Property="Tag" Value="5"/>
+    </Style>
+    <controls:GroupStyleCollection x:Key="DataGridGroupStyles" x:Shared="True">
+        <GroupStyle ContainerStyle="{StaticResource DataGridGroupItem1Style}" 
+                    Panel="{StaticResource DataGridGroupStylePanelTemplate}"/>
+        <GroupStyle ContainerStyle="{StaticResource DataGridGroupItem2Style}" 
+                    Panel="{StaticResource DataGridGroupStylePanelTemplate}"/>
+        <GroupStyle ContainerStyle="{StaticResource DataGridGroupItem3Style}" 
+                    Panel="{StaticResource DataGridGroupStylePanelTemplate}"/>
+        <GroupStyle ContainerStyle="{StaticResource DataGridGroupItem4Style}" 
+                    Panel="{StaticResource DataGridGroupStylePanelTemplate}"/>
+        <GroupStyle ContainerStyle="{StaticResource DataGridGroupItem5Style}" 
+                    Panel="{StaticResource DataGridGroupStylePanelTemplate}"/>
+    </controls:GroupStyleCollection>
+    
+</ResourceDictionary>

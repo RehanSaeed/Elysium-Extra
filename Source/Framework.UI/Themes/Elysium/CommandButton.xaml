@@ -1,0 +1,798 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Framework.UI.Controls"
+                    xmlns:metro="http://schemas.codeplex.com/elysium"
+                    xmlns:params="clr-namespace:Elysium.Parameters;assembly=Elysium" 
+                    xmlns:primitives="clr-namespace:Elysium.Controls.Primitives;assembly=Elysium">
+    <ResourceDictionary.MergedDictionaries>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Converter.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/Brush.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/WPF/Base/FocusVisualStyle.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/Icon.xaml"/>
+        <controls:SharedResourceDictionary Source="/Framework.UI;component/Themes/ElysiumExtra/GeometryIcon.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="{x:Type primitives:CommandButtonBase}" TargetType="{x:Type primitives:CommandButtonBase}" >
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource LowlightBrush}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.BoldThickness),Mode=OneWay}" />
+        <Setter Property="params:CommandButtons.Mask" Value="{StaticResource LowlightBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.ContentFontSize),Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="Medium" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.SemiBoldPadding),Mode=OneWay}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type primitives:CommandButtonBase}">
+                    <Grid Panel.Background="{StaticResource TransparentBrush}" TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontFamily="{TemplateBinding Control.FontFamily}" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.FontStretch="{TemplateBinding FontStretch}" TextBlock.FontStyle="{TemplateBinding FontStyle}" TextBlock.FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Ellipse x:Name="PART_Decor" Grid.Row="0" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={StaticResource ThicknessToDoubleConverter}}" />
+                        <ContentPresenter x:Name="PART_ContentHost" Grid.Row="0" ContentPresenter.Content="{TemplateBinding ContentControl.Content}" ContentPresenter.ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ContentPresenter x:Name="PART_HeaderHost" Grid.Row="1" ContentPresenter.Content="{TemplateBinding primitives:CommandButtonBase.Header}" ContentPresenter.ContentStringFormat="{TemplateBinding primitives:CommandButtonBase.HeaderStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding primitives:CommandButtonBase.HeaderTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding primitives:CommandButtonBase.HeaderTemplateSelector}" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Value="{x:Null}" Property="primitives:CommandButtonBase.Header">
+                            <Setter TargetName="PART_HeaderHost" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger DataTrigger.Binding="{Binding RelativeSource={RelativeSource Self},Path=FontSize,Mode=OneWay,Converter={StaticResource IsGreaterThanConverter},ConverterParameter=18}">
+                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource ForegroundBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource ForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource ContrastBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="BorderBrush" Value="{StaticResource DisabledBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource DisabledBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource DisabledBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CommandButtonBaseApplicationBarStyle" TargetType="{x:Type primitives:CommandButtonBase}" >
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}" />
+        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.BoldThickness),Mode=OneWay}" />
+        <Setter Property="params:CommandButtons.Mask" Value="{StaticResource ContrastBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ContrastBrush}" />
+        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.ContentFontSize),Mode=OneWay}" />
+        <Setter Property="FontStretch" Value="Medium" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self},Path=(params:General.SemiBoldPadding),Mode=OneWay}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type primitives:CommandButtonBase}">
+                    <Grid Panel.Background="{StaticResource TransparentBrush}" TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontFamily="{TemplateBinding Control.FontFamily}" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.FontStretch="{TemplateBinding FontStretch}" TextBlock.FontStyle="{TemplateBinding FontStyle}" TextBlock.FontWeight="{TemplateBinding FontWeight}" TextOptions.TextFormattingMode="{TemplateBinding TextOptions.TextFormattingMode}" TextOptions.TextRenderingMode="{TemplateBinding TextOptions.TextRenderingMode}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Ellipse x:Name="PART_Decor" Grid.Row="0" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={StaticResource ThicknessToDoubleConverter}}" />
+                        <Ellipse Grid.Row="0" Fill="{TemplateBinding params:CommandButtons.Mask}" Stroke="{StaticResource TransparentBrush}" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={StaticResource ThicknessToDoubleConverter}}" Width="{Binding ElementName=PART_Decor,Path=ActualWidth,Mode=OneWay}" Height="{Binding ElementName=PART_Decor,Path=ActualHeight,Mode=OneWay}">
+                            <UIElement.OpacityMask>
+                                <VisualBrush VisualBrush.AutoLayoutContent="True" TileBrush.AlignmentX="Center" TileBrush.AlignmentY="Center" TileBrush.Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <ContentPresenter x:Name="PART_ContentHost" ContentPresenter.Content="{TemplateBinding ContentControl.Content}" ContentPresenter.ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </UIElement.OpacityMask>
+                        </Ellipse>
+                        <ContentPresenter x:Name="PART_HeaderHost" Grid.Row="1" ContentPresenter.Content="{TemplateBinding primitives:CommandButtonBase.Header}" ContentPresenter.ContentStringFormat="{TemplateBinding primitives:CommandButtonBase.HeaderStringFormat}" ContentPresenter.ContentTemplate="{TemplateBinding primitives:CommandButtonBase.HeaderTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding primitives:CommandButtonBase.HeaderTemplateSelector}" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Value="{x:Null}" Property="primitives:CommandButtonBase.Header">
+                            <Setter TargetName="PART_HeaderHost" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger DataTrigger.Binding="{Binding RelativeSource={RelativeSource Self},Path=FontSize,Mode=OneWay,Converter={StaticResource IsGreaterThanConverter},ConverterParameter=18}">
+                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource SemitransparentContrastBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource ContrastBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ContrastBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource AccentBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="BorderBrush" Value="{StaticResource DisabledBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource DisabledBrush}" />
+                <Setter Property="params:CommandButtons.Mask" Value="{StaticResource DisabledBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type metro:CommandButton}" TargetType="{x:Type metro:CommandButton}" BasedOn="{StaticResource {x:Type primitives:CommandButtonBase}}"  />
+    <Style x:Key="CommandButtonApplicationBarStyle" TargetType="{x:Type metro:CommandButton}" BasedOn="{StaticResource CommandButtonBaseApplicationBarStyle}"  />
+    
+    <!-- CommandButton -->
+    <Style x:Key="MediumIconCommandButtonStyle" BasedOn="{StaticResource {x:Type metro:CommandButton}}" TargetType="{x:Type metro:CommandButton}">
+        <Style.Resources>
+            <DataTemplate x:Key="PressedContentTemplate">
+                <controls:Icon Foreground="{StaticResource ContrastBrush}"
+                               Size="Medium" 
+                               Style="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="DisabledContentTemplate">
+                <controls:Icon Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:CommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                               Size="Medium" 
+                               Style="{Binding}"/>
+            </DataTemplate>
+        </Style.Resources>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <controls:Icon Size="Medium"
+                                   Style="{Binding}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="ContentTemplate" Value="{StaticResource PressedContentTemplate}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="ContentTemplate" Value="{StaticResource DisabledContentTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="SmallIconCommandButtonStyle" BasedOn="{StaticResource {x:Type metro:CommandButton}}" TargetType="{x:Type metro:CommandButton}">
+        <Style.Resources>
+            <DataTemplate x:Key="PressedContentTemplate">
+                <controls:Icon Foreground="{StaticResource ContrastBrush}"
+                               Size="Small" 
+                               Style="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="DisabledContentTemplate">
+                <controls:Icon Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:CommandButton}}, Path=BorderBrush, Mode=OneWay}"
+                               Size="Small" 
+                               Style="{Binding}"/>
+            </DataTemplate>
+        </Style.Resources>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <controls:Icon Size="Small" 
+                                   Style="{Binding}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="ContentTemplate" Value="{StaticResource PressedContentTemplate}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="ContentTemplate" Value="{StaticResource DisabledContentTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ArrowHeadDownCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadDownIconStyle}"/>
+    </Style>
+    <Style x:Key="ArrowHeadLeftCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadLeftIconStyle}"/>
+    </Style>
+    <Style x:Key="ArrowHeadRightCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadRightIconStyle}"/>
+    </Style>
+    <Style x:Key="ArrowHeadUpCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadUpIconStyle}"/>
+    </Style>
+    <Style x:Key="ForwardCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadRightIconStyle}"/>
+        <Setter Property="Header" Value="Forward"/>
+    </Style>
+    <Style x:Key="BackCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadLeftIconStyle}"/>
+        <Setter Property="Header" Value="Back"/>
+    </Style>
+    <Style x:Key="NextCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource NextIconStyle}"/>
+        <Setter Property="Header" Value="Next"/>
+    </Style>
+    <Style x:Key="PreviousCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource PreviousIconStyle}"/>
+        <Setter Property="Header" Value="Previous"/>
+    </Style>
+    <Style x:Key="UpCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource RoadForwardIconStyle}"/>
+        <Setter Property="Header" Value="Up"/>
+    </Style>
+    <Style x:Key="DownCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource RoadBackwardIconStyle}"/>
+        <Setter Property="Header" Value="Down"/>
+    </Style>
+    <Style x:Key="TopCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TopIconStyle}"/>
+        <Setter Property="Header" Value="Top"/>
+    </Style>
+    <Style x:Key="BottomCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource BottomIconStyle}"/>
+        <Setter Property="Header" Value="Bottom"/>
+    </Style>
+    <Style x:Key="CutCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CutIconStyle}"/>
+        <Setter Property="Header" Value="Cut"/>
+    </Style>
+    <Style x:Key="CopyCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CopyIconStyle}"/>
+        <Setter Property="Header" Value="Copy"/>
+    </Style>
+    <Style x:Key="PasteCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Paste1IconStyle}"/>
+        <Setter Property="Header" Value="Paste"/>
+    </Style>
+    <Style x:Key="AddCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Add1IconStyle}"/>
+        <Setter Property="Header" Value="Add"/>
+    </Style>
+    <Style x:Key="AddAllCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource DataAddIconStyle}"/>
+        <Setter Property="Header" Value="Add All"/>
+    </Style>
+    <Style x:Key="RemoveCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SubtractIconStyle}"/>
+        <Setter Property="Header" Value="Remove"/>
+    </Style>
+    <Style x:Key="RemoveAllCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource DataDeleteIconStyle}"/>
+        <Setter Property="Header" Value="Remove All"/>
+    </Style>
+    <Style x:Key="DeleteCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Delete1IconStyle}"/>
+        <Setter Property="Header" Value="Delete"/>
+    </Style>
+    <Style x:Key="OkCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource OkIconStyle}"/>
+        <Setter Property="Header" Value="Ok"/>
+    </Style>
+    <Style x:Key="CancelCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Cancel1IconStyle}"/>
+        <Setter Property="Header" Value="Cancel"/>
+    </Style>
+    <Style x:Key="NewCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource NewItemIconStyle}"/>
+        <Setter Property="Header" Value="New"/>
+    </Style>
+    <Style x:Key="PrintCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource PrintIconStyle}"/>
+        <Setter Property="Header" Value="Print"/>
+    </Style>
+    <Style x:Key="PrintPreviewCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource PreviewIconStyle}"/>
+        <Setter Property="Header" Value="Print Preview"/>
+    </Style>
+    <Style x:Key="ExportCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Export1IconStyle}"/>
+        <Setter Property="Header" Value="Export"/>
+    </Style>
+    <Style x:Key="ExportCsvCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CSVExportIconStyle}"/>
+        <Setter Property="Header" Value="Export CSV"/>
+    </Style>
+    <Style x:Key="ExcelCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource MicrosoftExcel1IconStyle}"/>
+        <Setter Property="Header" Value="Excel"/>
+    </Style>
+    <Style x:Key="WordCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource MicrosoftWord1IconStyle}"/>
+        <Setter Property="Header" Value="Word"/>
+    </Style>
+    <Style x:Key="OutlookCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource MicrosoftOutlookIconStyle}"/>
+        <Setter Property="Header" Value="Outlook"/>
+    </Style>
+    <Style x:Key="PowerPointCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource MicrosoftPowerPointIconStyle}"/>
+        <Setter Property="Header" Value="PowerPoint"/>
+    </Style>
+    <Style x:Key="PdfCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource AdobeIconStyle}"/>
+        <Setter Property="Header" Value="PDF"/>
+    </Style>
+    <Style x:Key="ExpandCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ExpandIconStyle}"/>
+        <Setter Property="Header" Value="Expand"/>
+    </Style>
+    <Style x:Key="CollapseCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CollapseIconStyle}"/>
+        <Setter Property="Header" Value="Collapse"/>
+    </Style>
+    <Style x:Key="RefreshCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Refresh1IconStyle}"/>
+        <Setter Property="Header" Value="Refresh"/>
+    </Style>
+    <Style x:Key="UndoCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Undo1IconStyle}"/>
+        <Setter Property="Header" Value="Undo"/>
+    </Style>
+    <Style x:Key="RedoCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Redo1IconStyle}"/>
+        <Setter Property="Header" Value="Redo"/>
+    </Style>
+    <Style x:Key="SaveCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Save1IconStyle}"/>
+        <Setter Property="Header" Value="Save"/>
+    </Style>
+    <Style x:Key="SaveAsCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SaveAsIconStyle}"/>
+        <Setter Property="Header" Value="Save As"/>
+    </Style>
+    <Style x:Key="SaveAllCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SaveAllAttachmentsIconStyle}"/>
+        <Setter Property="Header" Value="Save All"/>
+    </Style>
+    <Style x:Key="HomeCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource HouseIconStyle}"/>
+        <Setter Property="Header" Value="Home"/>
+    </Style>
+    <Style x:Key="EditCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Edit2IconStyle}"/>
+        <Setter Property="Header" Value="Edit"/>
+    </Style>
+    <Style x:Key="HelpCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Help1IconStyle}"/>
+        <Setter Property="Header" Value="Help"/>
+    </Style>
+    <Style x:Key="OpenCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Open2IconStyle}"/>
+        <Setter Property="Header" Value="Open"/>
+    </Style>
+    <Style x:Key="CloseCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Delete1IconStyle}"/>
+        <Setter Property="Header" Value="Close"/>
+    </Style>
+    <Style x:Key="ReloadCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ReloadIconStyle}"/>
+        <Setter Property="Header" Value="Reload"/>
+    </Style>
+    <Style x:Key="SearchCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SearchIconStyle}"/>
+        <Setter Property="Header" Value="Search"/>
+    </Style>
+    <Style x:Key="SettingsCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Settings1IconStyle}"/>
+        <Setter Property="Header" Value="Settings"/>
+    </Style>
+    <Style x:Key="ZoomCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ZoomIconStyle}"/>
+        <Setter Property="Header" Value="Zoom"/>
+    </Style>
+    <Style x:Key="ZoomInCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ZoomInIconStyle}"/>
+        <Setter Property="Header" Value="Zoom In"/>
+    </Style>
+    <Style x:Key="ZoomOutCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ZoomOutIconStyle}"/>
+        <Setter Property="Header" Value="Zoom Out"/>
+    </Style>
+    <Style x:Key="ApplyCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CheckBoxIconStyle}"/>
+        <Setter Property="Header" Value="Apply"/>
+    </Style>
+    <Style x:Key="ClearCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ClearIconStyle}"/>
+        <Setter Property="Header" Value="Clear"/>
+    </Style>
+    <Style x:Key="PublishCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource BookAddIconStyle}"/>
+        <Setter Property="Header" Value="Publish"/>
+    </Style>
+    <Style x:Key="UnpublishCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource BookDeleteIconStyle}"/>
+        <Setter Property="Header" Value="Un-Publish"/>
+    </Style>
+    <Style x:Key="RenameCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource RenameIconStyle}"/>
+        <Setter Property="Header" Value="Rename"/>
+    </Style>
+    <Style x:Key="FolderNewCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource FolderNewIconStyle}"/>
+        <Setter Property="Header" Value="New Folder"/>
+    </Style>
+    <Style x:Key="FolderOpenCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource FolderOpenIconStyle}"/>
+        <Setter Property="Header" Value="Open Folder"/>
+    </Style>
+    <Style x:Key="ResetCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ResetIconStyle}"/>
+        <Setter Property="Header" Value="Reset"/>
+    </Style>
+    <Style x:Key="AcceptCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource OkIconStyle}"/>
+        <Setter Property="Header" Value="Accept"/>
+    </Style>
+    <Style x:Key="RejectCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Cancel1IconStyle}"/>
+        <Setter Property="Header" Value="Reject"/>
+    </Style>
+    <Style x:Key="GoBackCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Undo1IconStyle}"/>
+        <Setter Property="Header" Value="Go Back"/>
+    </Style>
+    <Style x:Key="GroupPanelCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ClusterGroupIconStyle}"/>
+        <Setter Property="Header" Value="Group"/>
+    </Style>
+    <Style x:Key="SelectAllCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SelectAllIconStyle}"/>
+        <Setter Property="Header" Value="Select All"/>
+    </Style>
+    <Style x:Key="EditSearchCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Settings1IconStyle}"/>
+        <Setter Property="Header" Value="Edit Search"/>
+    </Style>
+    <Style x:Key="BoldCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextBold1IconStyle}"/>
+        <Setter Property="Header" Value="Bold"/>
+    </Style>
+    <Style x:Key="ItalicCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextItalic1IconStyle}"/>
+        <Setter Property="Header" Value="Italic"/>
+    </Style>
+    <Style x:Key="UnderlineCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource UnderlineIconStyle}"/>
+        <Setter Property="Header" Value="Underline"/>
+    </Style>
+    <Style x:Key="FontSizeDownCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource FontSizeDownIconStyle}"/>
+        <Setter Property="Header" Value="Shrink Font"/>
+    </Style>
+    <Style x:Key="FontSizeUpCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource FontSizeUpIconStyle}"/>
+        <Setter Property="Header" Value="Grow Font"/>
+    </Style>
+    <Style x:Key="BulletCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource BulletIconStyle}"/>
+        <Setter Property="Header" Value="Bullets"/>
+    </Style>
+    <Style x:Key="NumberingCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource NumberingIconStyle}"/>
+        <Setter Property="Header" Value="Numbering"/>
+    </Style>
+    <Style x:Key="TextRightAlignCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextRightAlignIconStyle}"/>
+        <Setter Property="Header" Value="Align Right"/>
+    </Style>
+    <Style x:Key="TextLeftAlignCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextLeftAlignIconStyle}"/>
+        <Setter Property="Header" Value="Align Right"/>
+    </Style>
+    <Style x:Key="TextCenterAlignCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextCenterAlignIconStyle}"/>
+        <Setter Property="Header" Value="Center"/>
+    </Style>
+    <Style x:Key="TextJustifyAlignCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextJustifyAlignIconStyle}"/>
+        <Setter Property="Header" Value="Justify"/>
+    </Style>
+    <Style x:Key="UploadCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Upload1IconStyle}"/>
+        <Setter Property="Header" Value="Upload"/>
+    </Style>
+    <Style x:Key="CompareCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Documents1IconStyle}"/>
+        <Setter Property="Header" Value="Compare"/>
+    </Style>
+    <Style x:Key="SplitCommandButtonStyle" BasedOn="{StaticResource MediumIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SplitIconStyle}"/>
+        <Setter Property="Header" Value="Split"/>
+    </Style>
+
+    <!-- Small Command Buttons -->
+    <Style x:Key="ArrowHeadDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadDownIconStyle}"/>
+    </Style>
+    <Style x:Key="ArrowHeadLeftSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadLeftIconStyle}"/>
+    </Style>
+    <Style x:Key="ArrowHeadRightSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadRightIconStyle}"/>
+    </Style>
+    <Style x:Key="ArrowHeadUpSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ArrowHeadUpIconStyle}"/>
+    </Style>
+    <Style x:Key="NextSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource NextIconStyle}"/>
+        <Setter Property="ToolTip" Value="Next"/>
+    </Style>
+    <Style x:Key="PreviousSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource PreviousIconStyle}"/>
+        <Setter Property="ToolTip" Value="Previous"/>
+    </Style>
+    <Style x:Key="UpSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource RoadForwardIconStyle}"/>
+        <Setter Property="ToolTip" Value="Up"/>
+    </Style>
+    <Style x:Key="DownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource RoadBackwardIconStyle}"/>
+        <Setter Property="ToolTip" Value="Down"/>
+    </Style>
+    <Style x:Key="TopSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TopIconStyle}"/>
+        <Setter Property="ToolTip" Value="Top"/>
+    </Style>
+    <Style x:Key="BottomSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource BottomIconStyle}"/>
+        <Setter Property="ToolTip" Value="Bottom"/>
+    </Style>
+    <Style x:Key="CutSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CutIconStyle}"/>
+        <Setter Property="ToolTip" Value="Cut"/>
+    </Style>
+    <Style x:Key="CopySmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CopyIconStyle}"/>
+        <Setter Property="ToolTip" Value="Copy"/>
+    </Style>
+    <Style x:Key="PasteSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Paste1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Paste"/>
+    </Style>
+    <Style x:Key="AddSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource AddIconStyle}"/>
+        <Setter Property="ToolTip" Value="Add"/>
+    </Style>
+    <Style x:Key="RemoveSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SubtractIconStyle}"/>
+        <Setter Property="ToolTip" Value="Remove"/>
+    </Style>
+    <Style x:Key="DeleteSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource DeleteIconStyle}"/>
+        <Setter Property="ToolTip" Value="Delete"/>
+    </Style>
+    <Style x:Key="OkSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource OkIconStyle}"/>
+        <Setter Property="ToolTip" Value="Ok"/>
+    </Style>
+    <Style x:Key="CancelSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CancelIconStyle}"/>
+        <Setter Property="ToolTip" Value="Cancel"/>
+    </Style>
+    <Style x:Key="NewSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource NewIconStyle}"/>
+        <Setter Property="ToolTip" Value="New"/>
+    </Style>
+    <Style x:Key="PrintSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource PrintIconStyle}"/>
+        <Setter Property="ToolTip" Value="Print"/>
+    </Style>
+    <Style x:Key="PrintPreviewSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource PreviewIconStyle}"/>
+        <Setter Property="ToolTip" Value="Print Preview"/>
+    </Style>
+    <Style x:Key="ExportSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ExportIconStyle}"/>
+        <Setter Property="ToolTip" Value="Export"/>
+    </Style>
+    <Style x:Key="ExportCsvSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CSVExportIconStyle}"/>
+        <Setter Property="ToolTip" Value="Export CSV"/>
+    </Style>
+    <Style x:Key="ExcelSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource MicrosoftExcel1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Excel"/>
+    </Style>
+    <Style x:Key="WordSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource MicrosoftWord1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Word"/>
+    </Style>
+    <Style x:Key="OutlookSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource MicrosoftOutlookIconStyle}"/>
+        <Setter Property="ToolTip" Value="Outlook"/>
+    </Style>
+    <Style x:Key="PowerPointSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource MicrosoftPowerPointIconStyle}"/>
+        <Setter Property="ToolTip" Value="PowerPoint"/>
+    </Style>
+    <Style x:Key="PdfSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource AdobeIconStyle}"/>
+        <Setter Property="ToolTip" Value="PDF"/>
+    </Style>
+    <Style x:Key="ExpandSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ExpandIconStyle}"/>
+        <Setter Property="ToolTip" Value="Expand"/>
+    </Style>
+    <Style x:Key="CollapseSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CollapseIconStyle}"/>
+        <Setter Property="ToolTip" Value="Collapse"/>
+    </Style>
+    <Style x:Key="RefreshSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Refresh1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Refresh"/>
+    </Style>
+    <Style x:Key="UndoSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Undo1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Undo"/>
+    </Style>
+    <Style x:Key="RedoSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Redo1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Redo"/>
+    </Style>
+    <Style x:Key="SaveSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Save1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Save"/>
+    </Style>
+    <Style x:Key="SaveAsSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SaveAsIconStyle}"/>
+        <Setter Property="ToolTip" Value="Save As"/>
+    </Style>
+    <Style x:Key="SaveAllSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SaveAllAttachmentsIconStyle}"/>
+        <Setter Property="ToolTip" Value="Save All"/>
+    </Style>
+    <Style x:Key="HomeSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource HouseIconStyle}"/>
+        <Setter Property="ToolTip" Value="Home"/>
+    </Style>
+    <Style x:Key="EditSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Edit2IconStyle}"/>
+        <Setter Property="ToolTip" Value="Edit"/>
+    </Style>
+    <Style x:Key="HelpSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Help1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Help"/>
+    </Style>
+    <Style x:Key="OpenSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Open2IconStyle}"/>
+        <Setter Property="ToolTip" Value="Open"/>
+    </Style>
+    <Style x:Key="CloseSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Delete1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Close"/>
+    </Style>
+    <Style x:Key="ReloadSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ReloadIconStyle}"/>
+        <Setter Property="ToolTip" Value="Reload"/>
+    </Style>
+    <Style x:Key="SearchSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SearchIconStyle}"/>
+        <Setter Property="ToolTip" Value="Search"/>
+    </Style>
+    <Style x:Key="SettingsSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Settings1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Settings"/>
+    </Style>
+    <Style x:Key="ZoomSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ZoomIconStyle}"/>
+        <Setter Property="ToolTip" Value="Zoom"/>
+    </Style>
+    <Style x:Key="ZoomInSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ZoomInIconStyle}"/>
+        <Setter Property="ToolTip" Value="Zoom In"/>
+    </Style>
+    <Style x:Key="ZoomOutSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ZoomOutIconStyle}"/>
+        <Setter Property="ToolTip" Value="Zoom Out"/>
+    </Style>
+    <Style x:Key="ApplySmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CheckBoxIconStyle}"/>
+        <Setter Property="ToolTip" Value="Apply"/>
+    </Style>
+    <Style x:Key="ClearSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ClearIconStyle}"/>
+        <Setter Property="ToolTip" Value="Clear"/>
+    </Style>
+    <Style x:Key="PublishSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource BookAddIconStyle}"/>
+        <Setter Property="ToolTip" Value="Publish"/>
+    </Style>
+    <Style x:Key="UnpublishSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource BookDeleteIconStyle}"/>
+        <Setter Property="ToolTip" Value="Un-Publish"/>
+    </Style>
+    <Style x:Key="RenameSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource RenameIconStyle}"/>
+        <Setter Property="ToolTip" Value="Rename"/>
+    </Style>
+    <Style x:Key="FolderNewSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource FolderNewIconStyle}"/>
+        <Setter Property="ToolTip" Value="New Folder"/>
+    </Style>
+    <Style x:Key="FolderOpenSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource FolderOpenIconStyle}"/>
+        <Setter Property="ToolTip" Value="Open Folder"/>
+    </Style>
+    <Style x:Key="ResetSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource ResetIconStyle}"/>
+        <Setter Property="ToolTip" Value="Reset"/>
+    </Style>
+    <Style x:Key="AcceptSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource OkIconStyle}"/>
+        <Setter Property="ToolTip" Value="Accept"/>
+    </Style>
+    <Style x:Key="RejectSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource CancelIconStyle}"/>
+        <Setter Property="ToolTip" Value="Reject"/>
+    </Style>
+    <Style x:Key="GroupPanelSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource GroupIconStyle}"/>
+        <Setter Property="ToolTip" Value="Group"/>
+    </Style>
+    <Style x:Key="SelectAllSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource SelectAllIconStyle}"/>
+        <Setter Property="ToolTip" Value="Select All"/>
+    </Style>
+    <Style x:Key="BoldSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextBold1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Bold"/>
+    </Style>
+    <Style x:Key="ItalicSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextItalic1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Italic"/>
+    </Style>
+    <Style x:Key="UnderlineSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource UnderlineIconStyle}"/>
+        <Setter Property="ToolTip" Value="Underline"/>
+    </Style>
+    <Style x:Key="FontSizeDownSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource FontSizeDownIconStyle}"/>
+        <Setter Property="ToolTip" Value="Shrink Font"/>
+    </Style>
+    <Style x:Key="FontSizeUpSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource FontSizeUpIconStyle}"/>
+        <Setter Property="ToolTip" Value="Grow Font"/>
+    </Style>
+    <Style x:Key="BulletSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource BulletIconStyle}"/>
+        <Setter Property="ToolTip" Value="Bullets"/>
+    </Style>
+    <Style x:Key="NumberingSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource NumberingIconStyle}"/>
+        <Setter Property="ToolTip" Value="Numbering"/>
+    </Style>
+    <Style x:Key="TextRightAlignSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextRightAlignIconStyle}"/>
+        <Setter Property="ToolTip" Value="Align Right"/>
+    </Style>
+    <Style x:Key="TextLeftAlignSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextLeftAlignIconStyle}"/>
+        <Setter Property="ToolTip" Value="Align Right"/>
+    </Style>
+    <Style x:Key="TextCenterAlignSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextCenterAlignIconStyle}"/>
+        <Setter Property="ToolTip" Value="Center"/>
+    </Style>
+    <Style x:Key="TextJustifyAlignSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource TextJustifyAlignIconStyle}"/>
+        <Setter Property="ToolTip" Value="Justify"/>
+    </Style>
+    <Style x:Key="UploadSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Upload1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Upload"/>
+    </Style>
+    <Style x:Key="CompareSmallCommandButtonStyle" BasedOn="{StaticResource SmallIconCommandButtonStyle}" TargetType="{x:Type metro:CommandButton}">
+        <Setter Property="Content" Value="{StaticResource Documents1IconStyle}"/>
+        <Setter Property="ToolTip" Value="Compare"/>
+    </Style>
+    
+</ResourceDictionary>

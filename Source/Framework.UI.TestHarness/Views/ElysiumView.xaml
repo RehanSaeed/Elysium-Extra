@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.ElysiumView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Window"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The Window has been completely restyled and has added capabilities. Window now can be resized larger than one screen in multi-monitor layout. DropShadow around the window is enabled by default. FullScreen capability with keyboard shortcuts. Title bar content. Optional Icon."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="TextBox and ComboBox"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The size, border, padding and font size of these two controls was made the same, having different sizes looks strange on a form. Refer to the Input tab for more details."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Validation"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="Validation templates were added to the TextBox and ComboBox controls. Refer to the Validation tab for more details."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="ListBox"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="ListBox was given a mouse over colour."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="TabControl"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="TabControls background was made transparent. Ideally all controls which cover the screen should be transparent, so that if a background is used it can be seen through the tab control. CommandButton has the same problem."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Scroll Bars"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="Users hated the thin scroll bars, they are difficult to get hold of for most users (Not everyone is an experienced user like us). They have been made wider."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="CommandButton and DropDownCommandButton"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The Background on these buttons has been changed to TransparentBrush. This control did not fit in if the background was not white. The default style is further improved by making the IsSelected trigger set the Background and BorderBrush to the AccentBrush and the Foreground to ContrastBrush."/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Practices"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="I have had to work in a large team and have tried to communicate the design to them, this has been the BIGGEST challenge. Providing an application like this with all guidelines and practices is VERY important and generally improves the look of the application built by non-design oriented developers. Please consider better communicating the design language. Providing the controls and styles is not enough."/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

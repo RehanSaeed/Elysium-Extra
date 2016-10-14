@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+    <Color x:Key="TransparentColor" options:Freeze="True">#00171717</Color>
+    <Color x:Key="SemitransparentColor" options:Freeze="True">#20171717</Color>
+    <Color x:Key="BackgroundColor" options:Freeze="True">#FF171717</Color>
+    <Color x:Key="ForegroundColor" options:Freeze="True">#FFFFFFFF</Color>
+    <Color x:Key="HighlightColor" options:Freeze="True">#FF313131</Color>
+    <Color x:Key="MiddleLightColor" options:Freeze="True">#FF848484</Color>
+    <Color x:Key="LowlightColor" options:Freeze="True">#FFBABABA</Color>
+    <Color x:Key="DisabledColor" options:Freeze="True">#FF5C5956</Color>
+    
+</ResourceDictionary>
+ 
+
+ 

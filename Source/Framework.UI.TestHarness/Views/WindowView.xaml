@@ -1,0 +1,623 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.WindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:extra="http://schemas.extra.com/ui"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <ScrollViewer>
+        <StackPanel>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="TODO Improvements"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="Elysium Window components are largely internal so a fair amount of reflection was used. Hopefylly Elysium can take this code and integrate it. Add a ShowAsync method like Windows 8 and any other Windows 8 method we can think of. SizeToContent does not work if you set the property in XAML, you have to set the property in code behind after the call to InitialiseComponent method in the constructor."/>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Other Window Styles"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The window is fully customizable. These are just a couple of examples of what you can do."/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Click="OnShowBackgroundFadeWindow"
+                        Content="BackgroundFadeWindowStyle"
+                        Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                
+                <Button Grid.Column="1"
+                        Click="OnShowAccentTitleBarWindow"
+                        Content="AccentTitleBarWindowStyle"
+                        Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+                
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Standard Window Properties"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="AllowsTransparency (CAN'T BE CHANGED AT RUN-TIME)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=AllowsTransparencyToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="AllowsTransparencyToggleSwitch" 
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Path=AllowsTransparency, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    IsEnabled="False"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="1" 
+                       Content="Background"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=BackgroundTextBox}"/>
+                <TextBox x:Name="BackgroundTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="1" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="2" 
+                       Content="BorderBrush"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=BorderBrushTextBox}"/>
+                <TextBox x:Name="BorderBrushTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="2" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=BorderBrush, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="3" 
+                       Content="BorderThickness"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=BorderThicknessTextBox}"/>
+                <TextBox x:Name="BorderThicknessTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="3" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=BorderThickness, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="4"
+                       Content="HasDropShadow"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=HasDropShadowToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="HasDropShadowToggleSwitch" 
+                                    Grid.Column="1"
+                                    Grid.Row="4"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Mode=TwoWay, Path=HasDropShadow, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="5"
+                       Content="IsActive"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsActiveToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="IsActiveToggleSwitch" 
+                                    Grid.Column="1"
+                                    Grid.Row="5"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Mode=OneWay, Path=IsActive, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    IsEnabled="False"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="6" 
+                       Content="MaxHeight"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=MaxHeightTextBox}"/>
+                <TextBox x:Name="MaxHeightTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="6" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=MaxHeight, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="7" 
+                       Content="MaxWidth"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=MaxWidthTextBox}"/>
+                <TextBox x:Name="MaxWidthTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="7" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=MaxWidth, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="8" 
+                       Content="MinHeight"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=MinHeightTextBox}"/>
+                <TextBox x:Name="MinHeightTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="8" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=MinHeight, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="9" 
+                       Content="MinWidth"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=MinWidthTextBox}"/>
+                <TextBox x:Name="MinWidthTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="9" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=MinWidth, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Column="2"
+                       Content="ResizeMode"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=ResizeModeComboBox}"/>
+                <ComboBox x:Name="ResizeModeComboBox"
+                          Grid.Column="3"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                          SelectedItem="{Binding Path=ResizeMode, RelativeSource={RelativeSource AncestorType=extra:Window}}">
+                    <ResizeMode>CanMinimize</ResizeMode>
+                    <ResizeMode>CanResize</ResizeMode>
+                    <ResizeMode>CanResizeWithGrip</ResizeMode>
+                    <ResizeMode>NoResize</ResizeMode>
+                </ComboBox>
+
+                <Label Grid.Column="2"
+                       Grid.Row="1"
+                       Content="ShowInTaskbar"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=ShowInTaskbarToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="ShowInTaskbarToggleSwitch" 
+                                    Grid.Column="3"
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Path=ShowInTaskbar, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Column="2"
+                       Grid.Row="2"
+                       Content="SizeToContent (WEIRD BUG - SEE TODO ABOVE)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=SizeToContentComboBox}"/>
+                <ComboBox x:Name="SizeToContentComboBox"
+                          Grid.Column="3"
+                          Grid.Row="2"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                          SelectedItem="{Binding Path=SizeToContent, RelativeSource={RelativeSource AncestorType=extra:Window}}">
+                    <SizeToContent>Height</SizeToContent>
+                    <SizeToContent>Manual</SizeToContent>
+                    <SizeToContent>Width</SizeToContent>
+                    <SizeToContent>WidthAndHeight</SizeToContent>
+                </ComboBox>
+
+                <Label Grid.Column="2"
+                       Grid.Row="3"
+                       Content="Topmost"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=ShowInTaskbarToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="TopmostToggleSwitch" 
+                                    Grid.Column="3"
+                                    Grid.Row="3"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Path=Topmost, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Column="2"
+                       Grid.Row="4"
+                       Content="WindowStartupLocation"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=WindowStartupLocationComboBox}"/>
+                <ComboBox x:Name="WindowStartupLocationComboBox"
+                          Grid.Column="3"
+                          Grid.Row="4"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                          SelectedItem="{Binding Path=WindowStartupLocation, RelativeSource={RelativeSource AncestorType=extra:Window}}">
+                    <WindowStartupLocation>CenterOwner</WindowStartupLocation>
+                    <WindowStartupLocation>CenterScreen</WindowStartupLocation>
+                    <WindowStartupLocation>Manual</WindowStartupLocation>
+                </ComboBox>
+
+                <Label Grid.Column="2"
+                       Grid.Row="5"
+                       Content="WindowState"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=WindowStateComboBox}"/>
+                <ComboBox x:Name="WindowStateComboBox"
+                          Grid.Column="3"
+                          Grid.Row="5"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                          SelectedItem="{Binding Path=WindowState, RelativeSource={RelativeSource AncestorType=extra:Window}}">
+                    <WindowState>Maximized</WindowState>
+                    <WindowState>Minimized</WindowState>
+                    <WindowState>Normal</WindowState>
+                </ComboBox>
+
+                <Label Grid.Column="2"
+                       Grid.Row="6"
+                       Content="WindowStyle (DO NOT USE)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=WindowStyleComboBox}"/>
+                <ComboBox x:Name="WindowStyleComboBox"
+                          Grid.Column="3"
+                          Grid.Row="6"
+                          IsEnabled="False"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                          SelectedItem="{Binding Path=WindowStyle, RelativeSource={RelativeSource AncestorType=extra:Window}}">
+                    <WindowStyle>None</WindowStyle>
+                    <WindowStyle>SingleBorderWindow</WindowStyle>
+                    <WindowStyle>ThreeDBorderWindow</WindowStyle>
+                    <WindowStyle>ToolWindow</WindowStyle>
+                </ComboBox>
+
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Background Content"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The BackgroundContent, BackgroundContentTemplate and BackgroundContentTemplateSelector properties can be used to specity content which reaches the title bar, such as a background image."/>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Foreground Content"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The ForegroundContent, ForegroundContentTemplate and ForegroundContentTemplateSelector properties can be used to specity content which reaches the title bar. This content covers the content."/>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="TitleBar"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The TitleBarContent, TitleBarContentTemplate and TitleBarContentTemplateSelector properties of the Window can be used to add content to the Window title bar, between the Title and buttons on the right. The TitleBarBackground, TitleBarBorderBrush and TitleBarBorderThickness properties can be used to give the title bar a different style. Finally you can use the TitleBarVisibility property to hide the title bar altogether."/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="TitleBarBackground"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TitleBarBackgroundTextBox}"/>
+                <TextBox x:Name="TitleBarBackgroundTextBox" 
+                         Grid.Column="1"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=TitleBarBackground, RelativeSource={RelativeSource AncestorType={x:Type extra:Window}}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Grid.Row="1" 
+                       Content="TitleBarBorderBrush"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TitleBarBorderBrushTextBox}"/>
+                <TextBox x:Name="TitleBarBorderBrushTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="1" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=TitleBarBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type extra:Window}}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Grid.Row="2" 
+                       Content="TitleBarBorderThickness"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TitleBarBorderThicknessTextBox}"/>
+                <TextBox x:Name="TitleBarBorderThicknessTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="2" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=TitleBarBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type extra:Window}}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Grid.Row="3" 
+                       Content="TitleBarContent"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TitleBarContentTextBox}"/>
+                <TextBox x:Name="TitleBarContentTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="3" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=TitleBarContent, RelativeSource={RelativeSource AncestorType={x:Type extra:Window}}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Grid.Row="4" 
+                       Content="TitleBarVisibility"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TitleBarVisibilityComboBox}"/>
+                <ComboBox x:Name="TitleBarVisibilityComboBox" 
+                          Grid.Column="1"
+                          Grid.Row="4" 
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                          SelectedItem="{Binding Path=TitleBarVisibility, RelativeSource={RelativeSource AncestorType={x:Type extra:Window}}, UpdateSourceTrigger=PropertyChanged}">
+                    <Visibility>Visible</Visibility>
+                    <Visibility>Hidden</Visibility>
+                    <Visibility>Collapsed</Visibility>
+                </ComboBox>
+
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Taskbar Properties"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="Windows 7 and above add various Taskbar capabilities via the TaskbarItemInfo property on the Window. A few helper properties have been added to the window directly to help with binding."/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="TaskbarIsBusy"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TaskbarIsBusyToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="TaskbarIsBusyToggleSwitch" 
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Path=TaskbarIsBusy, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="1"  
+                       Content="TaskbarProgressState"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TaskbarProgressStateComboBox}"/>
+                <ComboBox x:Name="TaskbarProgressStateComboBox" 
+                          Grid.Column="1"
+                          Grid.Row="1"
+                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                          SelectedItem="{Binding Path=TaskbarProgressState, RelativeSource={RelativeSource AncestorType=extra:Window}}">
+                    <TaskbarItemProgressState>None</TaskbarItemProgressState>
+                    <TaskbarItemProgressState>Indeterminate</TaskbarItemProgressState>
+                    <TaskbarItemProgressState>Normal</TaskbarItemProgressState>
+                    <TaskbarItemProgressState>Error</TaskbarItemProgressState>
+                    <TaskbarItemProgressState>Paused</TaskbarItemProgressState>
+                </ComboBox>
+
+                <Label Grid.Row="2" 
+                       Content="TaskbarProgressValue"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TaskbarProgressValueDoubleUpDown}"/>
+                <extra:DoubleUpDown x:Name="TaskbarProgressValueDoubleUpDown" 
+                                    Grid.Column="1"
+                                    Grid.Row="2" 
+                                    AllowSpin="True"
+                                    FormatString="N2"
+                                    Increment="0.1"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                    Maximum="1"
+                                    Minimum="0"
+                                    ShowButtonSpinner="True"
+                                    Value="{Binding Path=TaskbarProgressValue, RelativeSource={RelativeSource AncestorType=extra:Window}}"/>
+
+                <Label Grid.Row="3" 
+                       Content="TaskbarDescription"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TaskbarDescriptionTextBox}"/>
+                <TextBox x:Name="TaskbarDescriptionTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="3"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=TaskbarDescription, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Grid.Row="4" 
+                       Content="TaskbarOverlay and TaskbarOverlayTemplate"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=TaskbarOverlayTextBox}"
+                       ToolTip="The Window has been set with a TaskbarOverlayTemplate DataTemplate. Enter some content here to show the overlay icon. Note that the Taskbar must not be set to small icons for this to work."/>
+                <TextBox x:Name="TaskbarOverlayTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="4"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=TaskbarOverlay, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="The Window has been set with a TaskbarOverlayTemplate DataTemplate. Enter some content here to show the overlay icon. Note that the Taskbar must not be set to small icons for this to work."/>
+
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Drop Shadows"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="By default AllowsTransparency is true and WindowStyle is None, allowing the Effect and Margin properties to be used to show a custom drop shadow around the window (Please note that the actual Height and Width of the Window contents are decreased be the Margin). If AllowsTransparency is False, The Effect and Margin are cleared and the default Windows drop shadow is used. AllowsTransparency has performance implications and some prefer it turned off. The EffectFocused property can be used to set the effect when the window is active."/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Effect.Color (CANT BE SET WHEN THE WINDOW IS FOCUSED)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=EffectColorTextBox}"/>
+                <TextBox x:Name="EffectColorTextBox" 
+                         Grid.Column="1"
+                         IsEnabled="False"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=Effect.Color, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="1" 
+                       Content="Effect.BlurRadius (CANT BE SET WHEN THE WINDOW IS FOCUSED)"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=EffectBlurRadiusTextBox}"/>
+                <TextBox x:Name="EffectBlurRadiusTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="1" 
+                         IsEnabled="False"
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=Effect.BlurRadius, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="2" 
+                       Content="EffectFocused.Color"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=EffectFocusedColorTextBox}"/>
+                <TextBox x:Name="EffectFocusedColorTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="2" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=EffectFocused.Color, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="3" 
+                       Content="EffectFocused.BlurRadius"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=EffectFocusedBlurRadiusTextBox}"/>
+                <TextBox x:Name="EffectFocusedBlurRadiusTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="3" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=EffectFocused.BlurRadius, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+                <Label Grid.Row="4" 
+                       Content="Margin"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=MarginTextBox}"/>
+                <TextBox x:Name="MarginTextBox" 
+                         Grid.Column="1"
+                         Grid.Row="4" 
+                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                         Text="{Binding Path=Margin, RelativeSource={RelativeSource AncestorType=extra:Window}, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"/>
+
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Full Screen Support"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="A window can enter or exit full screen mode programatically or by using the F12 and ESC keys."/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="IsFullScreen"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsFullScreenToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="IsFullScreenToggleSwitch" 
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Mode=TwoWay, Path=IsFullScreen, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="1" 
+                       Content="IsFullScreenShortcutsEnabled"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsFullScreenShortcutsEnabledToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="IsFullScreenShortcutsEnabledToggleSwitch" 
+                                    Grid.Column="1"
+                                    Grid.Row="1" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Mode=TwoWay, Path=IsFullScreenShortcutsEnabled, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Progress"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The window has a progress bar at the top. Also see Taskbar Properties to see how to show progress in the Windows task bar."/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="IsBusy"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=IsBusyToggleSwitch}"/>
+                <metro:ToggleSwitch x:Name="IsBusyToggleSwitch" 
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{Binding Mode=TwoWay, Path=IsBusy, RelativeSource={RelativeSource AncestorType=extra:Window}}"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"/>
+
+                <Label Grid.Row="1" 
+                       Content="Progress"
+                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Target="{Binding ElementName=ProgressDoubleUpDown}"/>
+                <extra:DoubleUpDown x:Name="ProgressDoubleUpDown" 
+                                    Grid.Column="1"
+                                    Grid.Row="1" 
+                                    AllowSpin="True"
+                                    Increment="10"
+                                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                    Maximum="100"
+                                    Minimum="0"
+                                    ShowButtonSpinner="True"
+                                    Value="{Binding Mode=TwoWay, Path=Progress, RelativeSource={RelativeSource AncestorType=extra:Window}}"/>
+
+            </Grid>
+
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource HeaderTextStyle}" 
+                       Text="Saving Window Placement"/>
+            <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Text="The Size and Location of the Window is saved to the WindowPlacement property. Bind this property to a setting in your view model to enable the Window to remember its location and size. The property is loaded when the window is first shown and saved 5 seconds after the window location or size changes."/>
+            <TextBox Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                     Style="{StaticResource MultiLineTextBoxStyle}"
+                     Text="{Binding Path=WindowPlacement, RelativeSource={RelativeSource AncestorType={x:Type extra:Window}}, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

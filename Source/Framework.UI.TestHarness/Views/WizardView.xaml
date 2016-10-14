@@ -1,0 +1,327 @@
+﻿<UserControl x:Class="Framework.UI.TestHarness.Views.WizardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:extra="http://schemas.extra.com/ui"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <UserControl.Resources>
+        <ImageBrush x:Key="AbstractImageBrush" Opacity="0.1" ImageSource="\Framework.UI.TestHarness;component\Assets\Background1.jpg"/>
+        <ImageBrush x:Key="AbstractReverseImageBrush" Opacity="0.1" ImageSource="\Framework.UI.TestHarness;component\Assets\Background2.jpg"/>
+        <ToolTip x:Key="ModeToolTip">
+            <TextBlock Style="{StaticResource NormalTextStyle}">
+                The mode determines the method of navigation between WizardItem's.
+                <LineBreak/>
+                None - Means no navigation bar and manual navigation.
+                <LineBreak/>
+                Linear - Means you have a linear set of WizardItem's.
+                <LineBreak/>
+                Tree - Means you have a tree of WizardItem's and a breadcrumb.
+            </TextBlock>
+        </ToolTip>
+        <ToolTip x:Key="BackToolTip">Enable the back button on the Managers WizardItem when in Linear mode.</ToolTip>
+        <ToolTip x:Key="ForwardToolTip">Enable the forward button on the Managers WizardItem when in Linear or Tree mode.</ToolTip>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource HeaderTextStyle}" 
+                   Text="Navigation Strategy"/>
+
+        <TextBlock Grid.Row="1"
+                   Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Style="{StaticResource NormalTextStyle}" 
+                   Text="The Wizard is a great way to avoid multiple windows and have an in-windows navigation strategy. See tooltips for more information on the buttons below."/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" 
+                   Content="Wizard Mode"
+                   Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   Target="{Binding ModeComboBox}"
+                   ToolTip="{StaticResource ModeToolTip}"/>
+            <ComboBox x:Name="ModeComboBox"
+                      Grid.Column="1" 
+                      SelectedIndex="2"
+                      ToolTip="{StaticResource ModeToolTip}">
+                <extra:WizardMode>None</extra:WizardMode>
+                <extra:WizardMode>Linear</extra:WizardMode>
+                <extra:WizardMode>Tree</extra:WizardMode>
+            </ComboBox>
+
+            <Label Grid.Column="2" 
+                   Content="(Managers Only) Backward Button"
+                   Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   ToolTip="{StaticResource BackToolTip}"/>
+            <CheckBox Grid.Column="3" 
+                      IsChecked="{Binding IsBackwardEnabled}"
+                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                      ToolTip="{StaticResource BackToolTip}"/>
+
+            <Label Grid.Column="4" 
+                   Content="(Managers Only) Forward Button"
+                   Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                   ToolTip="{StaticResource ForwardToolTip}"/>
+            <CheckBox Grid.Column="5" 
+                      IsChecked="{Binding IsForwardEnabled}"
+                      Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                      ToolTip="{StaticResource ForwardToolTip}"/>
+
+            <Button Grid.Column="0" 
+                    Grid.Row="1"
+                    Click="OnSkipManagersWizardItemClick"
+                    Content="Move Simon To Home"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                    ToolTip="Moves to the Home Wizard Item."/>
+            <Button Grid.Column="1" 
+                    Grid.Row="1"
+                    Click="OnUnskipManagersWizardItemClick"
+                    Content="Move Simon To Managers"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                    ToolTip="Moves to the Managers Wizard Item."/>
+
+            <Button Grid.Column="2" 
+                    Grid.Row="1"
+                    Click="OnAddWizardItemClick"
+                    Content="Add WizardItem"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                    ToolTip="Adds a WizardItem to the Managers WizardItem."/>
+            <Button Grid.Column="3" 
+                    Grid.Row="1"
+                    Click="OnRemoveWizardItemClick"
+                    Content="Remove WizardItem"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                    ToolTip="Removes a WizardItem from the Managers WizardItem."/>
+
+            <Button Grid.Column="4" 
+                    Grid.Row="1"
+                    Click="OnCollapseWizardItemClick"
+                    Content="Collapse Managers"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                    ToolTip="Hide the Managers WizardItem."/>
+            <Button Grid.Column="5" 
+                    Grid.Row="1"
+                    Click="OnUnCollapseWizardItemClick"
+                    Content="UnCollapse Managers"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                    ToolTip="Show the Managers WIzardItem."/>
+
+            <extra:Wizard x:Name="Wizard" 
+                          Grid.ColumnSpan="6" 
+                          Grid.Row="2"
+                          Mode="{Binding ElementName=ModeComboBox, Path=SelectedItem}">
+
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Description="Home Description" 
+                                  Icon="{StaticResource HouseGeometry}"
+                                  Id="Home"
+                                  Title="Home"/>
+
+                <extra:WizardItem x:Name="ManagersWizardItem"
+                                  Background="{StaticResource AbstractImageBrush}" 
+                                  Description="Managers Description" 
+                                  EnteringCommand="{Binding EnteringCommand}"
+                                  EnteringFirstTimeCommand="{Binding EnteringFirstTimeCommand}"
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="Managers"
+                                  IsBackwardEnabled="{Binding IsBackwardEnabled}"
+                                  IsForwardEnabled="{Binding IsForwardEnabled}"
+                                  IsForwardVisible="True"
+                                  LeavingCommand="{Binding LeavingCommand}"
+                                  ParentId="Home"
+                                  Title="Managers"/>
+                <extra:WizardItem Background="{StaticResource AbstractImageBrush}" 
+                                  Description="C# Developers Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="C# Developers"
+                                  ParentId="Home"
+                                  Title="C# Developers"/>
+                <extra:WizardItem Background="{StaticResource AbstractImageBrush}" 
+                                  Description="Sales People Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="Sales People"
+                                  ParentId="Home"
+                                  ShortTitle="Sales (Short Title)"
+                                  Title="Sales People"/>
+
+                <extra:WizardItem x:Name="SimonSmithWizardItem"  
+                                  Background="{StaticResource AbstractReverseImageBrush}" 
+                                  ContentTemplate="{x:Null}"
+                                  Description="Simon Smith Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="SimonSmith"
+                                  ParentId="Managers"
+                                  Title="Simon Smith">
+                    <extra:WizardItem.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" 
+                                       extra:Wizard.Animation="Fade"
+                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       Text="Fade Animation"/>
+                            <TextBlock Grid.Row="1" 
+                                       extra:Wizard.Animation="Slide"
+                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       Text="Slide Animation"/>
+                            <TextBlock Grid.Row="2" 
+                                       extra:Wizard.Animation="FadeAndSlide"
+                                       Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       Text="Fade And Slide Animation"/>
+
+                            <Separator Grid.Row="3"/>
+
+                            <ItemsControl Grid.Row="4"
+                                          extra:Wizard.CollectionAnimation="Random"
+                                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                          Style="{StaticResource PagingItemsControl}">
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Random"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Animation"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Of"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Items"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="In"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="ItemsControl"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="With"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Paging"/>
+                            </ItemsControl>
+
+                            <Separator Grid.Row="5"/>
+
+                            <ItemsControl Grid.Row="6"
+                                          extra:Wizard.CollectionAnimation="Sequential"
+                                          Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}"
+                                          Style="{StaticResource PagingItemsControl}">
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Sequential"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Animation"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Of"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Items"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="In"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="ItemsControl"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="With"/>
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="Paging"/>
+                            </ItemsControl>
+
+                        </Grid>
+                    </extra:WizardItem.Content>
+                </extra:WizardItem>
+
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Rehan Saeed Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="RehanSaeed"
+                                  ParentId="C# Developers"
+                                  Title="Rehan Saeed"/>
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Chris Hague Description"
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="ChrisHague"
+                                  ParentId="C# Developers"
+                                  Title="Chris Hague"/>
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Barry Saunter Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="BarrySaunter"
+                                  ParentId="C# Developers"
+                                  Title="Barry Saunter"/>
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Tim Slayer Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="TimSlayer"
+                                  ParentId="C# Developers"
+                                  Title="Tim Slayer"/>
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Tim Portsman Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="TimPortsman"
+                                  ParentId="C# Developers"
+                                  Title="Tim Portsman"/>
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="John Flatfoot Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="JohnFlatfoot"
+                                  ParentId="C# Developers"
+                                  Title="John Flatfoot"/>
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Adrian Farscape Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="AdrianFarscape"
+                                  ParentId="C# Developers"
+                                  Title="Adrian Farscape"/>
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Chris Highlander Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="ChrisHighlander"
+                                  ParentId="C# Developers"
+                                  Title="Chris Highlander"/>
+
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Kevin Spade Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="KevinSpade"
+                                  ParentId="Sales People"
+                                  Title="Kevin Spade"/>
+                <extra:WizardItem Background="{StaticResource AbstractReverseImageBrush}" 
+                                  Content="My View Model Bound Here"
+                                  ContentTemplate="{x:Null}"
+                                  Description="Jon Spiegel Description" 
+                                  Icon="{StaticResource User1Geometry}"
+                                  Id="JonSpiegel"
+                                  ParentId="Sales People"
+                                  Title="Jon Spiegel"/>
+
+            </extra:Wizard>
+
+        </Grid>
+
+    </Grid>
+</UserControl>
