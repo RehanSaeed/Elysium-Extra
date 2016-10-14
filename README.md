@@ -1,4 +1,4 @@
-# Elysium Extra
+# ![Elysium Extra Logo](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Elysium.png) Elysium Extra
 
 Elysium Extra is a library that implements Metro style for Windows Presentation Foundation (WPF) applications. This Project is a very large add-on project built on top of the Elysium SDK.
 
