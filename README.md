@@ -15,7 +15,7 @@ I just don't have the time to udpate it and am no longer interested in WPF. I'd 
 # Release Notes
 
 - Version 1.1.5 Released - Several small bug fixes.
-- Version 1.1.4 Released - Full theming support and performance improvements. Find out more details [url:here|http://rehansaeed.co.uk/elysium-extra-1-1-released].
+- Version 1.1.4 Released - Full theming support and performance improvements. Find out more details [here](http://rehansaeed.com/elysium-extra-1-1-released).
 
 # Controls and Styles
 
