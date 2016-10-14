@@ -10,7 +10,7 @@ Elysium Extra is a library that implements Metro style for Windows Presentation 
 
 # This Project is No Longer Mantained.
 
-I just don't have the time to udpate it and am no longer interested in WPF. I'd like to port many of the controls to Windows 10 UWP but again don't have time.
+This project has been moved from [Codeplex](https://elysiumextra.codeplex.com). I just don't have the time to udpate it and am no longer interested in WPF. I'd like to port many of the controls to Windows 10 UWP but again don't have time.
 
 # Release Notes
 
@@ -32,94 +32,94 @@ Many custom controls are not new controls at all but standard WPF controls with 
 These are screenshots of just *some* of the controls in this extensive SDK.
 
 ## Colour
-![Colour Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992902)
+![Colour Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Colour-1024x575.png)
 
 ## MenuItem
-![MenuItem Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992905)
+![MenuItem Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/MenuItem-1024x575.png)
 
 ## App-Bar
-![App-Bar Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992907)
+![App-Bar Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/App-Bar-1024x575.png)
 
 ## ElasticPicker
-![ElasticPicker Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992908)
-![ElasticPicker Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992909)
+![ElasticPicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ElasticPicker-1-1024x575.png)
+![ElasticPicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ElasticPicker-2-1024x575.png)
 
 ## Icon
-![Icon Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992934)
+![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Icon1-1024x575.png)
 
 ## Wizard
-![Icon Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992938)
-![Icon Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992937)
+![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Wizard-1-1024x575.png)
+![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Wizard-3-1024x575.png)
 
 ## DataGrid
-![DataGrid Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992939)
+![DataGrid Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/DataGrid-1024x575.png)
 
 ## ExpanderMenu
-![ExpanderMenu Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992940)
+![ExpanderMenu Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ExpanderMenu-1024x575.png)
 
 ## Drag and Drop
-![Drag and Drop Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992943)
-![Drag and Drop Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992944)
+![Drag and Drop Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Drag-Drop-1-1024x575.png)
+![Drag and Drop Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Drag-Drop-2-1024x575.png)
 
 ## ListBox
-![ListBox Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992947)
-![ListBox Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992945)
+![ListBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ListBox-1-1024x575.png)
+![ListBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ListBox-2-1024x575.png)
 
 ## Expander
-![Expander Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992948)
+![Expander Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Expander-1024x575.png)
 
 ## Flyout
-![Flyout Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992949)
-![ Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992951)
+![Flyout Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Flyout1-1024x575.png)
+![Flyout Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Flyout2-1024x575.png)
 
 ## RichTextBox
-![RichTextBox Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992953)
+![RichTextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-RichTextBox-1024x575.png)
 
 ## TextBox
-![TextBox Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992955)
+![TextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-TextBox-1024x575.png)
 
 ## ButtonTextBox
-![TextBox Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992956)
+![TextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-ButtonTextBox-1024x575.png)
 
 ## DatePicker
-![DatePicker Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992957)
+![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-DatePicker-1024x575.png)
 
 ## Numeric
-![DatePicker Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992958)
+![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-Numeric-1024x575.png)
 
 ## Validation
-![DatePicker Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992962)
+![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Validation-1024x575.png)
 
 ## Button
-![Button Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992963)
+![Button Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Button-1024x575.png)
 
 ## Window
-![Window Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992964)
+![Window Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Window-1-1024x575.png)
 
 ## OverlayWindow
-![OverlayWindow Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992965)
+![OverlayWindow Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/OverlayWindow-1024x575.png)
 
 ## MessageDialog
-![MessageDialog Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992968)
+![MessageDialog Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/MessageDialog-1024x575.png)
 
 ## NotifyBox
-![NotifyBox Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992970)
+![NotifyBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/NotifyBox-1024x575.png)
 
 ## Progress
-![Progress Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992971)
+![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Progress-1024x575.png)
 
 ## Paging
-![Progress Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992973)
-![Progress Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992975)
+![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Paging-1-1024x575.png)
+![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Paging-2-1024x575.png)
 
 ## TreeView
-![TreeView Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992976)
+![TreeView Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/TreeView-1024x575.png)
 
 ## Animation
-![Animation Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992978)
+![Animation Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Animation-1024x575.png)
 
 ## FlipControl
-![FlipControl Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992984)
+![FlipControl Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/FlipControl-1024x575.png)
 
 ## Border
-![Border Screenshot](http://download-codeplex.sec.s-msft.com/Download?ProjectName=elysiumextra&DownloadId=992985)
+![Border Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Border-1024x575.png)
