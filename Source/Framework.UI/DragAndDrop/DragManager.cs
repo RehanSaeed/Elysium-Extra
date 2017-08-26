@@ -1,4 +1,6 @@
-﻿namespace Framework.UI
+﻿using System.Drawing;
+
+namespace Framework.UI
 {
     using System;
     using System.Windows;
@@ -372,9 +374,23 @@
 
             System.Drawing.Point cursorPosition = System.Windows.Forms.Cursor.Position;
             Point mousePoint = new Point(cursorPosition.X, cursorPosition.Y);
+            var scaleFactor = GetCurrentDisplayScaling();
 
-            popup.HorizontalOffset = mousePoint.X + 20;
-            popup.VerticalOffset = mousePoint.Y + 5;
+            popup.HorizontalOffset = mousePoint.X / scaleFactor.X + 20;
+            popup.VerticalOffset = mousePoint.Y / scaleFactor.Y + 5;
+        }
+
+        /// <summary>
+        /// Gets the current display scaling ratio
+        /// </summary>
+        /// <returns></returns>
+        private static Vector GetCurrentDisplayScaling()
+        {
+            using (var graphics = Graphics.FromHwnd(IntPtr.Zero))
+            {
+                return new Vector(graphics.DpiX / 96.0, graphics.DpiY / 96.0);
+            }
+
         }
 
         /// <summary>
