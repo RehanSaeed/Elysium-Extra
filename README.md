@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Elysium.png">Elysium Extra</img>
+# <img src="https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Elysium.png">Elysium Extra</img>
 
 Elysium Extra is a library that implements Metro style for Windows Presentation Foundation (WPF) applications. This Project is a very large add-on project built on top of the Elysium SDK.
 
@@ -32,94 +32,94 @@ Many custom controls are not new controls at all but standard WPF controls with 
 These are screenshots of just *some* of the controls in this extensive SDK.
 
 ## Colour
-![Colour Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Colour-1024x575.png)
+![Colour Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Colour-1024x575.png)
 
 ## MenuItem
-![MenuItem Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/MenuItem-1024x575.png)
+![MenuItem Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/MenuItem-1024x575.png)
 
 ## App-Bar
-![App-Bar Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/App-Bar-1024x575.png)
+![App-Bar Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/App-Bar-1024x575.png)
 
 ## ElasticPicker
-![ElasticPicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ElasticPicker-1-1024x575.png)
-![ElasticPicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ElasticPicker-2-1024x575.png)
+![ElasticPicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/ElasticPicker-1-1024x575.png)
+![ElasticPicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/ElasticPicker-2-1024x575.png)
 
 ## Icon
-![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Icon1-1024x575.png)
+![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Icon1-1024x575.png)
 
 ## Wizard
-![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Wizard-1-1024x575.png)
-![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Wizard-3-1024x575.png)
+![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Wizard-1-1024x575.png)
+![Icon Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Wizard-3-1024x575.png)
 
 ## DataGrid
-![DataGrid Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/DataGrid-1024x575.png)
+![DataGrid Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/DataGrid-1024x575.png)
 
 ## ExpanderMenu
-![ExpanderMenu Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ExpanderMenu-1024x575.png)
+![ExpanderMenu Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/ExpanderMenu-1024x575.png)
 
 ## Drag and Drop
-![Drag and Drop Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Drag-Drop-1-1024x575.png)
-![Drag and Drop Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Drag-Drop-2-1024x575.png)
+![Drag and Drop Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Drag-Drop-1-1024x575.png)
+![Drag and Drop Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Drag-Drop-2-1024x575.png)
 
 ## ListBox
-![ListBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ListBox-1-1024x575.png)
-![ListBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/ListBox-2-1024x575.png)
+![ListBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/ListBox-1-1024x575.png)
+![ListBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/ListBox-2-1024x575.png)
 
 ## Expander
-![Expander Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Expander-1024x575.png)
+![Expander Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Expander-1024x575.png)
 
 ## Flyout
-![Flyout Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Flyout1-1024x575.png)
-![Flyout Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Flyout2-1024x575.png)
+![Flyout Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Flyout1-1024x575.png)
+![Flyout Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Flyout2-1024x575.png)
 
 ## RichTextBox
-![RichTextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-RichTextBox-1024x575.png)
+![RichTextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Input-RichTextBox-1024x575.png)
 
 ## TextBox
-![TextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-TextBox-1024x575.png)
+![TextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Input-TextBox-1024x575.png)
 
 ## ButtonTextBox
-![TextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-ButtonTextBox-1024x575.png)
+![TextBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Input-ButtonTextBox-1024x575.png)
 
 ## DatePicker
-![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-DatePicker-1024x575.png)
+![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Input-DatePicker-1024x575.png)
 
 ## Numeric
-![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Input-Numeric-1024x575.png)
+![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Input-Numeric-1024x575.png)
 
 ## Validation
-![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Validation-1024x575.png)
+![DatePicker Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Validation-1024x575.png)
 
 ## Button
-![Button Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Button-1024x575.png)
+![Button Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Button-1024x575.png)
 
 ## Window
-![Window Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Window-1-1024x575.png)
+![Window Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Window-1-1024x575.png)
 
 ## OverlayWindow
-![OverlayWindow Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/OverlayWindow-1024x575.png)
+![OverlayWindow Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/OverlayWindow-1024x575.png)
 
 ## MessageDialog
-![MessageDialog Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/MessageDialog-1024x575.png)
+![MessageDialog Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/MessageDialog-1024x575.png)
 
 ## NotifyBox
-![NotifyBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/NotifyBox-1024x575.png)
+![NotifyBox Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/NotifyBox-1024x575.png)
 
 ## Progress
-![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Progress-1024x575.png)
+![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Progress-1024x575.png)
 
 ## Paging
-![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Paging-1-1024x575.png)
-![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Paging-2-1024x575.png)
+![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Paging-1-1024x575.png)
+![Progress Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Paging-2-1024x575.png)
 
 ## TreeView
-![TreeView Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/TreeView-1024x575.png)
+![TreeView Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/TreeView-1024x575.png)
 
 ## Animation
-![Animation Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Animation-1024x575.png)
+![Animation Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Animation-1024x575.png)
 
 ## FlipControl
-![FlipControl Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/FlipControl-1024x575.png)
+![FlipControl Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/FlipControl-1024x575.png)
 
 ## Border
-![Border Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/master/Screenshots/Border-1024x575.png)
+![Border Screenshot](https://raw.githubusercontent.com/RehanSaeed/Elysium-Extra/main/Screenshots/Border-1024x575.png)
